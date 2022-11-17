@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.seller.views.addBooksView.AddBooksController">
+   <children>
+      <TextField layoutX="140.0" layoutY="52.0" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text layoutX="23.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" />
+      <Text layoutX="23.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Author" />
+      <Text layoutX="23.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Condition" />
+      <Text layoutX="23.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cover Type" />
+      <Text layoutX="23.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ISBN" />
+
+      <Text layoutX="23.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Genre" />
+      <Text layoutX="23.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" />
+      <Text layoutX="23.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year of Publication" />
+      <TextField fx:id="Author" layoutX="140.0" layoutY="88.0" />
+      <TextField fx:id="condition" layoutX="140.0" layoutY="119.0" />
+      <TextField fx:id="coverType" layoutX="140.0" layoutY="154.0" />
+      <TextField fx:id="isbn" layoutX="140.0" layoutY="188.0" />
+      <TextField fx:id="genre" layoutX="140.0" layoutY="219.0" />
+      <TextField fx:id="price" layoutX="140.0" layoutY="253.0" />
+      <TextField fx:id="yearOfPublication" layoutX="140.0" layoutY="284.0" />
+      <Text layoutX="25.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Book" />
+      <Button fx:id="addBook
+      Button" layoutX="25.0" layoutY="340.0" mnemonicParsing="false" onAction="#addBook" text="Add Book" />
+   </children>
+</AnchorPane>
