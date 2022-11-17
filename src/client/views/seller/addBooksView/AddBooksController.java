@@ -1,8 +1,6 @@
-package client.seller.views.addBooksView;
+package client.views.seller.addBooksView;
 
-import client.seller.core.ViewHandler;
-import client.shared.core.ViewModelFactory;
-import client.shared.view.signView.SignViewModel;
+import client.core.ViewHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,7 +8,6 @@ import javafx.scene.control.TextField;
 
 public class AddBooksController {
 
-    private ViewHandler viewHandler;
     private AddBooksViewModel addBooksViewModel;
 
     @FXML
@@ -37,9 +34,8 @@ public class AddBooksController {
     @FXML
     public Button addBookButton;
 
-    public  void init(ViewHandler viewHandler, AddBooksViewModel addBooksViewModel)
+    public  void init(AddBooksViewModel addBooksViewModel)
     {
-        this.viewHandler = viewHandler;
         this.addBooksViewModel = addBooksViewModel;
         this.condition.textProperty().bindBidirectional(addBooksViewModel.conditionProperty());
         this.Author.textProperty().bindBidirectional(addBooksViewModel.authorProperty());

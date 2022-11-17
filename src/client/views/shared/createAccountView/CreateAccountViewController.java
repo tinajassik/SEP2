@@ -1,4 +1,4 @@
-package client.shared.view.createAccountView;
+package client.views.shared.createAccountView;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

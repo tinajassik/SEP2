@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.seller.views.addBooksView.AddBooksController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.views.seller.addBooksView.AddBooksController">
    <children>
       <TextField layoutX="140.0" layoutY="52.0" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
@@ -27,7 +27,6 @@
       <TextField fx:id="price" layoutX="140.0" layoutY="253.0" />
       <TextField fx:id="yearOfPublication" layoutX="140.0" layoutY="284.0" />
       <Text layoutX="25.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Book" />
-      <Button fx:id="addBook
-      Button" layoutX="25.0" layoutY="340.0" mnemonicParsing="false" onAction="#addBook" text="Add Book" />
+      <Button fx:id="addBookButton" layoutX="25.0" layoutY="340.0" mnemonicParsing="false" onAction="#addBook" text="Add Book" />
    </children>
 </AnchorPane>

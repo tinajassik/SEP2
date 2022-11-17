@@ -3,7 +3,6 @@ package server.dao;
 
 import shared.Author;
 import shared.Book;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

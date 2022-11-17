@@ -1,4 +1,4 @@
-package client.seller.views.addBooksView;
+package client.views.seller.addBooksView;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;

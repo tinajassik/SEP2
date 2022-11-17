@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.shared.view.signView.SignViewController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.views.shared.signView.SignViewController">
    <children>
       <Text layoutX="131.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" />
       <Button layoutX="347.0" layoutY="171.0" mnemonicParsing="false" onAction="#onSignUp" text="Sign up" />
