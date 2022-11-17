@@ -77,14 +77,6 @@ public class ViewHandler
       stage.show();
     }
   }
-
-
-
-
-
-
-
-
   }
 
 
