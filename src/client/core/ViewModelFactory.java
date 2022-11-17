@@ -1,7 +1,8 @@
-package client.shared.core;
+package client.core;
 
-import client.shared.view.createAccountView.CreateAccountViewModel;
-import client.shared.view.signView.SignViewModel;
+import client.views.seller.addBooksView.AddBooksViewModel;
+import client.views.shared.createAccountView.CreateAccountViewModel;
+import client.views.shared.signView.SignViewModel;
 
 import java.rmi.RemoteException;
 
@@ -14,6 +15,8 @@ public class ViewModelFactory {
   }
   private SignViewModel signViewModel;
   private CreateAccountViewModel createAccountViewModel;
+
+  private AddBooksViewModel addBooksViewModel;
 
   private ViewModelFactory() {
   }
@@ -30,6 +33,13 @@ public class ViewModelFactory {
     if (createAccountViewModel == null)
       createAccountViewModel = new CreateAccountViewModel();
     return createAccountViewModel;
+  }
+
+  public AddBooksViewModel getAddBooksViewModel() throws RemoteException
+  {
+    if (addBooksViewModel == null)
+      addBooksViewModel = new AddBooksViewModel();
+    return addBooksViewModel;
   }
 
 }

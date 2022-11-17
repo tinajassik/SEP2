@@ -1,7 +1,8 @@
-package client.shared.core;
+package client.core;
 
-import client.shared.view.createAccountView.CreateAccountViewController;
-import client.shared.view.signView.SignViewController;
+import client.views.seller.addBooksView.AddBooksController;
+import client.views.shared.createAccountView.CreateAccountViewController;
+import client.views.shared.signView.SignViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,17 +13,18 @@ import java.io.IOException;
 public class ViewHandler
 {
 
-  private static ViewHandler instance = new ViewHandler(ViewModelFactory.getInstance());
+  private static ViewHandler instance = new ViewHandler();
   public static ViewHandler getInstance(){return instance;}
 
   private Stage stage;
   private Scene signScene;
   private Scene createAccountScene;
-  private ViewModelFactory viewModelFactory;
+  private Scene AddBookScene;
 
-  public ViewHandler(ViewModelFactory viewModelFactory)
+
+  public ViewHandler()
   {
-    this.viewModelFactory = viewModelFactory;
+
   }
 
   public void start()
@@ -41,7 +43,7 @@ public class ViewHandler
         loader.setLocation(getClass().getResource("signView.fxml"));
         Parent root = loader.load();
         SignViewController signViewController = loader.getController();
-        signViewController.init(this, viewModelFactory);
+        signViewController.init(this, ViewModelFactory.getInstance().getSignViewModel());
         stage.setTitle("Sign");
         signScene = new Scene(root);
       }
@@ -64,8 +66,7 @@ public class ViewHandler
         loader.setLocation(getClass().getResource("createAccountView.fxml"));
         Parent root = loader.load();
         CreateAccountViewController createAccountViewController = loader.getController();
-        createAccountViewController.init(ViewModelFactory.getInstance()
-            .getCreateAccountViewModel());
+        createAccountViewController.init(ViewModelFactory.getInstance().getCreateAccountViewModel());
         stage.setTitle("Create account");
         signScene = new Scene(root);
       }
@@ -78,14 +79,32 @@ public class ViewHandler
     }
   }
 
-
-
-
-
-
-
-
+  public void openAddBook()
+  {
+    if (AddBookScene == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("addBooks.fxml"));
+        Parent root = loader.load();
+        AddBooksController addBooksController = loader.getController();
+        addBooksController.init( ViewModelFactory.getInstance().getAddBooksViewModel());
+        stage.setTitle("Add Books");
+        AddBookScene = new Scene(root);
+      }
+      catch (IOException e)
+      {
+        e.printStackTrace();
+      }
+      stage.setScene(AddBookScene);
+      stage.show();
+    }
   }
+
+
+
+}
 
 
 

@@ -1,7 +1,7 @@
-package client.shared.view.signView;
+package client.views.shared.signView;
 
-import client.shared.core.ViewHandler;
-import client.shared.core.ViewModelFactory;
+import client.core.ViewHandler;
+import client.core.ViewModelFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -16,7 +16,7 @@ public class SignViewController
   private ViewHandler viewHandler;
   private SignViewModel signViewModel;
 
-  public void init(ViewHandler viewHandler, ViewModelFactory viewModelFactory)
+  public void init(ViewHandler viewHandler, SignViewModel signViewModel)
   {
     this.viewHandler = viewHandler;
     this.signViewModel = signViewModel;

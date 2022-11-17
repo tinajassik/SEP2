@@ -1,4 +1,4 @@
-package client.shared.view.signView;
+package client.views.shared.signView;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;

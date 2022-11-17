@@ -1,4 +1,4 @@
-package client.shared.view.createAccountView;
+package client.views.shared.createAccountView;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
