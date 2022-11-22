@@ -2,27 +2,55 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.views.shared.createAccountView.CreateAccountViewController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f3f4d7;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.views.shared.createAccountView.CreateAccountViewController">
    <children>
       <Text layoutX="70.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter your personal information: " />
       <TextField fx:id="fullNameField" layoutX="168.0" layoutY="93.0" />
       <Text layoutX="68.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full name: " />
-      <Text layoutX="69.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of birth: " />
-      <Text layoutX="69.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address: " />
+      <Text layoutX="68.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of birth: " />
+      <Text layoutX="65.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address: " />
       <Text layoutX="65.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone number:" />
       <Text layoutX="68.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email address:" />
       <Text layoutX="68.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" />
       <Text layoutX="70.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" />
-      <TextField fx:id="dateOfBirthField" layoutX="168.0" layoutY="126.0" />
       <TextField fx:id="addressField" layoutX="168.0" layoutY="158.0" />
       <TextField fx:id="phoneNumberField" layoutX="168.0" layoutY="187.0" />
       <TextField fx:id="emailField" layoutX="168.0" layoutY="218.0" />
       <TextField fx:id="usernameField" layoutX="168.0" layoutY="249.0" />
       <TextField fx:id="passwordField" layoutX="168.0" layoutY="279.0" />
-      <Button layoutX="65.0" layoutY="344.0" mnemonicParsing="false" onAction="#onRegisterSeller" text="Register as seller" />
-      <Button layoutX="203.0" layoutY="344.0" mnemonicParsing="false" onAction="#onRegisterBuyer" text="Register as buyer" />
+      <Button layoutX="399.0" layoutY="292.0" mnemonicParsing="false" onAction="#onRegisterSeller" prefHeight="34.0" prefWidth="118.0" style="-fx-background-color: #32afc9;" text="Register as seller" textFill="#f3f4d7" />
+      <Button layoutX="399.0" layoutY="346.0" mnemonicParsing="false" onAction="#onRegisterBuyer" prefHeight="34.0" prefWidth="118.0" style="-fx-background-color: #c2518c;" text="Register as buyer" textFill="#f3f4d7" />
+      <Text fill="#2d206f" layoutX="348.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Will you become " wrappingWidth="230.24609375">
+         <font>
+            <Font name="Bauhaus 93" size="30.0" />
+         </font>
+      </Text>
+      <Text fill="#c2518c" layoutX="399.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="a buyer" wrappingWidth="139.6171875">
+         <font>
+            <Font name="Bauhaus 93" size="32.0" />
+         </font>
+      </Text>
+      <Text fill="#2d206f" layoutX="445.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="or" wrappingWidth="35.72589111328125">
+         <font>
+            <Font name="Bauhaus 93" size="30.0" />
+         </font>
+      </Text>
+      <Text fill="#32afc9" layoutX="399.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="a seller" wrappingWidth="139.6171875">
+         <font>
+            <Font name="Bauhaus 93" size="32.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="74.0" fitWidth="73.0" layoutX="425.0" layoutY="210.0">
+         <image>
+            <Image url="@../../pictures/questionmark.gif" />
+         </image>
+      </ImageView>
+      <TextField fx:id="dateOfBirthField" layoutX="168.0" layoutY="126.0" />
    </children>
 </AnchorPane>
