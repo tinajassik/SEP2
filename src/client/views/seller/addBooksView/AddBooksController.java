@@ -1,6 +1,5 @@
 package client.views.seller.addBooksView;
 
-import client.core.ViewHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

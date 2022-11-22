@@ -11,127 +11,109 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ViewHandler
-{
+public class ViewHandler {
 
-  private static ViewHandler instance = new ViewHandler();
-  public static ViewHandler getInstance(){return instance;}
+    private static ViewHandler instance = new ViewHandler();
+    private Stage stage;
 
-  private Stage stage;
-  private Scene signScene;
-  private Scene createAccountScene;
-  private Scene AddBookScene;
-
-  private Scene mainViewBuyersScene;
-
-
-  public ViewHandler()
-  {
-
-  }
-
-  public void start()
-  {
-    stage = new Stage();
-    openSign();
-  }
-
-  public void openSign()
-  {
-    if (signScene == null)
-    {
-      try
-      {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("signView.fxml"));
-        Parent root = loader.load();
-        SignViewController signViewController = loader.getController();
-        signViewController.init(this, ViewModelFactory.getInstance().getSignViewModel());
-        stage.setTitle("Sign");
-        signScene = new Scene(root);
-      }
-      catch (IOException e)
-      {
-        e.printStackTrace();
-      }
-      stage.setScene(signScene);
-      stage.show();
+    public static ViewHandler getInstance(){
+        return instance;
     }
-  }
 
-  public void openCreateAccount()
-  {
-    if (createAccountScene == null)
+    public ViewHandler()
     {
-      try
-      {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("createAccountView.fxml"));
-        Parent root = loader.load();
-        CreateAccountViewController createAccountViewController = loader.getController();
-        createAccountViewController.init(ViewModelFactory.getInstance().getCreateAccountViewModel());
-        stage.setTitle("Create account");
-        signScene = new Scene(root);
-      }
-      catch (IOException e)
-      {
-        e.printStackTrace();
-      }
-      stage.setScene(signScene);
-      stage.show();
+        stage = new Stage();
     }
-  }
 
-  public void openAddBook()
-  {
-    if (AddBookScene == null)
+    public void start()
     {
-      try
-      {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("addBooks.fxml"));
-        Parent root = loader.load();
-        AddBooksController addBooksController = loader.getController();
-        addBooksController.init( ViewModelFactory.getInstance().getAddBooksViewModel());
-        stage.setTitle("Add Books");
-        AddBookScene = new Scene(root);
-      }
-      catch (IOException e)
-      {
-        e.printStackTrace();
-      }
-      stage.setScene(AddBookScene);
-      stage.show();
+        instance.openSign();
     }
-  }
 
-  public void openMainViewBuyers() {
-    if (mainViewBuyersScene == null)
+    public void openSign() {
+
+        Scene scene = null;
+
+        try
+        {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../views/shared/signView/signView.fxml"));
+            Parent root = loader.load();
+            SignViewController signViewController = loader.getController();
+            signViewController.init(this, ViewModelFactory.getInstance().getSignViewModel());
+            stage.setTitle("Sign");
+            scene = new Scene(root);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void openCreateAccount()
     {
-      try
-      {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/buyer/mainPageView/mainpage.fxml"));
-        Parent root = loader.load();
-        MainPageController mainPageController = loader.getController();
-        mainPageController.init( ViewModelFactory.getInstance().getMainPageBuyersViewModel());
-        stage.setTitle("Main Page");
-        mainViewBuyersScene = new Scene(root);
-      }
-      catch (IOException e)
-      {
-        e.printStackTrace();
-      }
-      stage.setScene(mainViewBuyersScene);
-      stage.show();
+        Scene scene = null;
+        try
+            {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("../views/shared/createAccountView/createAccountView.fxml"));
+                Parent root = loader.load();
+                CreateAccountViewController createAccountViewController = loader.getController();
+                createAccountViewController.init(ViewModelFactory.getInstance().getCreateAccountViewModel());
+                stage.setTitle("Create account");
+                scene = new Scene(root);
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            stage.setScene(scene);
+            stage.show();
+        }
+
+
+    public void openAddBook()
+    {
+        Scene scene = null;
+            try
+            {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("../views/seller/addBooksView/addBooks.fxml"));
+                Parent root = loader.load();
+                AddBooksController addBooksController = loader.getController();
+                addBooksController.init( ViewModelFactory.getInstance().getAddBooksViewModel());
+                stage.setTitle("Add Books");
+                scene = new Scene(root);
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            stage.setScene(scene);
+            stage.show();
+
     }
-  }
 
-
+    public void openMainViewBuyers() {
+       Scene scene= null;
+            try
+            {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("../views/buyer/mainPageView/mainpage.fxml"));
+                Parent root = loader.load();
+                MainPageController mainPageController = loader.getController();
+                mainPageController.init( ViewModelFactory.getInstance().getMainPageBuyersViewModel());
+                stage.setTitle("Main Page");
+                scene = new Scene(root);
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            stage.setScene(scene);
+            stage.show();
+        }
 
 }
-
-
-
-
-
