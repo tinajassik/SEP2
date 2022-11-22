@@ -1,5 +1,6 @@
 package client.views.buyer.mainPageView;
 
+
 import client.core.ViewHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
