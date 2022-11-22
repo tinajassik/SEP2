@@ -1,5 +1,6 @@
 package client.core;
 
+import client.views.buyer.mainPageView.MainPageViewModel;
 import client.views.seller.addBooksView.AddBooksViewModel;
 import client.views.shared.createAccountView.CreateAccountViewModel;
 import client.views.shared.signView.SignViewModel;
@@ -17,6 +18,7 @@ public class ViewModelFactory {
   private CreateAccountViewModel createAccountViewModel;
 
   private AddBooksViewModel addBooksViewModel;
+  private MainPageViewModel mainPageBuyersViewModel;
 
   private ViewModelFactory() {
   }
@@ -40,6 +42,13 @@ public class ViewModelFactory {
     if (addBooksViewModel == null)
       addBooksViewModel = new AddBooksViewModel();
     return addBooksViewModel;
+  }
+
+  public MainPageViewModel getMainPageBuyersViewModel() throws RemoteException {
+    if (mainPageBuyersViewModel == null) {
+      mainPageBuyersViewModel = new MainPageViewModel();
+    }
+    return mainPageBuyersViewModel;
   }
 
 }
