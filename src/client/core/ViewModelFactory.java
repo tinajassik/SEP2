@@ -5,7 +5,6 @@ import client.views.seller.addBooksView.AddBooksViewModel;
 import client.views.shared.createAccountView.CreateAccountViewModel;
 import client.views.shared.signView.SignViewModel;
 
-import java.rmi.RemoteException;
 
 public class ViewModelFactory {
 
@@ -23,28 +22,28 @@ public class ViewModelFactory {
   private ViewModelFactory() {
   }
 
-  public SignViewModel getSignViewModel() throws RemoteException
+  public SignViewModel getSignViewModel()
   {
     if (signViewModel == null)
       signViewModel = new SignViewModel();
     return signViewModel;
   }
 
-  public CreateAccountViewModel getCreateAccountViewModel() throws RemoteException
+  public CreateAccountViewModel getCreateAccountViewModel()
   {
     if (createAccountViewModel == null)
       createAccountViewModel = new CreateAccountViewModel();
     return createAccountViewModel;
   }
 
-  public AddBooksViewModel getAddBooksViewModel() throws RemoteException
+  public AddBooksViewModel getAddBooksViewModel()
   {
     if (addBooksViewModel == null)
       addBooksViewModel = new AddBooksViewModel();
     return addBooksViewModel;
   }
 
-  public MainPageViewModel getMainPageBuyersViewModel() throws RemoteException {
+  public MainPageViewModel getMainPageBuyersViewModel(){
     if (mainPageBuyersViewModel == null) {
       mainPageBuyersViewModel = new MainPageViewModel();
     }
