@@ -9,7 +9,7 @@ import client.views.shared.signView.SignViewModel;
 
 public class ViewModelFactory {
 
-  private static ViewModelFactory instance=new ViewModelFactory();
+  private static ViewModelFactory instance = new ViewModelFactory();
 
   public static ViewModelFactory getInstance(){
     return instance;
@@ -53,7 +53,7 @@ public class ViewModelFactory {
     return mainPageBuyersViewModel;
   }
 
-  public MainPageSellerViewModel getMainPageSellersViewModel() throws RemoteException {
+  public MainPageSellerViewModel getMainPageSellersViewModel()  {
     if (mainPageSellersViewModel == null) {
       mainPageSellersViewModel = new MainPageSellerViewModel();
     }

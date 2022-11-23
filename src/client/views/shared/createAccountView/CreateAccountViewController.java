@@ -1,6 +1,7 @@
 package client.views.shared.createAccountView;
 
 import client.core.ViewHandler;
+import client.core.ViewModelFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -38,11 +39,15 @@ public class CreateAccountViewController
 
   public void onRegisterSeller(ActionEvent actionEvent)
   {
+
     ViewHandler.getInstance().openMainViewSellers();
+    ViewModelFactory.getInstance().getCreateAccountViewModel().registerSeller();
   }
 
   public void onRegisterBuyer(ActionEvent actionEvent)
   {
+
     ViewHandler.getInstance().openMainViewBuyers();
+    ViewModelFactory.getInstance().getCreateAccountViewModel().registerBuyer();
   }
 }

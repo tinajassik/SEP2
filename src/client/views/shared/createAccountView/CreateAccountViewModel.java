@@ -1,5 +1,8 @@
 package client.views.shared.createAccountView;
 
+import client.core.ModelFactory;
+import client.model.User;
+import client.model.UserModelManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -31,5 +34,13 @@ public class CreateAccountViewModel
   public StringProperty usernameProperty(){return username;}
 
   public StringProperty passwordProperty(){return password;}
+
+  public void registerBuyer() {
+    ModelFactory.getInstance().getUserModelManager().registerBuyer(fullName.toString(), address.toString(),phoneNumber.toString(),email.toString(),username.toString(),password.toString());
+  }
+
+  public void registerSeller() {
+    ModelFactory.getInstance().getUserModelManager().registerSeller(fullName.toString(), address.toString(),phoneNumber.toString(),email.toString(),username.toString(),password.toString());
+  }
 
 }
