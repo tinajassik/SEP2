@@ -1,4 +1,4 @@
-package client.core;
+package client.model;
 
 public class Seller implements User {
 

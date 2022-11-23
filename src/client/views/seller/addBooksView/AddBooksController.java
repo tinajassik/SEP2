@@ -1,9 +1,9 @@
 package client.views.seller.addBooksView;
 
-import client.core.ViewHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 public class AddBooksController {
@@ -11,7 +11,7 @@ public class AddBooksController {
     private AddBooksViewModel addBooksViewModel;
 
     @FXML
-    public TextField Author;
+    public ComboBox comboBoxAuthors;
 
     @FXML
     public TextField condition;
@@ -38,7 +38,7 @@ public class AddBooksController {
     {
         this.addBooksViewModel = addBooksViewModel;
         this.condition.textProperty().bindBidirectional(addBooksViewModel.conditionProperty());
-        this.Author.textProperty().bindBidirectional(addBooksViewModel.authorProperty());
+//        this.Author.textProperty().bindBidirectional(addBooksViewModel.authorProperty());
         this.isbn.textProperty().bindBidirectional(addBooksViewModel.isbnProperty());
         this.price.textProperty().bindBidirectional(addBooksViewModel.priceProperty());
         this.coverType.textProperty().bindBidirectional(addBooksViewModel.coverTypeProperty());

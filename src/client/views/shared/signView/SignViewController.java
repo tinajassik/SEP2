@@ -1,7 +1,6 @@
 package client.views.shared.signView;
 
 import client.core.ViewHandler;
-import client.core.ViewModelFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -31,5 +30,6 @@ public class SignViewController
 
   public void onLogIn(ActionEvent actionEvent)
   {
+    ViewHandler.getInstance().openMainViewBuyers();
   }
 }
