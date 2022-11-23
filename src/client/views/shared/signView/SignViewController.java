@@ -1,9 +1,13 @@
 package client.views.shared.signView;
 
 import client.core.ViewHandler;
+import client.core.ViewModelFactory;
+import client.model.Buyer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+
+import javax.swing.text.View;
 
 public class SignViewController
 {
@@ -30,6 +34,7 @@ public class SignViewController
 
   public void onLogIn(ActionEvent actionEvent)
   {
+   if (ViewModelFactory.getInstance().getSignViewModel().getUserType() instanceof Buyer)
     ViewHandler.getInstance().openMainViewBuyers();
   }
 }
