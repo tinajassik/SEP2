@@ -38,7 +38,7 @@ public class CreateAccountViewController
 
   public void onRegisterSeller(ActionEvent actionEvent)
   {
-
+    ViewHandler.getInstance().openMainViewSellers();
   }
 
   public void onRegisterBuyer(ActionEvent actionEvent)
