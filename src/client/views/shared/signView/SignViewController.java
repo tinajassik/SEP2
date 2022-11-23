@@ -35,15 +35,15 @@ public class SignViewController
   public void onLogIn(ActionEvent actionEvent)
   {
     // checking if the user has an account and the password is correct
-    if (ViewModelFactory.getInstance().getSignViewModel().userExists() &&
-            ViewModelFactory.getInstance().getSignViewModel().validatePassword()) {
+    if (signViewModel.userExists() &&
+            signViewModel.validatePassword()) {
       // checking if the user is a buyer or a seller
-      if (ViewModelFactory.getInstance().getSignViewModel().getUserType() instanceof Buyer)
+      if (signViewModel.getUserType() instanceof Buyer)
       {
-        ViewHandler.getInstance().openMainViewBuyers();
+        viewHandler.openMainViewBuyers();
       }
       else
-        ViewHandler.getInstance().openMainViewSellers();
+       viewHandler.openMainViewSellers();
     }
     else {
       Alert alert = new Alert(Alert.AlertType.ERROR);

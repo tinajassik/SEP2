@@ -105,7 +105,7 @@ public class ViewHandler {
                 loader.setLocation(getClass().getResource("../views/buyer/mainPageView/mainpage.fxml"));
                 Parent root = loader.load();
                 MainPageController mainPageController = loader.getController();
-                mainPageController.init( ViewModelFactory.getInstance().getMainPageBuyersViewModel());
+                mainPageController.init(ViewModelFactory.getInstance().getMainPageBuyersViewModel());
                 stage.setTitle("Main Page");
                 scene = new Scene(root);
             }
