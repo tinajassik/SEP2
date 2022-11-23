@@ -1,11 +1,14 @@
 package client.model;
 
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.HashMap;
 
 public class UserModelManagerImpl implements UserModelManager {
 
-    HashMap<String, User> allRegisteredUsers = new HashMap<>();
+    private HashMap<String, User> allRegisteredUsers = new HashMap<>();
+    private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
     @Override
     public void registerBuyer(String fullName, String address, String phoneNumber, String email, String username, String password) {
@@ -35,4 +38,13 @@ public class UserModelManagerImpl implements UserModelManager {
     }
 
 
+    @Override
+    public void addPropertyChangeListener(String eventName, PropertyChangeListener listener) {
+        propertyChangeSupport.addPropertyChangeListener(eventName,listener);
+    }
+
+    @Override
+    public void removePropertyChangeListener(String eventName, PropertyChangeListener listener) {
+        propertyChangeSupport.removePropertyChangeListener(eventName,listener);
+    }
 }

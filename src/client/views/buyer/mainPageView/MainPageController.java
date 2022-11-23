@@ -31,8 +31,10 @@ public class MainPageController {
     @FXML
     private Button  buttonSignOut;
 
-    public void init(MainPageViewModel mainPageBuyersViewModel) {
-        mainPageViewModel = mainPageBuyersViewModel;
+    public void init(MainPageViewModel mainPageViewModel) {
+        this.mainPageViewModel = mainPageViewModel;
+        labelUsername.textProperty().bindBidirectional(mainPageViewModel.getUsernameProperty());
+        labelFullName.textProperty().bindBidirectional(mainPageViewModel.getFullNameProperty());
     }
     @FXML
     public void onSignOut(ActionEvent actionEvent) {
@@ -58,4 +60,5 @@ public class MainPageController {
     public void onSearchByAuthors(ActionEvent actionEvent) {
 
     }
+
 }

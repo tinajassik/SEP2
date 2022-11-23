@@ -41,13 +41,12 @@ public class CreateAccountViewController
   {
 
     ViewHandler.getInstance().openMainViewSellers();
-    ViewModelFactory.getInstance().getCreateAccountViewModel().registerSeller();
+    createAccountViewModel.registerSeller();
   }
 
   public void onRegisterBuyer(ActionEvent actionEvent)
   {
-
     ViewHandler.getInstance().openMainViewBuyers();
-    ViewModelFactory.getInstance().getCreateAccountViewModel().registerBuyer();
+    createAccountViewModel.registerBuyer();
   }
 }
