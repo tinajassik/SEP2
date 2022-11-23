@@ -21,4 +21,12 @@ public class SignViewModel
   public User getUserType() {
     return ModelFactory.getInstance().getUserModelManager().getUser(username.toString());
   }
+  public boolean validatePassword() {
+    return ModelFactory.getInstance().getUserModelManager().validatePassword(username.toString(),password.toString());
+  }
+
+  public boolean userExists() {
+    return ModelFactory.getInstance().getUserModelManager().validateUser(username.toString());
+  }
+
 }
