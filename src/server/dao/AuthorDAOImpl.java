@@ -20,7 +20,7 @@ public class AuthorDAOImpl implements AuthorDAO{
     }
 
     private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=jdbc", "postgres", "tina");
+        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=jdbc", "postgres", "mariusz4111");
     }
 
     @Override
