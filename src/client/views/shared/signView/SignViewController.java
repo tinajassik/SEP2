@@ -1,9 +1,13 @@
 package client.views.shared.signView;
 
 import client.core.ViewHandler;
+import client.core.ViewModelFactory;
+import client.model.Buyer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+
 
 public class SignViewController
 {
@@ -30,6 +34,23 @@ public class SignViewController
 
   public void onLogIn(ActionEvent actionEvent)
   {
-    ViewHandler.getInstance().openMainViewBuyers();
+    // checking if the user has an account and the password is correct
+    if (signViewModel.userExists() &&
+            signViewModel.validatePassword()) {
+      // checking if the user is a buyer or a seller
+      if (signViewModel.getUserType() instanceof Buyer)
+      {
+        viewHandler.openMainViewBuyers();
+      }
+      else
+       viewHandler.openMainViewSellers();
+    }
+    else {
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setContentText("Account does not exist/Incorrect password. Try again!");
+      alert.show();
+    }
+
   }
+
 }

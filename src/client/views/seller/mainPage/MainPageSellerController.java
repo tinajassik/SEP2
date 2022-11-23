@@ -1,4 +1,4 @@
-package client.views.buyer.mainPageView;
+package client.views.seller.mainPage;
 
 
 import client.core.ViewHandler;
@@ -10,9 +10,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
-public class MainPageController {
+public class MainPageSellerController {
 
-    private MainPageViewModel mainPageViewModel;
+    private MainPageSellerViewModel mainPageViewModel;
     @FXML
     private GridPane gridPaneBooks;
     @FXML
@@ -27,32 +27,31 @@ public class MainPageController {
     @FXML
     private Label labelFullName;
     @FXML
-    private Button  buttonShoppingCart;
+    private Button buttonShoppingCart;
     @FXML
-    private Button  buttonSignOut;
+    private Button buttonSignOut;
 
-    public void init(MainPageViewModel mainPageViewModel) {
-        this.mainPageViewModel = mainPageViewModel;
-        labelUsername.textProperty().bindBidirectional(mainPageViewModel.getUsernameProperty());
-        labelFullName.textProperty().bindBidirectional(mainPageViewModel.getFullNameProperty());
+    public void init(MainPageSellerViewModel mainPageSellerViewModel) {
+        mainPageViewModel = mainPageSellerViewModel;
     }
+
     @FXML
     public void onSignOut(ActionEvent actionEvent) {
         ViewHandler.getInstance().openSign();
     }
 
     @FXML
-    public void onShoppingCart (ActionEvent actionEvent) {
+    public void onShoppingCart(ActionEvent actionEvent) {
 
     }
 
     @FXML
-    public void onSearchByTitle (ActionEvent actionEvent) {
+    public void onSearchByTitle(ActionEvent actionEvent) {
 
     }
 
     @FXML
-    public void onSearchByGenres (ActionEvent actionEvent) {
+    public void onSearchByGenres(ActionEvent actionEvent) {
 
     }
 
@@ -60,5 +59,4 @@ public class MainPageController {
     public void onSearchByAuthors(ActionEvent actionEvent) {
 
     }
-
 }

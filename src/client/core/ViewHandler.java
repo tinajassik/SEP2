@@ -2,6 +2,7 @@ package client.core;
 
 import client.views.buyer.mainPageView.MainPageController;
 import client.views.seller.addBooksView.AddBooksController;
+import client.views.seller.mainPage.MainPageSellerController;
 import client.views.shared.createAccountView.CreateAccountViewController;
 import client.views.shared.signView.SignViewController;
 import javafx.fxml.FXMLLoader;
@@ -104,7 +105,7 @@ public class ViewHandler {
                 loader.setLocation(getClass().getResource("../views/buyer/mainPageView/mainpage.fxml"));
                 Parent root = loader.load();
                 MainPageController mainPageController = loader.getController();
-                mainPageController.init( ViewModelFactory.getInstance().getMainPageBuyersViewModel());
+                mainPageController.init(ViewModelFactory.getInstance().getMainPageBuyersViewModel());
                 stage.setTitle("Main Page");
                 scene = new Scene(root);
             }
@@ -115,5 +116,27 @@ public class ViewHandler {
             stage.setScene(scene);
             stage.show();
         }
+
+        public void openMainViewSellers() {
+            Scene scene= null;
+            try
+            {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("../views/seller/mainPage/mainpage.fxml"));
+                Parent root = loader.load();
+                MainPageSellerController mainPageController = loader.getController();
+                mainPageController.init(ViewModelFactory.getInstance().getMainPageSellersViewModel());
+                stage.setTitle("Main Page");
+                scene = new Scene(root);
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            stage.setScene(scene);
+            stage.show();
+        }
+
+
 
 }
