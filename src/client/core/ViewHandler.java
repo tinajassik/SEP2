@@ -20,7 +20,7 @@ public class ViewHandler {
         return instance;
     }
 
-    public ViewHandler()
+    private ViewHandler()
     {
         stage = new Stage();
     }

@@ -21,7 +21,7 @@ public class MainPageController {
     private ComboBox comboBoxAuthors;
 
     @FXML
-    private ComboBox getComboBoxGenres;
+    private ComboBox comboBoxGenres;
     @FXML
     private Label labelUsername;
     @FXML
