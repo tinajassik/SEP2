@@ -22,5 +22,17 @@ public class UserModelManagerImpl implements UserModelManager {
         return allRegisteredUsers.get(username);
     }
 
+    @Override
+    public boolean validatePassword(String username, String password) {
+        User user = allRegisteredUsers.get(username);
+        String correctPassword = user.getPassword();
+        return correctPassword.equals(password);
+    }
+
+    @Override
+    public boolean validateUser(String username) {
+        return allRegisteredUsers.containsKey(username);
+    }
+
 
 }

@@ -6,4 +6,7 @@ public interface UserModelManager {
     void registerSeller(String fullName, String address, String phoneNumber, String email, String username, String password);
     User getUser(String username);
 
+    boolean validatePassword(String username, String password);
+    boolean validateUser(String username);
+
 }
