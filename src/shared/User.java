@@ -1,4 +1,4 @@
-package client.model;
+package shared;
 
 public interface User {
     String getFullName();
