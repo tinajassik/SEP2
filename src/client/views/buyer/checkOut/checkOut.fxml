@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="620.0" prefWidth="712.0" style="-fx-background-color: #2d206f;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.views.buyer.mainPageView.MainPageController">
+   <children>
+      <HBox layoutX="240.0" layoutY="532.0" prefHeight="62.0" prefWidth="469.0" style="-fx-background-color: #f4f4f4;">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total price:">
+               <HBox.margin>
+                  <Insets left="10.0" top="20.0" />
+               </HBox.margin>
+            </Text>
+            <Label fx:id="labelPrice" prefHeight="8.0" prefWidth="81.0" text="price">
+               <padding>
+                  <Insets left="10.0" top="20.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+         </children>
+      </HBox>
+      <ImageView fitHeight="88.0" fitWidth="114.0" layoutX="-11.0" layoutY="2.0">
+         <image>
+            <Image url="@../../pictures/image-removebg-preview (4).png" />
+         </image>
+      </ImageView>
+      <ScrollPane layoutX="240.0" layoutY="164.0" prefHeight="374.0" prefWidth="469.0" style="-fx-background-color: #f3f4d7;" />
+      <Text fill="#32afc9" layoutX="86.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book" wrappingWidth="139.6171875">
+         <font>
+            <Font name="Bauhaus 93" size="56.0" />
+         </font>
+      </Text>
+      <Text fill="#c2518c" layoutX="211.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Store" wrappingWidth="122.28387451171875">
+         <font>
+            <Font name="Bauhaus 93" size="55.0" />
+         </font>
+      </Text>
+      <HBox layoutX="-2.0" layoutY="591.0" prefHeight="47.0" prefWidth="712.0" style="-fx-background-color: #c2518c;">
+         <children>
+            <Button fx:id="buttonSignOut" mnemonicParsing="false" onAction="#onSignOut" prefHeight="36.0" prefWidth="103.0" style="-fx-background-color: #f3f4d7;" text="Sign Out">
+               <graphic>
+                  <ImageView fx:id="bu" fitHeight="28.0" fitWidth="22.0">
+                     <image>
+                        <Image url="@../../pictures/signoutIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets left="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="buttonCheckOut" mnemonicParsing="false" onAction="#onSignOut" prefHeight="36.0" prefWidth="103.0" style="-fx-background-color: #f3f4d7;" text="Check Out">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="500.0" right="5.0" top="5.0" />
+               </HBox.margin>
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="22.0">
+                     <image>
+                        <Image url="@../../pictures/signoutIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+      <Label fx:id="labelFullName" layoutX="561.0" layoutY="21.0" text="Full Name" textFill="#f3f4d7" />
+      <Label fx:id="labelUsername" layoutX="561.0" layoutY="46.0" text="Username" textFill="#f3f4d7" />
+      <Text fill="#32afc9" layoutX="201.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For" wrappingWidth="39.61717224121094">
+         <font>
+            <Font name="Bauhaus 93" size="22.0" />
+         </font>
+      </Text>
+      <Text fill="#c2518c" layoutX="241.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="buyers" wrappingWidth="77.6171875">
+         <font>
+            <Font name="Bauhaus 93" size="22.0" />
+         </font>
+      </Text>
+      <Button fx:id="buttonMainPage" layoutX="561.0" layoutY="77.0" mnemonicParsing="false" onAction="#onShoppingCart" prefHeight="36.0" prefWidth="140.0" style="-fx-background-color: #f3f4d7;" text="Main page">
+         <graphic>
+            <ImageView fitHeight="33.0" fitWidth="42.0">
+               <image>
+                  <Image url="@../../pictures/checkout.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <padding>
+            <Insets left="-20.0" right="-5.0" />
+         </padding>
+      </Button>
+      <TabPane layoutX="-2.0" layoutY="164.0" prefHeight="221.0" prefWidth="247.0" style="-fx-background-color: #f3f4d7;" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Delivery address" />
+        </tabs>
+      </TabPane>
+      <TabPane layoutX="-2.0" layoutY="385.0" prefHeight="206.0" prefWidth="247.0" style="-fx-background-color: #f3f4d7;" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Payment " />
+         </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

@@ -58,4 +58,7 @@ public class RMIClientImpl implements Client, RMIClient
   {
 
   }
+  public RMIServer getServer() {
+    return server;
+  }
 }
