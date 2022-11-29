@@ -1,22 +1,20 @@
 package shared;
+
+import java.util.ArrayList;
+
 public class Book {
     private String title;
     private String isbn;
     private Author author;
-    private String genre;
-    private String condition;
-    private double price;
+    private ArrayList<Genre> genres;
     private String coverType;
     private int YearOfPublish;
 
-    public Book (String isbn, String title, String genre, String condition, String coverType, Author author, int YearOfPublish, double price){
+    public Book (String isbn, String title,  int YearOfPublish, String coverType, Author author){
         this.author = author;
-        this.genre = genre;
         this.isbn = isbn;
         this.title = title;
-        this.condition = condition;
         this.coverType = coverType;
-        this.price = price;
         this.YearOfPublish = YearOfPublish;
     }
 
@@ -24,18 +22,16 @@ public class Book {
         return author;
     }
 
-    public double getPrice() {
-        return price;
-    }
+
 
     public int getYearOfPublish() {
         return YearOfPublish;
     }
 
 
-    public String getGenre() {
-        return genre;
-    }
+//    public ArrayList<String> getGenre() {
+//        return genres;
+//    }
 
     public String getIsbn() {
         return isbn;
@@ -56,17 +52,16 @@ public class Book {
         this.coverType = coverType;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
+//    public void setGenre(ArrayList<String> genres) {
+//        for (int i = 0; i < genres.size(); i++) {
+//            this.genres.add(genres.get(i));
+//        }
+//    }
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -81,9 +76,8 @@ public class Book {
         return "Title: " +title +"\n" +
                 author +
                 "ISBN: " +isbn +"\n" +
-                "Genre: " + genre +"\n" +
+                "Genre: " + genres.toString() +"\n" +
                 "Cover type: " + coverType + "\n" +
-                "Price: " + price + "\n" +
                 "Year publication: " + YearOfPublish;
 
     }

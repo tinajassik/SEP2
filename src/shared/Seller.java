@@ -1,4 +1,4 @@
-package client.model;
+package shared;
 
 public class Seller implements User {
 

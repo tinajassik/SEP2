@@ -1,8 +1,6 @@
 package client.views.shared.createAccountView;
 
 import client.core.ModelFactory;
-import client.model.User;
-import client.model.UserModelManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 

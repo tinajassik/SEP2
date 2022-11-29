@@ -1,4 +1,4 @@
-package server.dao;
+package server.database.book;
 
 import shared.Author;
 import shared.Book;

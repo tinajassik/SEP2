@@ -1,6 +1,10 @@
 package client.model;
 
 
+import shared.Buyer;
+import shared.Seller;
+import shared.User;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.HashMap;
