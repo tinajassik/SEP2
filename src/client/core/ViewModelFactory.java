@@ -6,9 +6,6 @@ import client.views.seller.mainPage.MainPageSellerViewModel;
 import client.views.shared.createAccountView.CreateAccountViewModel;
 import client.views.shared.signView.SignViewModel;
 
-import java.rmi.RemoteException;
-
-
 public class ViewModelFactory {
 
   private static ViewModelFactory instance = new ViewModelFactory();

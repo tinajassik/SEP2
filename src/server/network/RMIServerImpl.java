@@ -1,14 +1,13 @@
 package server.network;
 
-import shared.network.RMIServer;
-
 import java.rmi.AlreadyBoundException;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-public class RMIServerImpl implements RMIServer
+public class RMIServerImpl implements Remote
 
 {
   public RMIServerImpl()

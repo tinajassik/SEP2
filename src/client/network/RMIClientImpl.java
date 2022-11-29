@@ -1,12 +1,12 @@
 package client.network;
 
+import shared.User;
 import shared.network.RMIClient;
 import shared.network.RMIServer;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.rmi.NotBoundException;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -45,6 +45,16 @@ public class RMIClientImpl implements Client, RMIClient
     {
       e.printStackTrace();
     }
+  }
+
+  @Override public void registerUser(User user)
+  {
+    server.registerNewUser(user);
+  }
+
+  @Override public boolean checkUsername(String username)
+  {
+    return server.isUsernameTaken(username);
   }
 
   @Override public void addPropertyChangeListener(String eventName,

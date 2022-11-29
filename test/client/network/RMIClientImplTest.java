@@ -2,7 +2,6 @@ package client.network;
 
 import org.junit.Before;
 import org.junit.Test;
-import shared.network.RMIServer;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
