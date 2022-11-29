@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
+import java.beans.PropertyChangeEvent;
+
 public class CreateAccountViewController
 {
   @FXML
@@ -35,18 +37,34 @@ public class CreateAccountViewController
     this.emailField.textProperty().bindBidirectional(createAccountViewModel.emailProperty());
     this.usernameField.textProperty().bindBidirectional(createAccountViewModel.usernameProperty());
     this.passwordField.textProperty().bindBidirectional(createAccountViewModel.passwordProperty());
+    createAccountViewModel.addPropertyChangeListener("Username invalid", this::usernameError);
+    createAccountViewModel.addPropertyChangeListener("Buyer registered", this::buyerRegistered);
+    createAccountViewModel.addPropertyChangeListener("Seller registered", this::sellerRegistered);
   }
 
   public void onRegisterSeller(ActionEvent actionEvent)
   {
-
-    ViewHandler.getInstance().openMainViewSellers();
     createAccountViewModel.registerSeller();
   }
 
   public void onRegisterBuyer(ActionEvent actionEvent)
   {
-    ViewHandler.getInstance().openMainViewBuyers();
+
     createAccountViewModel.registerBuyer();
+  }
+
+  public void buyerRegistered(PropertyChangeEvent e)
+  {
+    ViewHandler.getInstance().openMainViewBuyers();
+  }
+
+  public void sellerRegistered(PropertyChangeEvent e)
+  {
+    ViewHandler.getInstance().openMainViewSellers();
+  }
+
+  public void usernameError(PropertyChangeEvent e)
+  {
+
   }
 }

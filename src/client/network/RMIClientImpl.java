@@ -1,5 +1,6 @@
 package client.network;
 
+import client.model.User;
 import shared.network.RMIClient;
 import shared.network.RMIServer;
 
@@ -45,6 +46,16 @@ public class RMIClientImpl implements Client, RMIClient
     {
       e.printStackTrace();
     }
+  }
+
+  @Override public void registerUser(User user)
+  {
+    server.registerNewUser(user);
+  }
+
+  @Override public boolean checkUsername(String username)
+  {
+    return server.isUsernameTaken(username);
   }
 
   @Override public void addPropertyChangeListener(String eventName,
