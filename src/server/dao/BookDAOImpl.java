@@ -24,7 +24,10 @@ public class BookDAOImpl implements BookDAO {
     }
 
     private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=book_store", "postgres", "tina");
+        String url = "jdbc:postgresql://mouse.db.elephantsql.com:5432/jmnwgfvg";
+        String username = "jmnwgfvg";
+        String password = "TtdW1QHeNvPi3xTqaE6U1TaON3FDsL1T";
+        return DriverManager.getConnection(url,username,password);
     }
 
 
