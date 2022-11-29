@@ -1,6 +1,6 @@
 package client.network;
 
-import client.model.User;
+import util.User;
 import util.Subject;
 
 public interface Client extends Subject

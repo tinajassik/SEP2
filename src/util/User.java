@@ -1,4 +1,4 @@
-package client.model;
+package util;
 
 public interface User {
     String getFullName();

@@ -1,8 +1,7 @@
 package client.views.shared.signView;
 
 import client.core.ViewHandler;
-import client.core.ViewModelFactory;
-import client.model.Buyer;
+import util.Buyer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;

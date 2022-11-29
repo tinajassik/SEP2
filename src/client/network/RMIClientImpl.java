@@ -1,13 +1,12 @@
 package client.network;
 
-import client.model.User;
+import util.User;
 import shared.network.RMIClient;
 import shared.network.RMIServer;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.rmi.NotBoundException;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;

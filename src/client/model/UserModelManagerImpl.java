@@ -3,7 +3,11 @@ package client.model;
 
 import client.network.Client;
 
+import util.Buyer;
+import util.Seller;
 import util.Subject;
+import util.User;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.HashMap;

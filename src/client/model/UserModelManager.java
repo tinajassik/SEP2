@@ -1,6 +1,7 @@
 package client.model;
 
 import util.Subject;
+import util.User;
 
 public interface UserModelManager extends Subject {
 

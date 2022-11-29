@@ -1,6 +1,6 @@
 package shared.network;
 
-import client.model.User;
+import util.User;
 
 import java.rmi.Remote;
 

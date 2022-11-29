@@ -1,7 +1,7 @@
 package client.views.shared.signView;
 
 import client.core.ModelFactory;
-import client.model.User;
+import util.User;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
