@@ -44,8 +44,11 @@ public class CreateAccountViewController
 
   public void onRegisterSeller(ActionEvent actionEvent)
   {
-    if (createAccountViewModel.registerSeller())
+
+    if (createAccountViewModel.registerSeller()) {
       ViewHandler.getInstance().openMainViewSellers();
+      System.out.println("in Controller");
+    }
     else {
       Alert alert = new Alert(Alert.AlertType.ERROR);
       alert.setContentText("Username already exists. Sorry");

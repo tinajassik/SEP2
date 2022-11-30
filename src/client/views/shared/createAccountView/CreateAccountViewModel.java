@@ -81,6 +81,7 @@ public class CreateAccountViewModel implements Subject
 
 
   public boolean registerSeller()  {
+    System.out.println("in view model");
       return userModelManager.registerSeller(fullName.getValue(), address.getValue(),
               phoneNumber.getValue(), email.getValue(), username.getValue(),
               password.getValue());

@@ -22,6 +22,7 @@ public class LogInModelManagerImpl implements LogInModelManager {
     @Override
     public boolean validateUsername(String username) {
         try {
+            System.out.println(userDao.getAllUsernames());
             return userDao.getAllUsernames().contains(username);
         } catch (SQLException e) {
             throw new RuntimeException("Failed to connect to the database");
@@ -45,9 +46,9 @@ public class LogInModelManagerImpl implements LogInModelManager {
 
         if (validateUsername(user.getUsername())) {
             try {
+                registrationSuccessful = true;
                 userDao.create(user.getUsername(), user.getFullName(), user.getAddress(), user.getPassword(), user.getPhoneNumber(), user.getEmail(), false);
                 System.out.println("New buyer saved in the database");
-                registrationSuccessful = true;
             } catch (SQLException e) {
                 throw new RuntimeException("Failed to connect to the database");
             }
@@ -58,15 +59,17 @@ public class LogInModelManagerImpl implements LogInModelManager {
     @Override
     public boolean registerSeller(User user) {
         boolean registrationSuccessful = false;
+        System.out.println("in login model manager - server side - before if");
+        if (!(validateUsername(user.getUsername()))) {
 
-        if (validateUsername(user.getUsername())) {
             try {
+                System.out.println("in login model manager - server side - after if");
                 userDao.create(user.getUsername(), user.getFullName(), user.getAddress(), user.getPassword(), user.getPhoneNumber(), user.getEmail(), true);
                 System.out.println("New seller saved in the database");
-                registrationSuccessful = true;
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+            registrationSuccessful = true;
         }
         return registrationSuccessful;
     }
