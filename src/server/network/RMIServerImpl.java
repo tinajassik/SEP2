@@ -1,7 +1,11 @@
 package server.network;
 
+import server.database.book.AuthorDAOImpl;
+import server.database.book.GenreDAOImpl;
 import server.model.LogInModelManager;
 import server.model.LogInModelManagerImpl;
+import shared.Author;
+import shared.Genre;
 import shared.Seller;
 import shared.User;
 import shared.network.RMIServer;
@@ -12,6 +16,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class RMIServerImpl implements Remote, RMIServer
 
@@ -75,5 +81,28 @@ public class RMIServerImpl implements Remote, RMIServer
   @Override
   public boolean validatePassword(String username, String password) {
     return logInModelManager.validatePassword(username, password);
+  }
+
+  @Override
+  public void AddBook() {
+
+  }
+
+  @Override
+  public ArrayList<Author> getAuthors() {
+    try {
+      return (ArrayList<Author>)AuthorDAOImpl.getInstance().getAllAuthors();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  @Override
+  public ArrayList<Genre> getGenres() {
+    try {
+      return (ArrayList<Genre>) GenreDAOImpl.getInstance().getAllGenres();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
   }
 }

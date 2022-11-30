@@ -1,6 +1,7 @@
 package client.core;
 
 import client.views.buyer.mainPageView.MainPageController;
+import client.views.seller.addBookForSaleView.AddBookForSaleController;
 import client.views.seller.addBooksView.AddBooksController;
 import client.views.seller.mainPage.MainPageSellerController;
 import client.views.shared.createAccountView.CreateAccountViewController;
@@ -125,7 +126,7 @@ public class ViewHandler {
                 loader.setLocation(getClass().getResource("../views/seller/mainPage/mainpage.fxml"));
                 Parent root = loader.load();
                 MainPageSellerController mainPageController = loader.getController();
-                mainPageController.init(ViewModelFactory.getInstance().getMainPageSellersViewModel());
+                mainPageController.init(this,ViewModelFactory.getInstance().getMainPageSellersViewModel());
                 stage.setTitle("Main Page");
                 scene = new Scene(root);
             }
@@ -136,6 +137,26 @@ public class ViewHandler {
             stage.setScene(scene);
             stage.show();
         }
+
+    public void openAddBookForSaleView() {
+        Scene scene= null;
+        try
+        {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../views/seller/addBookForSaleView/addbookforsale.fxml"));
+            Parent root = loader.load();
+            AddBookForSaleController addBookForSaleController = loader.getController();
+            addBookForSaleController.init(ViewModelFactory.getInstance().getAddBookForSaleViewModel());
+            stage.setTitle("Add Book For Sale");
+            scene = new Scene(root);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        stage.setScene(scene);
+        stage.show();
+    }
 
 
 

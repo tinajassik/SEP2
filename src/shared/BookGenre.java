@@ -1,13 +1,13 @@
 package shared;
 
-import java.io.Serializable;
-
-public class Genre implements Serializable {
+public class BookGenre {
 
     private String genreName;
+    private String isbn;
 
-    public Genre(String genreName) {
+    public BookGenre(String genreName, String isbn) {
         this.genreName = genreName;
+        this.isbn = isbn;
     }
 
     public String getGenreName() {
@@ -18,7 +18,11 @@ public class Genre implements Serializable {
         this.genreName = genreName;
     }
 
-    public String toString() {
-        return getGenreName();
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 }

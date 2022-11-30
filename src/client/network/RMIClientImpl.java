@@ -1,5 +1,7 @@
 package client.network;
 
+import shared.Author;
+import shared.Genre;
 import shared.Seller;
 import shared.User;
 import shared.network.RMIClient;
@@ -12,6 +14,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 public class RMIClientImpl implements Client, RMIClient
 {
@@ -58,11 +61,34 @@ public class RMIClientImpl implements Client, RMIClient
   }
 
   @Override
-  public boolean checkPassword(String username, String password) throws IllegalAccessException {
+  public boolean checkPassword(String username, String password)  {
     try {
       return server.validatePassword(username, password);
     } catch (RemoteException e) {
       throw new RuntimeException("Trouble connecting to the server");
+    }
+  }
+
+  @Override
+  public void AddBook() {
+
+  }
+
+  @Override
+  public ArrayList<Author> getAuthors() {
+    try {
+      return server.getAuthors();
+    } catch (RemoteException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  @Override
+  public ArrayList<Genre> getGenres() {
+    try {
+      return server.getGenres();
+    } catch (RemoteException e) {
+      throw new RuntimeException(e);
     }
   }
 
