@@ -34,27 +34,41 @@ public class RMIClientImpl implements Client, RMIClient
 
   @Override public void startClient()
   {
-
     try
     {
-      registry = LocateRegistry.getRegistry("localhost",1099);
-
+      registry = LocateRegistry.getRegistry("localhost",1992);
       server = (RMIServer) registry.lookup("Server");
     }
     catch (RemoteException | NotBoundException e)
     {
-      e.printStackTrace();
+      System.out.println("Server not found");
     }
   }
 
-  @Override public void registerUser(User user)
+  @Override public boolean registerUser(User user)
   {
-    server.registerNewUser(user);
+    try {
+      return server.registerNewUser(user);
+    } catch (RemoteException e) {
+      throw new RuntimeException(e);
+    }
   }
 
-  @Override public boolean checkUsername(String username)
-  {
-    return server.isUsernameTaken(username);
+  @Override
+  public boolean checkPassword(String username, String password) throws IllegalAccessException {
+    try {
+      return server.validatePassword(username, password);
+    } catch (RemoteException e) {
+      throw new RuntimeException("Trouble connecting to the server");
+    }
+  }
+
+  @Override public boolean checkUsername(String username)  {
+    try {
+      return server.isUsernameTaken(username);
+    } catch (RemoteException e) {
+      throw new RuntimeException("Trouble connecting to the server");
+    }
   }
 
   @Override public void addPropertyChangeListener(String eventName,

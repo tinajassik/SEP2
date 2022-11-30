@@ -19,14 +19,14 @@ public class SignViewModel
   public StringProperty passwordProperty(){return password;}
 
   public User getUserType() {
-    return ModelFactory.getInstance().getUserModelManager().getUser(username.toString());
+    return ModelFactory.getInstance().getUserModelManager().getUser(username.getValue());
   }
-  public boolean validatePassword() {
-    return ModelFactory.getInstance().getUserModelManager().validatePassword(username.toString(),password.toString());
+  public boolean validatePassword() throws IllegalAccessException {
+    return ModelFactory.getInstance().getUserModelManager().validatePassword(username.getValue(),password.getValue());
   }
 
-  public boolean userExists() {
-    return ModelFactory.getInstance().getUserModelManager().validateUser(username.toString());
+  public boolean userExists() throws IllegalAccessException {
+    return ModelFactory.getInstance().getUserModelManager().validateUser(username.getValue());
   }
 
 }

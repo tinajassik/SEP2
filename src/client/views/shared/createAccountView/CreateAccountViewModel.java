@@ -4,6 +4,7 @@ import client.core.ModelFactory;
 import client.model.UserModelManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.control.Alert;
 import util.Subject;
 
 import java.beans.PropertyChangeListener;
@@ -63,32 +64,33 @@ public class CreateAccountViewModel implements Subject
     return password;
   }
 
-  public void registerBuyer()
-  {
-    if (userModelManager.validateUser(username.toString()))
-    {
-      userModelManager.registerBuyer(fullName.toString(), address.toString(),
-          phoneNumber.toString(), email.toString(), username.toString(),
-          password.toString());
-      propertyChangeSupport.firePropertyChange("Seller registered", null, null);
-    }
-    else
-      propertyChangeSupport.firePropertyChange("Invalid username", null, null);
-  }
+  public boolean registerBuyer() {
 
-  public void registerSeller()
-  {
+        return userModelManager.registerBuyer(fullName.toString(), address.toString(),
+            phoneNumber.toString(), email.toString(), username.toString(),
+            password.toString());
 
-    if (userModelManager.validateUser(username.toString()))
-    {
-      userModelManager.registerSeller(fullName.toString(), address.toString(),
-          phoneNumber.toString(), email.toString(), username.toString(),
-          password.toString());
-      propertyChangeSupport.firePropertyChange("Buyer registered", null, null);
-    }
-    else
-      propertyChangeSupport.firePropertyChange("Invalid username", null, null);
+  //      propertyChangeSupport.firePropertyChange("Seller registered", null, null);
+
   }
+//      Alert alert = new Alert(Alert.AlertType.ERROR);
+//      alert.setContentText("Username already exists. Sorry");
+//      alert.show();
+
+//      propertyChangeSupport.firePropertyChange("Invalid username", null, null);
+
+
+  public boolean registerSeller()  {
+      return userModelManager.registerSeller(fullName.getValue(), address.getValue(),
+              phoneNumber.getValue(), email.getValue(), username.getValue(),
+              password.getValue());
+
+
+  //      propertyChangeSupport.firePropertyChange("Buyer registered", null, null);
+  }
+////    else
+//      propertyChangeSupport.firePropertyChange("Invalid username", null, null);
+
 
   @Override public void addPropertyChangeListener(String eventName,
       PropertyChangeListener listener)

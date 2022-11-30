@@ -3,6 +3,7 @@ package client.views.shared.createAccountView;
 import client.core.ViewHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
 import java.beans.PropertyChangeEvent;
@@ -36,30 +37,45 @@ public class CreateAccountViewController
     this.emailField.textProperty().bindBidirectional(createAccountViewModel.emailProperty());
     this.usernameField.textProperty().bindBidirectional(createAccountViewModel.usernameProperty());
     this.passwordField.textProperty().bindBidirectional(createAccountViewModel.passwordProperty());
-    createAccountViewModel.addPropertyChangeListener("Username invalid", this::usernameError);
-    createAccountViewModel.addPropertyChangeListener("Buyer registered", this::buyerRegistered);
-    createAccountViewModel.addPropertyChangeListener("Seller registered", this::sellerRegistered);
+//    createAccountViewModel.addPropertyChangeListener("Username invalid", this::usernameError);
+//    createAccountViewModel.addPropertyChangeListener("Buyer registered", this::buyerRegistered);
+//    createAccountViewModel.addPropertyChangeListener("Seller registered", this::sellerRegistered);
   }
 
   public void onRegisterSeller(ActionEvent actionEvent)
   {
-    createAccountViewModel.registerSeller();
+    if (createAccountViewModel.registerSeller())
+      ViewHandler.getInstance().openMainViewSellers();
+    else {
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setContentText("Username already exists. Sorry");
+      alert.show();
+    }
+
   }
 
   public void onRegisterBuyer(ActionEvent actionEvent)
   {
 
-    createAccountViewModel.registerBuyer();
+    if (createAccountViewModel.registerBuyer())
+    ViewHandler.getInstance().openMainViewBuyers();
+    else {
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setContentText("Username already exists. Sorry");
+      alert.show();
+
+    }
+
   }
 
   public void buyerRegistered(PropertyChangeEvent e)
   {
-    ViewHandler.getInstance().openMainViewBuyers();
+
   }
 
   public void sellerRegistered(PropertyChangeEvent e)
   {
-    ViewHandler.getInstance().openMainViewSellers();
+
   }
 
   public void usernameError(PropertyChangeEvent e)

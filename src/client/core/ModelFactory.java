@@ -18,7 +18,7 @@ public class ModelFactory {
 
     public UserModelManager getUserModelManager() {
         if (userModelManager == null) {
-            userModelManager = new UserModelManagerImpl();
+            userModelManager = new UserModelManagerImpl(ClientFactory.getInstance().getClient());
         }
         return userModelManager;
     }
