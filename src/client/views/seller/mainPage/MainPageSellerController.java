@@ -13,6 +13,7 @@ import javafx.scene.layout.GridPane;
 public class MainPageSellerController {
 
     private MainPageSellerViewModel mainPageViewModel;
+    private ViewHandler viewHandler;
     @FXML
     private GridPane gridPaneBooks;
     @FXML
@@ -27,22 +28,23 @@ public class MainPageSellerController {
     @FXML
     private Label labelFullName;
     @FXML
-    private Button buttonShoppingCart;
+    private Button buttonAddBook;
     @FXML
     private Button buttonSignOut;
 
-    public void init(MainPageSellerViewModel mainPageSellerViewModel) {
+    public void init(ViewHandler viewHandler,MainPageSellerViewModel mainPageSellerViewModel) {
         mainPageViewModel = mainPageSellerViewModel;
+        this.viewHandler = viewHandler;
     }
 
     @FXML
     public void onSignOut(ActionEvent actionEvent) {
-        ViewHandler.getInstance().openSign();
+        viewHandler.openSign();
     }
 
     @FXML
-    public void onShoppingCart(ActionEvent actionEvent) {
-
+    public void onButtonAddBook(ActionEvent actionEvent) {
+        viewHandler.openAddBook();
     }
 
     @FXML

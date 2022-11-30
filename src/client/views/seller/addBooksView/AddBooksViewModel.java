@@ -1,27 +1,40 @@
 package client.views.seller.addBooksView;
 
+import client.core.ModelFactory;
+import client.model.SellerModelManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import shared.Author;
+import shared.Genre;
+
+import java.util.ArrayList;
 
 public class AddBooksViewModel {
 
-    private StringProperty condition, coverType, Author, isbn, genre, price, yearOfPublication;
-
+    private StringProperty  title, coverType, Author, isbn, genre,  yearOfPublication;
+    private SellerModelManager sellerModelManager;
     public AddBooksViewModel(){
-        this.condition = new SimpleStringProperty();
+        this.title = new SimpleStringProperty();
         this.coverType = new SimpleStringProperty();
         this.Author = new SimpleStringProperty();
         this.isbn = new SimpleStringProperty();
         this.genre = new SimpleStringProperty();
-        this.price = new SimpleStringProperty();
         this.yearOfPublication = new SimpleStringProperty();
+        sellerModelManager = ModelFactory.getInstance().getSellerModelManager();
 
     }
 
-    public StringProperty conditionProperty() {
-        return condition;
+    public ArrayList<Author> getAuthors() {
+        return sellerModelManager.getAuthors();
     }
 
+    public ArrayList<Genre> getGenres() {
+        return sellerModelManager.getGenres();
+    }
+
+//    public void addBook(String title, Author author, ArrayList<Genre>) {
+//        sellerModelManager.AddBook();
+//    }
 
     public StringProperty coverTypeProperty() {
         return coverType;
@@ -45,12 +58,9 @@ public class AddBooksViewModel {
         return genre;
     }
 
-
-    public StringProperty priceProperty() {
-        return price;
+    public StringProperty titleProperty() {
+        return title;
     }
-
-
     public StringProperty yearOfPublicationProperty() {
         return yearOfPublication;
     }

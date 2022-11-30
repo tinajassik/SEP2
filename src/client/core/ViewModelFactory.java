@@ -1,6 +1,7 @@
 package client.core;
 
 import client.views.buyer.mainPageView.MainPageViewModel;
+import client.views.seller.addBookForSaleView.AddBookForSaleViewModel;
 import client.views.seller.addBooksView.AddBooksViewModel;
 import client.views.seller.mainPage.MainPageSellerViewModel;
 import client.views.shared.createAccountView.CreateAccountViewModel;
@@ -20,6 +21,8 @@ public class ViewModelFactory {
   private MainPageViewModel mainPageBuyersViewModel;
 
   private MainPageSellerViewModel mainPageSellersViewModel;
+
+  private AddBookForSaleViewModel addBookForSaleViewModel;
 
   private ViewModelFactory() {
   }
@@ -57,6 +60,13 @@ public class ViewModelFactory {
       mainPageSellersViewModel = new MainPageSellerViewModel();
     }
     return mainPageSellersViewModel;
+  }
+
+  public AddBookForSaleViewModel getAddBookForSaleViewModel() {
+    if (addBookForSaleViewModel == null) {
+      addBookForSaleViewModel = new AddBookForSaleViewModel();
+    }
+    return addBookForSaleViewModel;
   }
 
 

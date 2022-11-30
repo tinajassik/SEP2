@@ -1,10 +1,16 @@
 package client.views.seller.addBooksView;
 
+import client.core.ViewHandler;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import shared.Author;
+import shared.Genre;
+
+import java.util.ArrayList;
 
 public class AddBooksController {
 
@@ -12,21 +18,16 @@ public class AddBooksController {
 
     @FXML
     public ComboBox comboBoxAuthors;
-
     @FXML
-    public TextField condition;
-
+    private ListView listViewGenres;
     @FXML
     public TextField coverType;
-
+    @FXML
+    private TextField title;
     @FXML
     public TextField isbn;
 
-    @FXML
-    public TextField genre;
-
-    @FXML
-    public TextField price;
+    @FXML Label labelGenres;
 
     @FXML
     public TextField yearOfPublication;
@@ -36,20 +37,53 @@ public class AddBooksController {
 
     public  void init(AddBooksViewModel addBooksViewModel)
     {
+        listViewGenres.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        listViewGenres.setOnMouseClicked(new EventHandler<Event>() {
+            String genres = "";
+            @Override
+            public void handle(Event event) {
+                ObservableList<Genre> selectedItems =  listViewGenres.getSelectionModel().getSelectedItems();
+
+                for(Genre g : selectedItems){
+                    System.out.println("selected item " + g.getGenreName());
+                    genres += g.getGenreName() +", ";
+                }
+                labelGenres.setText(genres);
+
+            }
+
+        });
         this.addBooksViewModel = addBooksViewModel;
-        this.condition.textProperty().bindBidirectional(addBooksViewModel.conditionProperty());
-//        this.Author.textProperty().bindBidirectional(addBooksViewModel.authorProperty());
         this.isbn.textProperty().bindBidirectional(addBooksViewModel.isbnProperty());
-        this.price.textProperty().bindBidirectional(addBooksViewModel.priceProperty());
         this.coverType.textProperty().bindBidirectional(addBooksViewModel.coverTypeProperty());
-        this.genre.textProperty().bindBidirectional(addBooksViewModel.genreProperty());
+//        this.genre.textProperty().bindBidirectional(addBooksViewModel.genreProperty());
         this.yearOfPublication.textProperty().bindBidirectional(addBooksViewModel.yearOfPublicationProperty());
+        this.title.textProperty().bindBidirectional(addBooksViewModel.titleProperty());
+        displayAuthors();
+        displayGenres();
     }
 
     @FXML
 
     public void addBook(ActionEvent event) {
+        ViewHandler.getInstance().openAddBookForSaleView();
+//        addBooksViewModel.addBook();
+    }
 
+    public void displayAuthors() {
+        ArrayList<Author> authors = addBooksViewModel.getAuthors();
+
+        for (Author author:authors) {
+            comboBoxAuthors.getItems().add(author);
+        }
+    }
+
+    public void displayGenres() {
+        ArrayList<Genre> genres = addBooksViewModel.getGenres();
+        for (Genre genre: genres) {
+            listViewGenres.getItems().add(genre);
+        }
     }
 
 

@@ -10,12 +10,13 @@ public class Book {
     private String coverType;
     private int YearOfPublish;
 
-    public Book (String isbn, String title,  int YearOfPublish, String coverType, Author author){
+    public Book (String isbn, String title,  int YearOfPublish, String coverType, Author author, ArrayList<Genre> genres){
         this.author = author;
         this.isbn = isbn;
         this.title = title;
         this.coverType = coverType;
         this.YearOfPublish = YearOfPublish;
+        this.genres = genres;
     }
 
     public Author getAuthor() {
@@ -29,9 +30,9 @@ public class Book {
     }
 
 
-//    public ArrayList<String> getGenre() {
-//        return genres;
-//    }
+    public ArrayList<Genre> getGenre() {
+        return genres;
+    }
 
     public String getIsbn() {
         return isbn;
@@ -52,11 +53,11 @@ public class Book {
         this.coverType = coverType;
     }
 
-//    public void setGenre(ArrayList<String> genres) {
-//        for (int i = 0; i < genres.size(); i++) {
-//            this.genres.add(genres.get(i));
-//        }
-//    }
+    public void setGenre(ArrayList<Genre> genres) {
+        for (int i = 0; i < genres.size(); i++) {
+            this.genres.add(genres.get(i));
+        }
+    }
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;

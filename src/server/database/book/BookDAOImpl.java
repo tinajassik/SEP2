@@ -4,10 +4,13 @@ package server.database.book;
 import server.database.DatabaseConnection;
 import shared.Author;
 import shared.Book;
+import shared.Genre;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookDAOImpl implements BookDAO {
@@ -23,7 +26,7 @@ public class BookDAOImpl implements BookDAO {
 
 
     @Override
-    public Book create(String isbn, String title, String genre, String condition, String coverType, Author author, int yearOfPublishing, double price) throws SQLException {
+    public Book create(String isbn, String title, String genre, String condition, String coverType, Author author, int yearOfPublishing, double price, ArrayList<Genre> genres) throws SQLException {
         try(Connection connection = DatabaseConnection.getInstance().getConnection()){
             PreparedStatement statement =
                     connection.prepareStatement("INSERT INTO Book(isbn, title, publication_year, cover_type, author_id) VALUES (?, ?, ?, ?,?);");
@@ -33,7 +36,11 @@ public class BookDAOImpl implements BookDAO {
             statement.setString(4, coverType);
             statement.setInt(5,author.getId());
             statement.executeUpdate();
-            return new Book(isbn, title, yearOfPublishing, coverType, author);
+
+            for (Genre g : genres) {
+                BookGenreDAOImpl.getInstance().create(g.getGenreName(), isbn);
+            }
+            return new Book(isbn, title, yearOfPublishing, coverType, author, genres);
         }
     }
 

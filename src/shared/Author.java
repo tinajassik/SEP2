@@ -1,6 +1,8 @@
 package shared;
 
-public class Author {
+import java.io.Serializable;
+
+public class Author implements Serializable {
     private String fname;
     private String lname;
 
@@ -11,12 +13,21 @@ public class Author {
         this.lname = lname;
         this.id = id;
     }
-    public String toString(){
-        return "Author name: " + fname + " " + lname + "\n";
-    }
+
 
     public int getId() {
         return id;
     }
 
+    public String getFname() {
+        return fname;
+    }
+
+    public String getLname() {
+        return lname;
+    }
+
+    public String toString() {
+        return fname + " " + lname;
+    }
 }

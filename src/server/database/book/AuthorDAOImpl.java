@@ -1,5 +1,6 @@
 package server.database.book;
 
+import org.postgresql.jdbc.FieldMetadata;
 import server.database.DatabaseConnection;
 import shared.Author;
 
@@ -22,11 +23,13 @@ public class AuthorDAOImpl implements AuthorDAO{
     @Override
     public Author create(String firstName, String lastName) throws SQLException {
         try(Connection connection = DatabaseConnection.getInstance().getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO Author(first_name, last_name) VALUES (?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO author(first_name, last_name) VALUES (?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
             statement.setString(1,firstName);
             statement.setString(2, lastName);
             statement.executeUpdate();
             ResultSet keys = statement.getGeneratedKeys();
+
+
             if (keys.next()) {
                 return new Author(firstName,lastName, keys.getInt(1));
             } else {
