@@ -9,11 +9,6 @@ public class UserModelManagerImplTest {
 
     private UserModelManager userModelManager;
 
-    @Before
-    public void setUp() {
-        userModelManager = new UserModelManagerImpl();
-    }
-
     /**
      * Should throw an exception when the username is already taken
      */
