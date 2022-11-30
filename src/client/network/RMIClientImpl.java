@@ -1,5 +1,6 @@
 package client.network;
 
+import shared.Seller;
 import shared.User;
 import shared.network.RMIClient;
 import shared.network.RMIServer;
@@ -48,6 +49,8 @@ public class RMIClientImpl implements Client, RMIClient
   @Override public boolean registerUser(User user)
   {
     try {
+      System.out.println("in RMI CLient");
+      System.out.println((user instanceof Seller) + " is seller boolean");
       return server.registerNewUser(user);
     } catch (RemoteException e) {
       throw new RuntimeException(e);

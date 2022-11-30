@@ -40,6 +40,7 @@ public class UserModelManagerImpl implements UserModelManager, Subject
     public boolean registerSeller(String fullName, String address, String phoneNumber, String email, String username, String password) {
         this.user = new Seller(fullName,address,phoneNumber, email, username, password);
 //        client.startClient();
+        System.out.println("in user model manager - client side");
        return client.registerUser(user);
     }
 

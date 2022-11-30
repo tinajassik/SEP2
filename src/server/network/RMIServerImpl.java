@@ -59,7 +59,10 @@ public class RMIServerImpl implements Remote, RMIServer
 
   @Override
   public boolean registerNewUser(User user) {
-    if (user instanceof Seller)  return logInModelManager.registerSeller(user);
+    if (user instanceof Seller)  {
+      System.out.println("in server");
+      return logInModelManager.registerSeller(user);
+    }
     else return logInModelManager.registerBuyer(user);
 
   }
