@@ -7,5 +7,6 @@ public interface Client extends Subject
 {
   void startClient();
   boolean checkUsername(String username);
-  void registerUser(User user);
+  boolean registerUser(User user);
+  boolean checkPassword(String username, String password) throws IllegalAccessException;
 }

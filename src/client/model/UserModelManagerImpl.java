@@ -21,24 +21,27 @@ public class UserModelManagerImpl implements UserModelManager, Subject
 
     private User user;
 
-    public UserModelManagerImpl()
+    public UserModelManagerImpl(Client client)
     {
+        this.client = client;
+        client.startClient();
         propertyChangeSupport = new PropertyChangeSupport(this);
     }
 
 
     @Override
-    public void registerBuyer(String fullName, String address, String phoneNumber, String email, String username, String password) {
+    public boolean registerBuyer(String fullName, String address, String phoneNumber, String email, String username, String password) {
         this.user = new Buyer(fullName,address,phoneNumber, email, username, password);
         client.registerUser(user);
+        return true;
     }
 
     @Override
-    public void registerSeller(String fullName, String address, String phoneNumber, String email, String username, String password) {
+    public boolean registerSeller(String fullName, String address, String phoneNumber, String email, String username, String password) {
         this.user = new Seller(fullName,address,phoneNumber, email, username, password);
-        client.registerUser(user);
+//        client.startClient();
+       return client.registerUser(user);
     }
-
 
     @Override
     public User getUser(String username) {
@@ -46,10 +49,8 @@ public class UserModelManagerImpl implements UserModelManager, Subject
     }
 
     @Override
-    public boolean validatePassword(String username, String password) {
-        User user = allRegisteredUsers.get(username);
-        String correctPassword = user.getPassword();
-        return correctPassword.equals(password);
+    public boolean validatePassword(String username, String password) throws IllegalAccessException {
+        return client.checkPassword(username,password);
     }
 
     @Override

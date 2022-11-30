@@ -1,6 +1,8 @@
 package shared;
 
-public interface User {
+import java.io.Serializable;
+
+public interface User extends Serializable {
     String getFullName();
     String getAddress();
     String getPhoneNumber();

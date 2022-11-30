@@ -34,9 +34,9 @@ public class SignViewController
   public void onLogIn(ActionEvent actionEvent)
   {
     // checking if the user has an account and the password is correct
-    if (signViewModel.userExists() &&
-            signViewModel.validatePassword()) {
-      // checking if the user is a buyer or a seller
+//    if (signViewModel.userExists() &&
+//            signViewModel.validatePassword()) {
+//      // checking if the user is a buyer or a seller
       if (signViewModel.getUserType() instanceof Buyer)
       {
         viewHandler.openMainViewBuyers();
@@ -44,12 +44,12 @@ public class SignViewController
       else
        viewHandler.openMainViewSellers();
     }
-    else {
-      Alert alert = new Alert(Alert.AlertType.ERROR);
-      alert.setContentText("Account does not exist/Incorrect password. Try again!");
-      alert.show();
-    }
+//    else {
+//      Alert alert = new Alert(Alert.AlertType.ERROR);
+//      alert.setContentText("Account does not exist/Incorrect password. Try again!");
+//      alert.show();
+//    }
 
   }
 
-}
+
