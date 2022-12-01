@@ -26,7 +26,7 @@ public class BookDAOImpl implements BookDAO {
 
 
     @Override
-    public Book create(String isbn, String title, String genre, String condition, String coverType, Author author, int yearOfPublishing, double price, ArrayList<Genre> genres) throws SQLException {
+    public Book create(String isbn, String title, String coverType, Author author, int yearOfPublishing, ArrayList<Genre> genres) throws SQLException {
         try(Connection connection = DatabaseConnection.getInstance().getConnection()){
             PreparedStatement statement =
                     connection.prepareStatement("INSERT INTO Book(isbn, title, publication_year, cover_type, author_id) VALUES (?, ?, ?, ?,?);");

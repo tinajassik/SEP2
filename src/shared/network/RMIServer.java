@@ -1,6 +1,7 @@
 package shared.network;
 
 import shared.Author;
+import shared.Book;
 import shared.Genre;
 import shared.User;
 
@@ -14,7 +15,7 @@ public interface RMIServer extends Remote
   boolean isUsernameTaken(String username) throws RemoteException;
 
   boolean validatePassword(String username, String password) throws RemoteException;
-  void AddBook() throws RemoteException;
+  void AddBook(Book book) throws RemoteException;
   ArrayList<Author> getAuthors() throws RemoteException;
   ArrayList<Genre> getGenres() throws RemoteException;
 }

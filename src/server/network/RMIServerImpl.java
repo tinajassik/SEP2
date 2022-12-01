@@ -1,13 +1,12 @@
 package server.network;
 
 import server.database.book.AuthorDAOImpl;
+import server.database.book.BookDAO;
+import server.database.book.BookDAOImpl;
 import server.database.book.GenreDAOImpl;
 import server.model.LogInModelManager;
 import server.model.LogInModelManagerImpl;
-import shared.Author;
-import shared.Genre;
-import shared.Seller;
-import shared.User;
+import shared.*;
 import shared.network.RMIServer;
 
 import java.rmi.AlreadyBoundException;
@@ -84,7 +83,21 @@ public class RMIServerImpl implements Remote, RMIServer
   }
 
   @Override
-  public void AddBook() {
+  public void AddBook(Book book) {
+    BookDAO bookDAO= null;
+
+    try {
+      bookDAO = BookDAOImpl.getInstance();
+      if (bookDAO.readByISBN(book.getIsbn()) == null) {
+        bookDAO.create(book.getIsbn(),book.getTitle(),book.getCoverType(), book.getAuthor(), book.getYearOfPublish(), book.getGenre());
+      }
+      else {
+        //do nothing, because the book is already in the database
+        // and we do not need to crate another one
+      }
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
 
   }
 

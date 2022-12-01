@@ -27,6 +27,6 @@ public class AddBookForSaleViewModel {
     }
 
     public void addBookForSale() {
-        sellerModelManager.AddBook();
+//        sellerModelManager.AddBook();
     }
 }
