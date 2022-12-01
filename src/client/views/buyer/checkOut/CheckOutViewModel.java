@@ -38,8 +38,8 @@ public class CheckOutViewModel {
 
     public void updateLabels(PropertyChangeEvent evt) {
         Platform.runLater(() -> {
-            username.set(model.getUser(username.toString()).getUsername());
-            fullName.set(model.getUser(fullName.toString()).getFullName());
+            username.set(model.getUser().getUsername());
+            fullName.set(model.getUser().getUsername());
         });
     }
 }

@@ -44,7 +44,7 @@ public class LogInModelManagerImpl implements LogInModelManager {
     public boolean registerBuyer(User user)  {
         boolean registrationSuccessful = false;
 
-        if (validateUsername(user.getUsername())) {
+        if (!validateUsername(user.getUsername())) {
             try {
                 registrationSuccessful = true;
                 userDao.create(user.getUsername(), user.getFullName(), user.getAddress(), user.getPassword(), user.getPhoneNumber(), user.getEmail(), false);
@@ -72,5 +72,14 @@ public class LogInModelManagerImpl implements LogInModelManager {
             registrationSuccessful = true;
         }
         return registrationSuccessful;
+    }
+
+    @Override
+    public User getUser(String username) {
+        try {
+            return userDao.getUserByUsername(username);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -1,7 +1,7 @@
 package client.network;
 
 import shared.*;
-import shared.network.RMIClient;
+import shared.network.ClientCallback;
 import shared.network.RMIServer;
 
 import java.beans.PropertyChangeListener;
@@ -12,13 +12,16 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.List;
 
-public class RMIClientImpl implements Client, RMIClient
+public class RMIClientImpl implements Client, ClientCallback
 {
 
   private PropertyChangeSupport propertyChangeSupport;
   private RMIServer server;
   private Registry registry = null;
+
+  private User user;
 
   public RMIClientImpl()
   {
@@ -39,6 +42,7 @@ public class RMIClientImpl implements Client, RMIClient
     {
       registry = LocateRegistry.getRegistry("localhost",1992);
       server = (RMIServer) registry.lookup("Server");
+      server.registerClientCallback(this);
     }
     catch (RemoteException | NotBoundException e)
     {
@@ -70,11 +74,22 @@ public class RMIClientImpl implements Client, RMIClient
   public void AddBook(Book book) {
 
     try {
+      System.out.println("RMI CLIENT");
+      System.out.println(book.getIsbn());
       server.AddBook(book);
     } catch (RemoteException e) {
       throw new RuntimeException(e);
     }
 
+  }
+
+  @Override
+  public List<BookForSale> getBooks() {
+    try {
+      return server.getBooks();
+    } catch (RemoteException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   @Override
@@ -95,6 +110,30 @@ public class RMIClientImpl implements Client, RMIClient
     }
   }
 
+  @Override
+  public User getUser(String username) {
+    try {
+      user = server.getUser(username);
+      return user;
+    } catch (RemoteException e) {
+      throw new RuntimeException(e);
+    }
+  }
+  @Override public User getUser()
+  {
+    return user;
+  }
+
+
+  @Override
+  public void addBookForSale(String condition, double price, Book book, User user) {
+    try {
+      server.addBookForSale(condition, price, book, user);
+    } catch (RemoteException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
   @Override public boolean checkUsername(String username)  {
     try {
       return server.isUsernameTaken(username);
@@ -106,15 +145,21 @@ public class RMIClientImpl implements Client, RMIClient
   @Override public void addPropertyChangeListener(String eventName,
       PropertyChangeListener listener)
   {
-
+    propertyChangeSupport.addPropertyChangeListener(eventName, listener);
   }
 
   @Override public void removePropertyChangeListener(String eventName,
       PropertyChangeListener listener)
   {
-
+    propertyChangeSupport.addPropertyChangeListener(eventName,listener);
   }
   public RMIServer getServer() {
     return server;
+  }
+
+  @Override
+  public void update(BookForSale bookForSale) {
+    System.out.println("in update method");
+    propertyChangeSupport.firePropertyChange("NewBookForSale", null, bookForSale);
   }
 }

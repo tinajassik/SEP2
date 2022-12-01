@@ -1,6 +1,8 @@
 package shared;
 
-public class BookForSale {
+import java.io.Serializable;
+
+public class BookForSale implements Serializable {
 
     private int id;
     private String condition;

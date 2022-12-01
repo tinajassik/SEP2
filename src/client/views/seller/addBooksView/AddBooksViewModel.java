@@ -2,6 +2,8 @@ package client.views.seller.addBooksView;
 
 import client.core.ModelFactory;
 import client.model.SellerModelManager;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import shared.Author;
@@ -11,7 +13,8 @@ import java.util.ArrayList;
 
 public class AddBooksViewModel {
 
-    private StringProperty  title, coverType, Author, isbn, genre,  yearOfPublication;
+    private StringProperty  title, coverType, Author, isbn, genre ,  yearOfPublication ;
+
     private SellerModelManager sellerModelManager;
     public AddBooksViewModel(){
         this.title = new SimpleStringProperty();
@@ -32,8 +35,9 @@ public class AddBooksViewModel {
         return sellerModelManager.getGenres();
     }
 
-    public void addBook(String title, String isbn, String coverType, int publicationYear, Author author, ArrayList<Genre> genres) {
-        sellerModelManager.AddBook(title,isbn, coverType,publicationYear, author,genres);
+    public void addBook( Author author, ArrayList<Genre> genres) {
+        System.out.println("View Model Add BOOk");
+        sellerModelManager.AddBook(title.get(),isbn.get(), coverType.get(),Integer.parseInt(yearOfPublication.get()), author,genres);
     }
 
     public StringProperty coverTypeProperty() {

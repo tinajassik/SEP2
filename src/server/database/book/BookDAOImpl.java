@@ -6,16 +6,13 @@ import shared.Author;
 import shared.Book;
 import shared.Genre;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BookDAOImpl implements BookDAO {
 
-    private static BookDAOImpl instance;
+    private static BookDAOImpl instance = new BookDAOImpl();
 
     public static synchronized BookDAOImpl getInstance() throws SQLException {
         if (instance == null) {
@@ -46,7 +43,22 @@ public class BookDAOImpl implements BookDAO {
 
     @Override
     public Book readByISBN(String isbn) throws SQLException {
-        return null;
+        try (Connection connection = DatabaseConnection.getInstance().getConnection()) {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Book JOIN Author ON author_id = id WHERE isbn = ?");
+            statement.setString(1, isbn);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                String title = resultSet.getString("title");
+                int authorId = resultSet.getInt("author_id");
+                int publicationYear = resultSet.getInt("publication_year");
+                String coverType = resultSet.getString("cover_type");
+                Author author = AuthorDAOImpl.getInstance().getAuthorById(authorId);
+                Book book = new Book(isbn,title,publicationYear,coverType,author, BookGenreDAOImpl.getInstance().getGenresForBook(isbn));
+                return book;
+            } else {
+                return null;
+            }
+        }
     }
 
     @Override
