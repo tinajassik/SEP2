@@ -1,49 +1,64 @@
 package client.model;
 
+import client.network.Client;
 import org.junit.Before;
 import org.junit.Test;
+import shared.User;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class UserModelManagerImplTest {
 
     private UserModelManager userModelManager;
 
-    /**
-     * Should throw an exception when the username is already taken
-     */
-    @Test
-    public void registerBuyerWhenUsernameIsAlreadyTakenThenThrowException() {
-        userModelManager.registerBuyer(
-                "John Doe", "123 Main St", "123-456-7890", "john@doe.com", "johndoe", "password");
-        try {
-            userModelManager.registerBuyer(
-                    "Jane Doe",
-                    "123 Main St",
-                    "123-456-7890",
-                    "jane@doe.com",
-                    "johndoe",
-                    "password");
-            fail("Expected exception not thrown");
-        } catch (Exception e) {
-            assertEquals("Username already taken", e.getMessage());
-        }
+    private Client client;
+
+    @Before
+    public void setUp() {
+        client = mock(Client.class);
+
+        userModelManager = new UserModelManagerImpl(client);
     }
 
     /**
-     * Should add a buyer to the list of registered users
+     * Should return false when the user is not registered successfully
      */
     @Test
-    public void registerBuyerShouldAddABuyerToTheListOfRegisteredUsers() {
-        String fullName = "John Doe";
-        String address = "123 Fake Street";
-        String phoneNumber = "123-456-7890";
-        String email = "john.doe@gmail.com";
-        String username = "johndoe";
-        String password = "password";
+    public void registerBuyerWhenUserIsNotRegisteredSuccessfullyThenReturnFalse() {
+        when(client.registerUser(any(User.class))).thenReturn(false);
 
-        userModelManager.registerBuyer(fullName, address, phoneNumber, email, username, password);
+        boolean isRegistered =
+                userModelManager.registerBuyer(
+                        "John Doe",
+                        "123 Main St",
+                        "123-456-7890",
+                        "john@doe.com",
+                        "johndoe",
+                        "password");
 
-        assertTrue(userModelManager.validateUser(username));
+        assertFalse(isRegistered);
+    }
+
+    /**
+     * Should return true when the user is registered successfully
+     */
+    @Test
+    public void registerBuyerWhenUserIsRegisteredSuccessfullyThenReturnTrue() {
+        when(client.registerUser(any(User.class))).thenReturn(true);
+
+        boolean isRegistered =
+                userModelManager.registerBuyer(
+                        "John Doe",
+                        "123 Main St",
+                        "123-456-7890",
+                        "john@doe.com",
+                        "johndoe",
+                        "password");
+
+        assertTrue(isRegistered);
     }
 }

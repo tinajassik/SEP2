@@ -16,41 +16,33 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class RMIClientImpl implements Client, RMIClient
-{
+public class RMIClientImpl implements Client, RMIClient {
 
   private PropertyChangeSupport propertyChangeSupport;
   private RMIServer server;
   private Registry registry = null;
 
-  public RMIClientImpl()
-  {
+  public RMIClientImpl() {
     this.propertyChangeSupport = new PropertyChangeSupport(this);
-    try
-    {
-      UnicastRemoteObject.exportObject(this,0);
-    }
-    catch (RemoteException e)
-    {
+    try {
+      UnicastRemoteObject.exportObject(this, 0);
+    } catch (RemoteException e) {
       e.printStackTrace();
     }
   }
 
-  @Override public void startClient()
-  {
-    try
-    {
-      registry = LocateRegistry.getRegistry("localhost",1992);
+  @Override
+  public void startClient() {
+    try {
+      registry = LocateRegistry.getRegistry("localhost", 1992);
       server = (RMIServer) registry.lookup("Server");
-    }
-    catch (RemoteException | NotBoundException e)
-    {
+    } catch (RemoteException | NotBoundException e) {
       System.out.println("Server not found");
     }
   }
 
-  @Override public boolean registerUser(User user)
-  {
+  @Override
+  public boolean registerUser(User user) {
     try {
       System.out.println("in RMI CLient");
       System.out.println((user instanceof Seller) + " is seller boolean");
@@ -61,7 +53,7 @@ public class RMIClientImpl implements Client, RMIClient
   }
 
   @Override
-  public boolean checkPassword(String username, String password)  {
+  public boolean checkPassword(String username, String password) {
     try {
       return server.validatePassword(username, password);
     } catch (RemoteException e) {
@@ -92,7 +84,8 @@ public class RMIClientImpl implements Client, RMIClient
     }
   }
 
-  @Override public boolean checkUsername(String username)  {
+  @Override
+  public boolean checkUsername(String username) {
     try {
       return server.isUsernameTaken(username);
     } catch (RemoteException e) {
@@ -100,17 +93,18 @@ public class RMIClientImpl implements Client, RMIClient
     }
   }
 
-  @Override public void addPropertyChangeListener(String eventName,
-      PropertyChangeListener listener)
-  {
+  @Override
+  public void addPropertyChangeListener(String eventName,
+                                        PropertyChangeListener listener) {
 
   }
 
-  @Override public void removePropertyChangeListener(String eventName,
-      PropertyChangeListener listener)
-  {
+  @Override
+  public void removePropertyChangeListener(String eventName,
+                                           PropertyChangeListener listener) {
 
   }
+
   public RMIServer getServer() {
     return server;
   }
