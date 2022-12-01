@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface BookDAO {
 
-    Book create(String isbn, String title, String genre, String condition, String coverType, Author author, int YearOfPublish, double price, ArrayList<Genre> genres) throws SQLException;
+    Book create(String isbn, String title, String coverType, Author author, int YearOfPublish, ArrayList<Genre> genres) throws SQLException;
     Book readByISBN(String isbn) throws SQLException;
     List<Book> getAllBooks() throws SQLException;
     List<Book> readByTitle(String searchString) throws SQLException;

@@ -35,10 +35,12 @@ public class AddBooksController {
     @FXML
     public Button addBookButton;
 
+    private ArrayList<Genre> selectedGenres;
+
     public  void init(AddBooksViewModel addBooksViewModel)
     {
+        selectedGenres = new ArrayList<>();
         listViewGenres.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
         listViewGenres.setOnMouseClicked(new EventHandler<Event>() {
             String genres = "";
             @Override
@@ -48,6 +50,7 @@ public class AddBooksController {
                 for(Genre g : selectedItems){
                     System.out.println("selected item " + g.getGenreName());
                     genres += g.getGenreName() +", ";
+                    selectedGenres.add(g);
                 }
                 labelGenres.setText(genres);
 
@@ -55,20 +58,19 @@ public class AddBooksController {
 
         });
         this.addBooksViewModel = addBooksViewModel;
-        this.isbn.textProperty().bindBidirectional(addBooksViewModel.isbnProperty());
-        this.coverType.textProperty().bindBidirectional(addBooksViewModel.coverTypeProperty());
-//        this.genre.textProperty().bindBidirectional(addBooksViewModel.genreProperty());
-        this.yearOfPublication.textProperty().bindBidirectional(addBooksViewModel.yearOfPublicationProperty());
-        this.title.textProperty().bindBidirectional(addBooksViewModel.titleProperty());
+//        this.isbn.textProperty().bindBidirectional(addBooksViewModel.isbnProperty());
+//        this.coverType.textProperty().bindBidirectional(addBooksViewModel.coverTypeProperty());
+////        this.genre.textProperty().bindBidirectional(addBooksViewModel.genreProperty());
+//        this.yearOfPublication.textProperty().bindBidirectional(addBooksViewModel.yearOfPublicationProperty());
+//        this.title.textProperty().bindBidirectional(addBooksViewModel.titleProperty());
         displayAuthors();
         displayGenres();
     }
 
     @FXML
-
     public void addBook(ActionEvent event) {
         ViewHandler.getInstance().openAddBookForSaleView();
-//        addBooksViewModel.addBook();
+        addBooksViewModel.addBook(title.getText(), isbn.getText(), coverType.getText(),Integer.parseInt(yearOfPublication.getText()), (Author) comboBoxAuthors.getSelectionModel().getSelectedItem(),selectedGenres);
     }
 
     public void displayAuthors() {

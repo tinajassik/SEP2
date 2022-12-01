@@ -32,9 +32,9 @@ public class AddBooksViewModel {
         return sellerModelManager.getGenres();
     }
 
-//    public void addBook(String title, Author author, ArrayList<Genre>) {
-//        sellerModelManager.AddBook();
-//    }
+    public void addBook(String title, String isbn, String coverType, int publicationYear, Author author, ArrayList<Genre> genres) {
+        sellerModelManager.AddBook(title,isbn, coverType,publicationYear, author,genres);
+    }
 
     public StringProperty coverTypeProperty() {
         return coverType;

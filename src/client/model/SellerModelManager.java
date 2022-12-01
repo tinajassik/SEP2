@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public interface SellerModelManager {
 
-    void AddBook();
+    void AddBook(String title, String isbn, String coverType, int publicationYear, Author author, ArrayList<Genre> genres);
     ArrayList<Author> getAuthors();
     ArrayList<Genre> getGenres();
 

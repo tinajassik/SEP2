@@ -1,9 +1,6 @@
 package client.network;
 
-import shared.Author;
-import shared.Genre;
-import shared.Seller;
-import shared.User;
+import shared.*;
 import shared.network.RMIClient;
 import shared.network.RMIServer;
 
@@ -62,7 +59,13 @@ public class RMIClientImpl implements Client, RMIClient {
   }
 
   @Override
-  public void AddBook() {
+  public void AddBook(Book book) {
+
+    try {
+      server.AddBook(book);
+    } catch (RemoteException e) {
+      throw new RuntimeException(e);
+    }
 
   }
 
