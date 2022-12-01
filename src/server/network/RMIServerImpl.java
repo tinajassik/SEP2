@@ -1,14 +1,15 @@
 package server.network;
 
-import server.database.book.AuthorDAOImpl;
-import server.database.book.BookDAO;
-import server.database.book.BookDAOImpl;
-import server.database.book.GenreDAOImpl;
+import server.core.ModelFactory;
+import server.database.book.*;
 import server.model.LogInModelManager;
-import server.model.LogInModelManagerImpl;
+import server.model.StoreModelManager;
 import shared.*;
+import shared.network.ClientCallback;
 import shared.network.RMIServer;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.rmi.AlreadyBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -17,14 +18,23 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 public class RMIServerImpl implements Remote, RMIServer
 
 {
   private LogInModelManager logInModelManager;
+  private StoreModelManager storeModelManager;
+
+  private Map<ClientCallback, PropertyChangeListener> listeners = new HashMap<>();
+
   public RMIServerImpl()
   {
-    logInModelManager = new LogInModelManagerImpl();
+    logInModelManager = ModelFactory.getInstance().getLogInModelManager();
+    storeModelManager = ModelFactory.getInstance().getStoreModelManager();
     try
     {
       UnicastRemoteObject.exportObject(this,0);
@@ -61,6 +71,37 @@ public class RMIServerImpl implements Remote, RMIServer
 
   }
 
+  public void registerClientCallback(ClientCallback clientCallback) {
+    PropertyChangeListener listener = new PropertyChangeListener() {
+      @Override
+      public void propertyChange(PropertyChangeEvent evt) {
+
+        try {
+          clientCallback.update((BookForSale) evt.getNewValue());
+          System.out.println("in registerclientcallback method");
+        } catch (RemoteException e) {
+          throw new RuntimeException(e);
+        }
+        storeModelManager.removePropertyChangeListener("NewBookForSale", this);
+
+      }
+    };
+    listeners.put(clientCallback, listener);
+    System.out.println(listeners.toString());
+    storeModelManager.addPropertyChangeListener("NewBookForSale", listener);
+  }
+
+  @Override
+  public void unregisterClientCallback(ClientCallback client) {
+    PropertyChangeListener listener = listeners.get(client);
+    if(listener != null) {
+      storeModelManager.removePropertyChangeListener("NewBookForSale", listener);
+    }
+
+  }
+
+
+
 
   @Override
   public boolean registerNewUser(User user) {
@@ -84,21 +125,18 @@ public class RMIServerImpl implements Remote, RMIServer
 
   @Override
   public void AddBook(Book book) {
-    BookDAO bookDAO= null;
+    System.out.println("RMI SERVER");
+    storeModelManager.AddBook(book);
+  }
 
-    try {
-      bookDAO = BookDAOImpl.getInstance();
-      if (bookDAO.readByISBN(book.getIsbn()) == null) {
-        bookDAO.create(book.getIsbn(),book.getTitle(),book.getCoverType(), book.getAuthor(), book.getYearOfPublish(), book.getGenre());
-      }
-      else {
-        //do nothing, because the book is already in the database
-        // and we do not need to crate another one
-      }
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
+  @Override
+  public List<BookForSale> getBooks() {
+    return storeModelManager.getBooks();
+  }
 
+  @Override
+  public void addBookForSale(String condition, double price, Book book, User user) {
+    storeModelManager.addBookForSale(condition, price, book, user);
   }
 
   @Override
@@ -117,5 +155,10 @@ public class RMIServerImpl implements Remote, RMIServer
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
+  }
+
+  @Override
+  public User getUser(String username) throws RemoteException {
+    return logInModelManager.getUser(username);
   }
 }

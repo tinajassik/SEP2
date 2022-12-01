@@ -1,6 +1,7 @@
 package client.views.seller.addBooksView;
 
 import client.core.ViewHandler;
+import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -58,11 +59,10 @@ public class AddBooksController {
 
         });
         this.addBooksViewModel = addBooksViewModel;
-//        this.isbn.textProperty().bindBidirectional(addBooksViewModel.isbnProperty());
-//        this.coverType.textProperty().bindBidirectional(addBooksViewModel.coverTypeProperty());
-////        this.genre.textProperty().bindBidirectional(addBooksViewModel.genreProperty());
-//        this.yearOfPublication.textProperty().bindBidirectional(addBooksViewModel.yearOfPublicationProperty());
-//        this.title.textProperty().bindBidirectional(addBooksViewModel.titleProperty());
+        this.isbn.textProperty().bindBidirectional(addBooksViewModel.isbnProperty());
+        this.coverType.textProperty().bindBidirectional(addBooksViewModel.coverTypeProperty());
+        this.yearOfPublication.textProperty().bindBidirectional(addBooksViewModel.yearOfPublicationProperty());
+        this.title.textProperty().bindBidirectional(addBooksViewModel.titleProperty());
         displayAuthors();
         displayGenres();
     }
@@ -70,7 +70,8 @@ public class AddBooksController {
     @FXML
     public void addBook(ActionEvent event) {
         ViewHandler.getInstance().openAddBookForSaleView();
-        addBooksViewModel.addBook(title.getText(), isbn.getText(), coverType.getText(),Integer.parseInt(yearOfPublication.getText()), (Author) comboBoxAuthors.getSelectionModel().getSelectedItem(),selectedGenres);
+        System.out.println("Controller Add Book");
+        addBooksViewModel.addBook((Author) comboBoxAuthors.getSelectionModel().getSelectedItem(),selectedGenres);
     }
 
     public void displayAuthors() {

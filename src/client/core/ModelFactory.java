@@ -1,15 +1,14 @@
 package client.core;
 
-import client.model.SellerModelManager;
-import client.model.SellerModelManagerImpl;
-import client.model.UserModelManager;
-import client.model.UserModelManagerImpl;
+import client.model.*;
 
 public class ModelFactory {
 
     private static ModelFactory instance = new ModelFactory();
     private UserModelManager userModelManager;
     private SellerModelManager sellerModelManager;
+
+    private BuyerModelManager buyerModelManager;
 
     public static ModelFactory getInstance() {
         return instance;
@@ -31,6 +30,13 @@ public class ModelFactory {
             sellerModelManager = new SellerModelManagerImpl();
         }
         return sellerModelManager;
+    }
+
+    public BuyerModelManager getBuyerModelManager() {
+        if (buyerModelManager == null) {
+            buyerModelManager = new BuyerModelManagerImpl();
+        }
+        return buyerModelManager;
     }
 
 

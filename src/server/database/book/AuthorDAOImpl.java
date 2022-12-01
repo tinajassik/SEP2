@@ -29,7 +29,6 @@ public class AuthorDAOImpl implements AuthorDAO{
             statement.executeUpdate();
             ResultSet keys = statement.getGeneratedKeys();
 
-
             if (keys.next()) {
                 return new Author(firstName,lastName, keys.getInt(1));
             } else {
@@ -49,6 +48,20 @@ public class AuthorDAOImpl implements AuthorDAO{
                 allAuthors.add(new Author(resultSet.getString(2), resultSet.getString(3), resultSet.getInt(1)));
             }
             return allAuthors;
+        }
+    }
+
+    public Author getAuthorById(int id) throws SQLException {
+        try (Connection connection = DatabaseConnection.getInstance().getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT first_name, last_name from author where id = ?;");
+            preparedStatement.setInt(1,id );
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                String firstName = resultSet.getString(1);
+                String lastName = resultSet.getString(2);
+                Author  author = new Author(firstName,lastName, id);
+                return author;
+            } else return null;
         }
     }
 

@@ -10,10 +10,5 @@ public interface LogInModelManager {
     boolean validatePassword(String username, String password) ;
     boolean registerBuyer(User user) ;
     boolean registerSeller(User user);
-
-
-
-
-
-
+    User getUser(String username);
 }

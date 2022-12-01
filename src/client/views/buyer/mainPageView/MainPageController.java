@@ -2,19 +2,25 @@ package client.views.buyer.mainPageView;
 
 
 import client.core.ViewHandler;
+
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.Node;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import shared.BookForSale;
 
 public class MainPageController {
 
     private MainPageViewModel mainPageViewModel;
     @FXML
     private GridPane gridPaneBooks;
+
+    @FXML
+    private ListView listViewBooks;
     @FXML
     private TextField textFieldSearch;
     @FXML
@@ -35,6 +41,16 @@ public class MainPageController {
         this.mainPageViewModel = mainPageViewModel;
         labelUsername.textProperty().bindBidirectional(mainPageViewModel.getUsernameProperty());
         labelFullName.textProperty().bindBidirectional(mainPageViewModel.getFullNameProperty());
+        this.mainPageViewModel = mainPageViewModel;
+        this.mainPageViewModel.loadBooksForSale();
+        ObservableList<BookForSale> books = mainPageViewModel.getBooksForSale();
+
+        for (BookForSale book: books
+             ) {
+            listViewBooks.getItems().add(book.getBook().getTitle() + "\n " + book.getPrice());
+        }
+
+        mainPageViewModel.updateLabels();
     }
     @FXML
     public void onSignOut(ActionEvent actionEvent) {
@@ -60,5 +76,7 @@ public class MainPageController {
     public void onSearchByAuthors(ActionEvent actionEvent) {
 
     }
+
+
 
 }

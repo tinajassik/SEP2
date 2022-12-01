@@ -66,9 +66,9 @@ public class CreateAccountViewModel implements Subject
 
   public boolean registerBuyer() {
 
-        return userModelManager.registerBuyer(fullName.toString(), address.toString(),
-            phoneNumber.toString(), email.toString(), username.toString(),
-            password.toString());
+        return userModelManager.registerBuyer(fullName.getValue(), address.getValue(),
+            phoneNumber.getValue(), email.getValue(), username.getValue(),
+            password.getValue());
 
   //      propertyChangeSupport.firePropertyChange("Seller registered", null, null);
 

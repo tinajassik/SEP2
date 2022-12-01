@@ -1,12 +1,10 @@
 package client.network;
 
-import shared.Author;
-import shared.Book;
-import shared.Genre;
-import shared.User;
+import shared.*;
 import util.Subject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface Client extends Subject
 {
@@ -15,6 +13,10 @@ public interface Client extends Subject
   boolean registerUser(User user);
   boolean checkPassword(String username, String password);
   void AddBook(Book book);
+  List<BookForSale> getBooks();
   ArrayList<Author> getAuthors();
   ArrayList<Genre> getGenres();
+  User getUser(String username);
+  User getUser();
+  void addBookForSale(String condition,double price, Book book, User user);
 }
