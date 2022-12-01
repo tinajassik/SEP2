@@ -11,10 +11,8 @@ import javafx.scene.control.TextField;
 public class SignViewController
 {
 
-  @FXML
-  private TextField usernameField;
-  @FXML
-  private TextField passwordField;
+  @FXML private TextField usernameField;
+  @FXML private TextField passwordField;
   private ViewHandler viewHandler;
   private SignViewModel signViewModel;
 
@@ -34,22 +32,30 @@ public class SignViewController
   public void onLogIn(ActionEvent actionEvent)
   {
     // checking if the user has an account and the password is correct
-//    if (signViewModel.userExists() &&
-//            signViewModel.validatePassword()) {
-//      // checking if the user is a buyer or a seller
-      if (signViewModel.getUserType() instanceof Buyer)
+    //    if (signViewModel.userExists() &&
+    //            signViewModel.validatePassword()) {
+    //      // checking if the user is a buyer or a seller
+    try
+    {
+      if (signViewModel.userExists() && signViewModel.validatePassword())
       {
-        viewHandler.openMainViewBuyers();
-      }
-      else
-       viewHandler.openMainViewSellers();
+        if (signViewModel.getUserType() instanceof Buyer)
+        {
+          viewHandler.openMainViewBuyers();
+        }
+        else
+          viewHandler.openMainViewSellers();
+      } else{
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText("Account does not exist/Incorrect password. Try again!");
+        alert.show();
     }
-//    else {
-//      Alert alert = new Alert(Alert.AlertType.ERROR);
-//      alert.setContentText("Account does not exist/Incorrect password. Try again!");
-//      alert.show();
-//    }
-
   }
+    catch (IllegalAccessException e)
+    {
+      e.printStackTrace();
+    }
+  }
+}
 
 

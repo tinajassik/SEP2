@@ -35,6 +35,7 @@ public class MainPageController {
         this.mainPageViewModel = mainPageViewModel;
         labelUsername.textProperty().bindBidirectional(mainPageViewModel.getUsernameProperty());
         labelFullName.textProperty().bindBidirectional(mainPageViewModel.getFullNameProperty());
+        mainPageViewModel.updateLabels();
     }
     @FXML
     public void onSignOut(ActionEvent actionEvent) {

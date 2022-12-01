@@ -2,7 +2,6 @@ package server.model;
 
 import server.database.user.UserDAOImpl;
 import server.database.user.UserDao;
-import shared.Seller;
 import shared.User;
 
 import java.sql.SQLException;
@@ -23,6 +22,7 @@ public class LogInModelManagerImpl implements LogInModelManager {
     public boolean validateUsername(String username) {
         try {
             System.out.println(userDao.getAllUsernames());
+            System.out.println("I'm here");
             return userDao.getAllUsernames().contains(username);
         } catch (SQLException e) {
             throw new RuntimeException("Failed to connect to the database");
@@ -44,14 +44,14 @@ public class LogInModelManagerImpl implements LogInModelManager {
     public boolean registerBuyer(User user)  {
         boolean registrationSuccessful = false;
 
-        if (validateUsername(user.getUsername())) {
+        if (!(validateUsername(user.getUsername()))) {
             try {
-                registrationSuccessful = true;
                 userDao.create(user.getUsername(), user.getFullName(), user.getAddress(), user.getPassword(), user.getPhoneNumber(), user.getEmail(), false);
                 System.out.println("New buyer saved in the database");
             } catch (SQLException e) {
-                throw new RuntimeException("Failed to connect to the database");
+                throw new RuntimeException(e);
             }
+            registrationSuccessful = true;
         }
         return registrationSuccessful;
     }
@@ -73,4 +73,17 @@ public class LogInModelManagerImpl implements LogInModelManager {
         }
         return registrationSuccessful;
     }
+
+    @Override
+    public User getUser(String username){
+        try
+        {
+            return userDao.getUserByUsername(username);
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

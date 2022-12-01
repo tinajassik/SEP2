@@ -76,4 +76,9 @@ public class RMIServerImpl implements Remote, RMIServer
   public boolean validatePassword(String username, String password) {
     return logInModelManager.validatePassword(username, password);
   }
+
+  @Override public User getUser(String username)
+  {
+    return logInModelManager.getUser(username);
+  }
 }

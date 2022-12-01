@@ -11,9 +11,5 @@ public interface LogInModelManager {
     boolean registerBuyer(User user) ;
     boolean registerSeller(User user);
 
-
-
-
-
-
+  User getUser(String username);
 }

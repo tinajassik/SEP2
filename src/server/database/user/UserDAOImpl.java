@@ -23,6 +23,7 @@ public class UserDAOImpl implements UserDao{
         return instance;
     }
 
+    //Change the return type to void if nothing changes
     @Override
     public User create(String username, String fullName, String address, String password, String phoneNumber, String email, boolean isSeller) throws SQLException {
         try (Connection connection = DatabaseConnection.getInstance().getConnection()) {

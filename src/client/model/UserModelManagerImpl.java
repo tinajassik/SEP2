@@ -32,8 +32,7 @@ public class UserModelManagerImpl implements UserModelManager, Subject
     @Override
     public boolean registerBuyer(String fullName, String address, String phoneNumber, String email, String username, String password) {
         this.user = new Buyer(fullName,address,phoneNumber, email, username, password);
-        client.registerUser(user);
-        return true;
+        return client.registerUser(user);
     }
 
     @Override
@@ -45,8 +44,14 @@ public class UserModelManagerImpl implements UserModelManager, Subject
     }
 
     @Override
-    public User getUser(String username) {
-        return allRegisteredUsers.get(username);
+    public User getUserType(String username) {
+        user = client.getUser(username);
+        return user;
+    }
+
+    @Override public User getUser()
+    {
+        return user;
     }
 
     @Override

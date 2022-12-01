@@ -7,7 +7,8 @@ public interface UserModelManager extends Subject {
 
     boolean registerBuyer(String fullName, String address, String phoneNumber, String email, String username, String password);
     boolean registerSeller(String fullName, String address, String phoneNumber, String email, String username, String password);
-    User getUser(String username);
+    User getUserType(String username);
+    User getUser();
     boolean validatePassword(String username, String password) throws IllegalAccessException;
     boolean validateUser(String username);
 

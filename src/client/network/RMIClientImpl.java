@@ -13,7 +13,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-public class RMIClientImpl implements Client, RMIClient
+public class  RMIClientImpl implements Client, RMIClient
 {
 
   private PropertyChangeSupport propertyChangeSupport;
@@ -71,6 +71,18 @@ public class RMIClientImpl implements Client, RMIClient
       return server.isUsernameTaken(username);
     } catch (RemoteException e) {
       throw new RuntimeException("Trouble connecting to the server");
+    }
+  }
+
+  @Override public User getUser(String username)
+  {
+    try
+    {
+      return server.getUser(username);
+    }
+    catch (RemoteException e)
+    {
+      throw new RuntimeException(e);
     }
   }
 

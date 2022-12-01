@@ -11,4 +11,5 @@ public interface RMIServer extends Remote
   boolean isUsernameTaken(String username) throws RemoteException;
 
   boolean validatePassword(String username, String password) throws RemoteException;
+  User getUser(String username) throws RemoteException;
 }
