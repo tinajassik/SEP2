@@ -43,13 +43,7 @@ public class MainPageController {
         labelFullName.textProperty().bindBidirectional(mainPageViewModel.getFullNameProperty());
         this.mainPageViewModel = mainPageViewModel;
         this.mainPageViewModel.loadBooksForSale();
-        ObservableList<BookForSale> books = mainPageViewModel.getBooksForSale();
-
-        for (BookForSale book: books
-             ) {
-            listViewBooks.getItems().add(book.getBook().getTitle() + "\n " + book.getPrice());
-        }
-
+        listViewBooks.setItems(this.mainPageViewModel.getBooksForSale());
         mainPageViewModel.updateLabels();
     }
     @FXML
