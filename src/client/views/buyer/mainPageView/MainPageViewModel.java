@@ -31,7 +31,8 @@ public class MainPageViewModel {
     }
 
     private void onNewBookForSale(PropertyChangeEvent evt) {
-        booksForSale.add((BookForSale) evt.getNewValue());
+        System.out.println("observer in view model");
+        Platform.runLater(() -> booksForSale.add((BookForSale) evt.getNewValue()));
     }
     public StringProperty getFullNameProperty() {
         return fullName;

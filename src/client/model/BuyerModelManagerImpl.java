@@ -20,7 +20,10 @@ public class BuyerModelManagerImpl implements BuyerModelManager {
     }
 
     private void onNewBookForSale(PropertyChangeEvent evt) {
+        System.out.println(evt.getNewValue().toString());
+        System.out.println("observer in buyer model manager");
         support.firePropertyChange(evt);
+
     }
 
     public List<BookForSale> getBooks() {
