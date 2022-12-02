@@ -14,6 +14,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class RMIClientImpl implements Client, ClientCallback
 {
 
@@ -25,33 +26,31 @@ public class RMIClientImpl implements Client, ClientCallback
 
   public RMIClientImpl()
   {
+
     this.propertyChangeSupport = new PropertyChangeSupport(this);
-    try
-    {
-      UnicastRemoteObject.exportObject(this,0);
-    }
-    catch (RemoteException e)
-    {
+    try {
+      UnicastRemoteObject.exportObject(this, 0);
+    } catch (RemoteException e) {
       e.printStackTrace();
     }
   }
 
-  @Override public void startClient()
-  {
-    try
-    {
-      registry = LocateRegistry.getRegistry("localhost",1992);
+  @Override
+  public void startClient() {
+    try {
+      registry = LocateRegistry.getRegistry("localhost", 1992);
       server = (RMIServer) registry.lookup("Server");
       server.registerClientCallback(this);
     }
     catch (RemoteException | NotBoundException e)
     {
+
       System.out.println("Server not found");
     }
   }
 
-  @Override public boolean registerUser(User user)
-  {
+  @Override
+  public boolean registerUser(User user) {
     try {
       System.out.println("in RMI CLient");
       System.out.println((user instanceof Seller) + " is seller boolean");
@@ -62,7 +61,7 @@ public class RMIClientImpl implements Client, ClientCallback
   }
 
   @Override
-  public boolean checkPassword(String username, String password)  {
+  public boolean checkPassword(String username, String password) {
     try {
       return server.validatePassword(username, password);
     } catch (RemoteException e) {
@@ -142,6 +141,7 @@ public class RMIClientImpl implements Client, ClientCallback
     }
   }
 
+
   @Override public void addPropertyChangeListener(String eventName,
       PropertyChangeListener listener)
   {
@@ -152,7 +152,9 @@ public class RMIClientImpl implements Client, ClientCallback
       PropertyChangeListener listener)
   {
     propertyChangeSupport.addPropertyChangeListener(eventName,listener);
+
   }
+
   public RMIServer getServer() {
     return server;
   }
