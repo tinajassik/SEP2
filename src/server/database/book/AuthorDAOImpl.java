@@ -35,13 +35,13 @@ public class AuthorDAOImpl implements AuthorDAO{
         }
     }
 
-    public List<Author> getAllAuthors() throws SQLException {
+    public ArrayList<Author> getAllAuthors() throws SQLException {
 
         try (Connection connection = DatabaseConnection.getInstance().getConnection()) {
 
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM author");
             ResultSet resultSet = statement.executeQuery();
-            List<Author> allAuthors = new ArrayList<>();
+            ArrayList<Author> allAuthors = new ArrayList<>();
             while (resultSet.next()) {
                 allAuthors.add(new Author(resultSet.getString(2), resultSet.getString(3), resultSet.getInt(1)));
             }
