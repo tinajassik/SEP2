@@ -22,7 +22,7 @@ public class GenreDAOImpl implements GenreDAO{
         return instance;
     }
 
-    public Genre create(String genreName) throws SQLException {
+    @Override public Genre create(String genreName) throws SQLException {
         try (Connection connection = DatabaseConnection.getInstance().getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO genre (genre_name) values (?)");
             preparedStatement.setString(1,genreName);
@@ -31,12 +31,12 @@ public class GenreDAOImpl implements GenreDAO{
         return new Genre(genreName);
     }
 
-    public List<Genre> getAllGenres() throws SQLException {
+    @Override public ArrayList<Genre> getAllGenres() throws SQLException {
         try (Connection connection = DatabaseConnection.getInstance().getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from genre;");
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            List<Genre> allGenres = new ArrayList<>();
+            ArrayList<Genre> allGenres = new ArrayList<>();
             while (resultSet.next()) {
                 allGenres.add(new Genre(resultSet.getString(1)));
             }

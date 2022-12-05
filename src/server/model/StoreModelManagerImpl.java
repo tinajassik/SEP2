@@ -17,11 +17,13 @@ public class StoreModelManagerImpl implements StoreModelManager{
     private BookDAO bookDAO;
     private BookForSaleDAO bookForSaleDAO;
     private PropertyChangeSupport propertyChangeSupport;
+    private GenreDAO genreDAO;
 
     public StoreModelManagerImpl() throws SQLException {
         bookDAO = BookDAOImpl.getInstance();
         bookForSaleDAO = BookForSaleDAOImpl.getInstance();
         propertyChangeSupport = new PropertyChangeSupport(this);
+        genreDAO = GenreDAOImpl.getInstance();
     }
 
     @Override
@@ -60,6 +62,33 @@ public class StoreModelManagerImpl implements StoreModelManager{
     @Override
     public List<BookForSale> getBooks() {
         return bookForSaleDAO.getAllBooks();
+    }
+
+    @Override public List<BookForSale> getBooksByTile(String title)
+    {
+        return bookForSaleDAO.getBooksByTitle(title);
+    }
+
+    @Override public ArrayList<Genre> getAllGenres()
+    {
+        try
+        {
+            return genreDAO.getAllGenres();
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override public List<BookForSale> getBooksByGenre(String genre)
+    {
+        return bookForSaleDAO.getBooksByGenre(genre);
+    }
+
+    @Override public List<BookForSale> getBookByAuthor(String authorFName, String authorLName)
+    {
+        return bookForSaleDAO.getBooksByAuthor(authorFName, authorLName);
     }
 
     @Override

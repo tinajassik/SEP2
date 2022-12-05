@@ -61,6 +61,6 @@ public class BookForSale implements Serializable {
 
     public String toString() {
         return "Title: " + book.getTitle() + "\nAuthor:" + book.getAuthor().toString()
-                + "\nPrice: " + price + "$" + "\nCondition" + condition;
+                + "\nPrice: " + price + "$" + "\nCondition: " + condition;
     }
 }

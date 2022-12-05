@@ -1,6 +1,4 @@
 package server.database.book;
-
-import org.postgresql.jdbc.FieldMetadata;
 import server.database.DatabaseConnection;
 import shared.Author;
 

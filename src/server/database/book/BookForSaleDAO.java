@@ -11,4 +11,7 @@ public interface BookForSaleDAO {
 
     BookForSale create(String condition, double price, Book book, User user) throws SQLException;
     List<BookForSale> getAllBooks();
+    List<BookForSale> getBooksByTitle(String title);
+    List<BookForSale> getBooksByGenre(String genre);
+    List<BookForSale> getBooksByAuthor(String authorFName, String authorLName);
 }

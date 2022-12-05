@@ -13,5 +13,6 @@
     <orderEntry type="library" exported="" name="javafx" level="project" />
     <orderEntry type="library" name="postgresql-42.5.0" level="application" />
     <orderEntry type="library" name="JavaFX" level="application" />
+    <orderEntry type="library" name="postgresql-42.5.0" level="project" />
   </component>
 </module>

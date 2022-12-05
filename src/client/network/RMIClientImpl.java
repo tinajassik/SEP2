@@ -133,6 +133,54 @@ public class RMIClientImpl implements Client, ClientCallback
     }
   }
 
+  @Override public List<BookForSale> searchBooksByTitle(String title)
+  {
+    try
+    {
+      return server.getBooksByTitle(title);
+    }
+    catch (RemoteException e)
+    {
+      throw new RuntimeException(e);
+    }
+  }
+
+  @Override public ArrayList<Genre> getAllGenres()
+  {
+    try
+    {
+      return server.getGenres();
+    }
+    catch (RemoteException e)
+    {
+      throw new RuntimeException(e);
+    }
+  }
+
+  @Override public List<BookForSale> searchBooksByGenre(String genre)
+  {
+    try
+    {
+      return server.getBooksByGenre(genre);
+    }
+    catch (RemoteException e)
+    {
+      throw new RuntimeException(e);
+    }
+  }
+
+  @Override public List<BookForSale> searchBooksByAuthor(String authorFName, String authorLName)
+  {
+    try
+    {
+      return server.getBooksByAuthor(authorFName, authorLName);
+    }
+    catch (RemoteException e)
+    {
+      throw new RuntimeException(e);
+    }
+  }
+
   @Override public boolean checkUsername(String username)  {
     try {
       return server.isUsernameTaken(username);
