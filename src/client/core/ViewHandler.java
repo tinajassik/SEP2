@@ -1,6 +1,7 @@
 package client.core;
 
 import client.views.buyer.mainPageView.MainPageController;
+import client.views.buyer.shoppingCartView.ShoppingCartController;
 import client.views.seller.addBookForSaleView.AddBookForSaleController;
 import client.views.seller.addBooksView.AddBooksController;
 import client.views.seller.mainPage.MainPageSellerController;
@@ -158,6 +159,26 @@ public class ViewHandler {
         stage.show();
     }
 
+
+    public void openShoppingCart() {
+        Scene scene= null;
+        try
+        {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../views/buyer/shoppingCart/shoppingCart.fxml"));
+            Parent root = loader.load();
+            ShoppingCartController shoppingCartController = loader.getController();
+            shoppingCartController.init(ViewModelFactory.getInstance().getShoppingCartViewModel());
+            stage.setTitle("Shopping Cart");
+            scene = new Scene(root);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        stage.setScene(scene);
+        stage.show();
+    }
 
 
 }

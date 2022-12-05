@@ -1,4 +1,4 @@
-package client.views.buyer.shoppingCart;
+package client.views.buyer.shoppingCartView;
 
 import client.core.ViewHandler;
 import client.views.buyer.mainPageView.MainPageViewModel;
@@ -33,9 +33,10 @@ public class ShoppingCartController {
     private Button buttonSignOut;
     @FXML
     private Button buttonCheckOut;
+    private ShoppingCartViewModel shoppingCartViewModel;
 
-    public void init(MainPageViewModel mainPageViewModel) {
-        this.mainPageViewModel = mainPageViewModel;
+    public void init(ShoppingCartViewModel shoppingCartViewModel) {
+        this.shoppingCartViewModel = shoppingCartViewModel;
         labelUsername.textProperty().bindBidirectional(mainPageViewModel.getUsernameProperty());
         labelFullName.textProperty().bindBidirectional(mainPageViewModel.getFullNameProperty());
     }
