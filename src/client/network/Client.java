@@ -23,4 +23,6 @@ public interface Client extends Subject
   ArrayList<Genre> getAllGenres();
   List<BookForSale> searchBooksByGenre(String genre);
   List<BookForSale> searchBooksByAuthor(String authorFName, String authorLName);
+  List<BookForSale> getBooksSoldBy(String id);
+
 }

@@ -133,6 +133,7 @@ public class RMIClientImpl implements Client, ClientCallback
     }
   }
 
+
   @Override public List<BookForSale> searchBooksByTitle(String title)
   {
     try
@@ -177,6 +178,16 @@ public class RMIClientImpl implements Client, ClientCallback
     }
     catch (RemoteException e)
     {
+     throw new RuntimeException(e);
+    }
+  }
+
+  @Override
+  public List<BookForSale> getBooksSoldBy(String id) {
+    try {
+      return server.getBooksSoldBy(id);
+    } catch (RemoteException e) {
+
       throw new RuntimeException(e);
     }
   }

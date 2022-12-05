@@ -154,6 +154,7 @@ public class RMIServerImpl implements Remote, RMIServer
     return logInModelManager.getUser(username);
   }
 
+
   @Override public List<BookForSale> getBooksByTitle(String title) throws RemoteException
   {
     return storeModelManager.getBooksByTile(title);
@@ -170,4 +171,11 @@ public class RMIServerImpl implements Remote, RMIServer
   {
     return storeModelManager.getBookByAuthor(authorFName, authorLName);
   }
+
+  @Override
+  public List<BookForSale> getBooksSoldBy(String id) throws RemoteException {
+    return storeModelManager.getBooksSoldBy(id);
+  }
+
+
 }

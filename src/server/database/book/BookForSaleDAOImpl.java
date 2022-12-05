@@ -2,10 +2,7 @@ package server.database.book;
 
 import server.database.DatabaseConnection;
 import server.database.user.UserDAOImpl;
-import shared.Book;
-import shared.BookForSale;
-import shared.Seller;
-import shared.User;
+import shared.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -49,6 +46,21 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
             throw new RuntimeException(e);
         }
     }
+    @Override
+    public List<BookForSale> getBooksSoldBy(String id) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from bookforsale where seller_id =?;");
+            preparedStatement.setString(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<BookForSale> books = new ArrayList<>();
+            while (resultSet.next()) {
+                books.add(new BookForSale(resultSet.getInt(1), resultSet.getString(5),resultSet.getDouble(4), BookDAOImpl.getInstance().readByISBN(resultSet.getString(2)), UserDAOImpl.getInstance().getUserByUsername(resultSet.getString(3))));
+            }
+            return books;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
     @Override
@@ -67,6 +79,7 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
             throw new RuntimeException(e);
         }
     }
+
 
     @Override public List<BookForSale> getBooksByTitle(String title)
     {
@@ -122,5 +135,26 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
             throw new RuntimeException(e);
         }
     }
+
+
+    public Book getBookById(int id) throws SQLException {
+
+        Book poop;
+
+        try (Connection connection = DatabaseConnection.getInstance().getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from bookforsale where id = ?;");
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+
+            poop = BookDAOImpl.getInstance().readByISBN(resultSet.getString(1));
+        }
+        return poop;
+
+    }
+
+
+
+
 
 }

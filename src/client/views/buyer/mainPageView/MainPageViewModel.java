@@ -8,7 +8,11 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import shared.Author;
+
+//import javafx.collections.ObservableListBase;
+
 import shared.BookForSale;
 import shared.Genre;
 
@@ -51,11 +55,6 @@ public class MainPageViewModel {
         fullName.set(model.getUser().getFullName());
     }
 
-//    void loadLogs() {
-//        List<BookForSale> logList = buyerModelManager.getLogs();
-//        logs = FXCollections.observableArrayList(logList);
-//    }
-
     ObservableList<BookForSale> getBooksForSale() {
         return booksForSale;
     }
@@ -63,6 +62,7 @@ public class MainPageViewModel {
         List<BookForSale> booksForSaleList = buyerModelManager.getBooks();
         booksForSale = FXCollections.observableArrayList(booksForSaleList);
     }
+
 
     ObservableList<BookForSale> searchBooksByTitle(String title)
     {
@@ -94,4 +94,5 @@ public class MainPageViewModel {
     {
         return buyerModelManager.getAllAuthors();
     }
+
 }

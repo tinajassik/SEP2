@@ -60,7 +60,20 @@ public class StoreModelManagerImpl implements StoreModelManager{
 
     @Override
     public List<BookForSale> getBooks() {
-        return bookForSaleDAO.getAllBooks();
+        try {
+            return bookForSaleDAO.getAllBooks();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<BookForSale> getBooksSoldBy(String id) {
+        try {
+            return bookForSaleDAO.getBooksSoldBy(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override public List<BookForSale> getBooksByTile(String title)
