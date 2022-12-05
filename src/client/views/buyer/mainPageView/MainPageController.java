@@ -25,7 +25,6 @@ public class MainPageController {
     private TextField textFieldSearch;
     @FXML
     private ComboBox comboBoxAuthors;
-
     @FXML
     private ComboBox comboBoxGenres;
     @FXML
@@ -66,7 +65,7 @@ public class MainPageController {
     }
 
     @FXML
-    public void onSearchByAuthors(ActionEvent actionEvent) {
+    public void onSearchByAuthors (ActionEvent actionEvent) {
 
     }
 

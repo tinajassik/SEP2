@@ -2,10 +2,7 @@ package server.database.book;
 
 import server.database.DatabaseConnection;
 import server.database.user.UserDAOImpl;
-import shared.Book;
-import shared.BookForSale;
-import shared.Seller;
-import shared.User;
+import shared.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -82,4 +79,24 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
             throw new RuntimeException(e);
         }
     }
+
+    public Book getBookById(int id) throws SQLException {
+
+        Book poop;
+
+        try (Connection connection = DatabaseConnection.getInstance().getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from bookforsale where id = ?;");
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+
+            poop = BookDAOImpl.getInstance().readByISBN(resultSet.getString(1));
+        }
+        return poop;
+
+    }
+
+
+
+
 }

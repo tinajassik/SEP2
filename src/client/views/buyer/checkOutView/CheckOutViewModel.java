@@ -21,7 +21,7 @@ public class CheckOutViewModel {
         username = new SimpleStringProperty();
         price = new SimpleStringProperty();
         model = ModelFactory.getInstance().getUserModelManager();
-        model.addPropertyChangeListener("Labels", evt -> updateLabels(evt));
+        //model.addPropertyChangeListener("Labels", evt -> updateLabels(evt));
     }
 
     public StringProperty getFullNameProperty() {
@@ -36,10 +36,10 @@ public class CheckOutViewModel {
         return price;
     }
 
-    public void updateLabels(PropertyChangeEvent evt) {
+    /*public void updateLabels(PropertyChangeEvent evt) {
         Platform.runLater(() -> {
             username.set(model.getUser().getUsername());
             fullName.set(model.getUser().getUsername());
         });
-    }
+    }*/
 }
