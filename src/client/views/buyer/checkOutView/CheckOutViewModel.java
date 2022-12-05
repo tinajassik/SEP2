@@ -1,4 +1,4 @@
-package client.views.buyer.shoppingCart;
+package client.views.buyer.checkOutView;
 
 import client.core.ModelFactory;
 import client.model.UserModelManager;
@@ -8,7 +8,7 @@ import javafx.beans.property.StringProperty;
 
 import java.beans.PropertyChangeEvent;
 
-public class ShoppingCartViewModel {
+public class CheckOutViewModel {
 
     private StringProperty fullName;
     private StringProperty username;
@@ -16,7 +16,7 @@ public class ShoppingCartViewModel {
 
     private StringProperty price;
 
-    public ShoppingCartViewModel() {
+    public CheckOutViewModel() {
         fullName = new SimpleStringProperty();
         username = new SimpleStringProperty();
         price = new SimpleStringProperty();
@@ -38,8 +38,8 @@ public class ShoppingCartViewModel {
 
     /*public void updateLabels(PropertyChangeEvent evt) {
         Platform.runLater(() -> {
-            username.set(model.getUser(username.toString()).getUsername());
-            fullName.set(model.getUser(fullName.toString()).getFullName());
+            username.set(model.getUser().getUsername());
+            fullName.set(model.getUser().getUsername());
         });
     }*/
 }

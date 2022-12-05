@@ -37,7 +37,6 @@ public class MainPageController {
     private Button  buttonSignOut;
 
     public void init(MainPageViewModel mainPageViewModel) {
-        this.mainPageViewModel = mainPageViewModel;
         labelUsername.textProperty().bindBidirectional(mainPageViewModel.getUsernameProperty());
         labelFullName.textProperty().bindBidirectional(mainPageViewModel.getFullNameProperty());
         this.mainPageViewModel = mainPageViewModel;

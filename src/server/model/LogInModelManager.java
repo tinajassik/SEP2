@@ -2,7 +2,6 @@ package server.model;
 
 import shared.User;
 
-import java.rmi.RemoteException;
 
 public interface LogInModelManager {
 

@@ -58,4 +58,9 @@ public class BookForSale implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public String toString() {
+        return "Title: " + book.getTitle() + "\nAuthor:" + book.getAuthor().toString()
+                + "\nPrice: " + price + "$" + "\nCondition" + condition;
+    }
 }

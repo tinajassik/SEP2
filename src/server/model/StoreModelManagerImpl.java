@@ -1,16 +1,15 @@
 package server.model;
 
-import server.database.book.BookDAO;
-import server.database.book.BookDAOImpl;
-import server.database.book.BookForSaleDAO;
-import server.database.book.BookForSaleDAOImpl;
+import server.database.book.*;
 import shared.Book;
 import shared.BookForSale;
+import shared.Genre;
 import shared.User;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StoreModelManagerImpl implements StoreModelManager{
@@ -29,6 +28,12 @@ public class StoreModelManagerImpl implements StoreModelManager{
     public BookForSale addBookForSale(String condition, double price, Book book, User user) {
         try {
             BookForSale bookForSale = BookForSaleDAOImpl.getInstance().create(condition,price, book, user);
+            ArrayList<Genre> genres = book.getGenre();
+            for (Genre genre: genres)
+            {
+                BookGenreDAOImpl.getInstance().create(genre.getGenreName(), book.getIsbn());
+
+            }
             propertyChangeSupport.firePropertyChange("NewBookForSale", null, bookForSale);
             return bookForSale;
         } catch (SQLException e) {

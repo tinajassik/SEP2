@@ -33,10 +33,6 @@ public class BookDAOImpl implements BookDAO {
             statement.setString(4, coverType);
             statement.setInt(5,author.getId());
             statement.executeUpdate();
-
-            for (Genre g : genres) {
-                BookGenreDAOImpl.getInstance().create(g.getGenreName(), isbn);
-            }
             return new Book(isbn, title, yearOfPublishing, coverType, author, genres);
         }
     }

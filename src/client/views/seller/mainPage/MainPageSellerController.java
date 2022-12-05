@@ -20,7 +20,6 @@ public class MainPageSellerController {
     private TextField textFieldSearch;
     @FXML
     private ComboBox comboBoxAuthors;
-
     @FXML
     private ComboBox comboBoxGenres;
     @FXML
