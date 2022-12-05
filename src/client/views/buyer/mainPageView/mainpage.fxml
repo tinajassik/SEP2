@@ -120,6 +120,11 @@
                   <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                </VBox.margin>
             </Button>
+            <Button mnemonicParsing="false" onAction="#onSeeAllBooks" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #f3f4d7;" text="See all books">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
       <HBox layoutX="-2.0" layoutY="591.0" prefHeight="47.0" prefWidth="712.0" style="-fx-background-color: #c2518c;">

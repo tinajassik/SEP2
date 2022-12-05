@@ -1,10 +1,7 @@
 package server.model;
 
 import server.database.book.*;
-import shared.Book;
-import shared.BookForSale;
-import shared.Genre;
-import shared.User;
+import shared.*;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -17,11 +14,15 @@ public class StoreModelManagerImpl implements StoreModelManager{
     private BookDAO bookDAO;
     private BookForSaleDAO bookForSaleDAO;
     private PropertyChangeSupport propertyChangeSupport;
+    private GenreDAO genreDAO;
+    private AuthorDAO authorDAO;
 
     public StoreModelManagerImpl() throws SQLException {
         bookDAO = BookDAOImpl.getInstance();
         bookForSaleDAO = BookForSaleDAOImpl.getInstance();
         propertyChangeSupport = new PropertyChangeSupport(this);
+        genreDAO = GenreDAOImpl.getInstance();
+        authorDAO = AuthorDAOImpl.getInstance();
     }
 
     @Override
@@ -73,6 +74,45 @@ public class StoreModelManagerImpl implements StoreModelManager{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override public List<BookForSale> getBooksByTile(String title)
+    {
+        return bookForSaleDAO.getBooksByTitle(title);
+    }
+
+    @Override public ArrayList<Genre> getAllGenres()
+    {
+        try
+        {
+            return genreDAO.getAllGenres();
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override public ArrayList<Author> getAllAuthors()
+    {
+        try
+        {
+            return authorDAO.getAllAuthors();
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override public List<BookForSale> getBooksByGenre(String genre)
+    {
+        return bookForSaleDAO.getBooksByGenre(genre);
+    }
+
+    @Override public List<BookForSale> getBookByAuthor(String authorFName, String authorLName)
+    {
+        return bookForSaleDAO.getBooksByAuthor(authorFName, authorLName);
     }
 
     @Override
