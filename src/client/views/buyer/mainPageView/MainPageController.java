@@ -69,6 +69,21 @@ public class MainPageController {
 
     }
 
+    public BookForSale getSelectedBook() {
+        return (BookForSale) listViewBooks.getSelectionModel().getSelectedItem();
+    }
+
+    public void onSeeDetails() {
+
+        if(listViewBooks.getSelectionModel().getSelectedItem() != null)
+            ViewHandler.getInstance().openBookDetails();
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("You have not selected a book BITCH");
+            alert.show();
+        }
+    }
+
 
 
 }

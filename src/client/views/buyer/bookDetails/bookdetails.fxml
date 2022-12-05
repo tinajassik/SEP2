@@ -7,6 +7,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -18,74 +19,173 @@
                 <Image url="@../../pictures/image-removebg-preview (4).png" />
             </image>
         </ImageView>
-        <ScrollPane layoutX="98.0" layoutY="186.0" prefHeight="292.0" prefWidth="495.0" style="-fx-background-color: #f3f4d7;">
+        <ScrollPane layoutX="76.0" layoutY="148.0" prefHeight="358.0" prefWidth="557.0" style="-fx-background-color: #f3f4d7;">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
          <content>
-            <VBox prefHeight="271.0" prefWidth="139.0">
+            <HBox prefHeight="272.0" prefWidth="474.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title:" wrappingWidth="45.44140625">
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Author:" wrappingWidth="91.44140625">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ISBN:" wrappingWidth="45.44140625">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cover type:" wrappingWidth="94.44140625">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Publication year:" wrappingWidth="141.44140625">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Condtition:" wrappingWidth="127.44140625">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Price: " wrappingWidth="104.44140625">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Text>
+                  <VBox prefHeight="271.0" prefWidth="139.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title:" wrappingWidth="45.44140625">
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Author:" wrappingWidth="91.44140625">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ISBN:" wrappingWidth="45.44140625">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cover type:" wrappingWidth="94.44140625">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Publication year:" wrappingWidth="141.44140625">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="10.0" top="14.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Condtition:" wrappingWidth="127.44140625">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Price: " wrappingWidth="104.44140625">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Genres:">
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sold By:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="318.0" prefWidth="321.0">
+                     <children>
+                        <Label fx:id="labelTitle" text="Label">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="labelAuthor" text="Label">
+                           <VBox.margin>
+                              <Insets left="10.0" top="7.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelISBN" text="Label">
+                           <VBox.margin>
+                              <Insets left="10.0" top="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelCoverType" text="Label">
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelPubliYear" text="Label">
+                           <VBox.margin>
+                              <Insets left="10.0" top="7.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelCondition" text="Label">
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelPrice" text="Label">
+                           <VBox.margin>
+                              <Insets left="10.0" top="6.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelGenres" text="Label">
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelSoldBy" text="Label">
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
                </children>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </VBox>
+            </HBox>
          </content>
         </ScrollPane>
         <Text fill="#32afc9" layoutX="86.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book" wrappingWidth="139.6171875">
@@ -110,16 +210,17 @@
                 <Font name="Bauhaus 93" size="22.0" />
             </font>
         </Text>
-        <Button fx:id="buttonShoppingCart" layoutX="551.0" layoutY="558.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="140.0" style="-fx-background-color: #f3f4d7;" text="Add to">
+        <Button fx:id="buttonShoppingCart" layoutX="448.0" layoutY="559.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="131.0" style="-fx-background-color: #f3f4d7;" text="Add to">
          <padding>
             <Insets right="30.0" />
          </padding>
         </Button>
-      <Button layoutX="14.0" layoutY="581.0" mnemonicParsing="false" text="Back" />
-          <ImageView fitHeight="35.0" fitWidth="36.0" layoutX="634.0" layoutY="564.0">
+      <Button fx:id="backButton" layoutX="14.0" layoutY="559.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="107.0" text="Back" />
+          <ImageView fitHeight="35.0" fitWidth="36.0" layoutX="525.0" layoutY="565.0">
               <image>
                   <Image url="@../../pictures/shoppingcartpng.png" />
               </image>
           </ImageView>
+      <Button fx:id="buttonCheckout" layoutX="591.0" layoutY="559.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="107.0" text="Check Out" />
     </children>
 </AnchorPane>

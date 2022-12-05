@@ -1,5 +1,6 @@
 package client.core;
 
+import client.views.buyer.bookDetails.BookDetailsController;
 import client.views.buyer.mainPageView.MainPageController;
 import client.views.buyer.shoppingCartView.ShoppingCartController;
 import client.views.seller.addBookForSaleView.AddBookForSaleController;
@@ -18,6 +19,8 @@ public class ViewHandler {
 
     private static ViewHandler instance = new ViewHandler();
     private Stage stage;
+    private BookDetailsController bookDetailsController;
+    private MainPageController mainPageController;
 
     public static ViewHandler getInstance(){
         return instance;
@@ -106,8 +109,8 @@ public class ViewHandler {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("../views/buyer/mainPageView/mainpage.fxml"));
                 Parent root = loader.load();
-                MainPageController mainPageController = loader.getController();
-                mainPageController.init(ViewModelFactory.getInstance().getMainPageBuyersViewModel());
+                 mainPageController = loader.getController();
+                 mainPageController.init(ViewModelFactory.getInstance().getMainPageBuyersViewModel());
                 stage.setTitle("Main Page");
                 scene = new Scene(root);
             }
@@ -178,6 +181,30 @@ public class ViewHandler {
         }
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void openBookDetails() {
+        Scene scene= null;
+        try
+        {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../views/buyer/bookDetails/bookdetails.fxml"));
+            Parent root = loader.load();
+            this.bookDetailsController = loader.getController();
+            this.bookDetailsController.init(ViewModelFactory.getInstance().getBookDetailsViewModel());
+            stage.setTitle("Shopping Cart");
+            scene = new Scene(root);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public MainPageController getMainPageController(){
+        return mainPageController;
     }
 
 
