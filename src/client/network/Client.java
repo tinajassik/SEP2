@@ -19,4 +19,5 @@ public interface Client extends Subject
   User getUser(String username);
   User getUser();
   void addBookForSale(String condition,double price, Book book, User user);
+  List<BookForSale> getBooksSoldBy(String id);
 }

@@ -23,7 +23,7 @@ public class DatabaseConnection {
 
         } catch (SQLException e) {
 
-            throw new RuntimeException("Database connection failed. :(");
+            throw new RuntimeException(e);
         }
     }
 
