@@ -29,7 +29,6 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
         return instance;
     }
 
-
     @Override
     public BookForSale create(String condition, double price, Book book, User user) throws SQLException {
         try {
@@ -50,6 +49,7 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
             throw new RuntimeException(e);
         }
     }
+
 
     @Override
     public List<BookForSale> getAllBooks() {

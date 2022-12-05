@@ -1,4 +1,4 @@
-package client.views.buyer.checkOut;
+package client.views.buyer.checkOutView;
 
 import client.core.ModelFactory;
 import client.model.UserModelManager;
