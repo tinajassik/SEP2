@@ -141,11 +141,7 @@ public class RMIServerImpl implements Remote, RMIServer
 
   @Override
   public ArrayList<Author> getAuthors() {
-    try {
-      return (ArrayList<Author>)AuthorDAOImpl.getInstance().getAllAuthors();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
+      return storeModelManager.getAllAuthors();
   }
 
   @Override
