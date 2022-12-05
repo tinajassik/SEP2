@@ -46,6 +46,21 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
             throw new RuntimeException(e);
         }
     }
+    @Override
+    public List<BookForSale> getBooksSoldBy(String id) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from bookforsale where seller_id =?;");
+            preparedStatement.setString(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<BookForSale> books = new ArrayList<>();
+            while (resultSet.next()) {
+                books.add(new BookForSale(resultSet.getInt(1), resultSet.getString(5),resultSet.getDouble(4), BookDAOImpl.getInstance().readByISBN(resultSet.getString(2)), UserDAOImpl.getInstance().getUserByUsername(resultSet.getString(3))));
+            }
+            return books;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
     @Override

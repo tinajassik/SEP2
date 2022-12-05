@@ -133,6 +133,15 @@ public class RMIClientImpl implements Client, ClientCallback
     }
   }
 
+  @Override
+  public List<BookForSale> getBooksSoldBy(String id) {
+    try {
+      return server.getBooksSoldBy(id);
+    } catch (RemoteException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
   @Override public boolean checkUsername(String username)  {
     try {
       return server.isUsernameTaken(username);

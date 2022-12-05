@@ -10,5 +10,6 @@ import java.util.List;
 public interface BookForSaleDAO {
 
     BookForSale create(String condition, double price, Book book, User user) throws SQLException;
-    List<BookForSale> getAllBooks();
+    List<BookForSale> getAllBooks() throws SQLException;
+    List<BookForSale> getBooksSoldBy(String id) throws SQLException;
 }

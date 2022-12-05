@@ -20,5 +20,6 @@ public interface RMIServer extends Remote
   ArrayList<Author> getAuthors() throws RemoteException;
   ArrayList<Genre> getGenres() throws RemoteException;
   User getUser(String username) throws RemoteException;
+  List<BookForSale> getBooksSoldBy(String id) throws RemoteException;
 
 }

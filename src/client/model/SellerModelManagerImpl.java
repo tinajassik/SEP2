@@ -3,18 +3,16 @@ package client.model;
 import client.core.ClientFactory;
 import client.network.Client;
 import client.network.RMIClientImpl;
-import shared.Author;
-import shared.Book;
-import shared.Genre;
-import shared.User;
+import shared.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SellerModelManagerImpl implements SellerModelManager {
 
    private Client client;
    private Book bookGeneric;
-   private Book bookToBeSold;
+
     public SellerModelManagerImpl() {
         client = ClientFactory.getInstance().getClient();
     }
@@ -40,5 +38,10 @@ public class SellerModelManagerImpl implements SellerModelManager {
     @Override
     public ArrayList<Genre> getGenres() {
         return client.getGenres();
+    }
+
+    @Override
+    public List<BookForSale> getBooksSoldByMe(String id) {
+       return client.getBooksSoldBy(id);
     }
 }

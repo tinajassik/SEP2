@@ -161,4 +161,9 @@ public class RMIServerImpl implements Remote, RMIServer
   public User getUser(String username) throws RemoteException {
     return logInModelManager.getUser(username);
   }
+  @Override
+  public List<BookForSale> getBooksSoldBy(String id) throws RemoteException {
+    return storeModelManager.getBooksSoldBy(id);
+  }
+
 }

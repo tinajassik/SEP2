@@ -8,6 +8,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableListBase;
 import shared.BookForSale;
 
 import java.beans.PropertyChangeEvent;
@@ -48,11 +49,6 @@ public class MainPageViewModel {
         fullName.set(model.getUser().getFullName());
     }
 
-//    void loadLogs() {
-//        List<BookForSale> logList = buyerModelManager.getLogs();
-//        logs = FXCollections.observableArrayList(logList);
-//    }
-
     ObservableList<BookForSale> getBooksForSale() {
         return booksForSale;
     }
@@ -61,4 +57,4 @@ public class MainPageViewModel {
         booksForSale = FXCollections.observableArrayList(booksForSaleList);
     }
 
-    }
+}
