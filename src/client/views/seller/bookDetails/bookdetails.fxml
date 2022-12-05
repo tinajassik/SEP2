@@ -2,8 +2,11 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,21 +15,21 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="620.0" prefWidth="712.0" style="-fx-background-color: #2d206f;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.views.seller.bookDetails.BookDetailsController">
+<AnchorPane prefHeight="620.0" prefWidth="712.0" style="-fx-background-color: #2d206f;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.views.seller.bookDetails.BookDetailsSellerController">
     <children>
         <ImageView fitHeight="88.0" fitWidth="114.0" layoutX="-13.0" layoutY="-2.0">
             <image>
                 <Image url="@../../pictures/image-removebg-preview (4).png" />
             </image>
         </ImageView>
-        <ScrollPane layoutX="98.0" layoutY="186.0" prefHeight="292.0" prefWidth="495.0" style="-fx-background-color: #f3f4d7;">
+        <ScrollPane layoutX="61.0" layoutY="180.0" prefHeight="337.0" prefWidth="557.0" style="-fx-background-color: #f3f4d7;">
             <padding>
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </padding>
          <content>
-            <HBox prefHeight="272.0" prefWidth="474.0">
+            <HBox prefHeight="299.0" prefWidth="539.0">
                <children>
-                      <VBox prefHeight="271.0" prefWidth="139.0">
+                      <VBox prefHeight="299.0" prefWidth="136.0">
                           <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title:" wrappingWidth="45.44140625">
                                   <VBox.margin>
@@ -84,63 +87,97 @@
                                       <Insets left="10.0" top="10.0" />
                                   </VBox.margin>
                               </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Genres:" wrappingWidth="104.44140625">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Text>
                           </children>
                           <padding>
                               <Insets left="10.0" />
                           </padding>
                       </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox prefHeight="299.0" prefWidth="103.0">
                      <children>
-                        <Label text="Label">
+                        <TextField fx:id="textFieldTitle">
+                           <padding>
+                              <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                           </padding>
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </VBox.margin>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label text="Label">
+                        </TextField>
+                        <TextField fx:id="textFieldAuthor" editable="false">
+                           <padding>
+                              <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                           </padding>
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </VBox.margin>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label text="Label">
+                        </TextField>
+                        <TextField fx:id="textFieldISBN">
+                           <padding>
+                              <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                           </padding>
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </VBox.margin>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label text="Label">
+                        </TextField>
+                        <TextField fx:id="textFieldCoverType">
+                           <padding>
+                              <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                           </padding>
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </VBox.margin>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label text="Label">
+                        </TextField>
+                        <TextField fx:id="textFieldPublicationYear">
+                           <padding>
+                              <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                           </padding>
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </VBox.margin>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label text="Label">
+                        </TextField>
+                        <TextField fx:id="textFieldCondition">
+                           <padding>
+                              <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                           </padding>
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </VBox.margin>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
+                        </TextField>
+                        <TextField fx:id="textFieldPrice">
+                           <padding>
+                              <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label fx:id="labelGenres" prefHeight="31.0" prefWidth="112.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
                         </Label>
                      </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                   </VBox>
+                  <ListView fx:id="listViewGenres" prefHeight="289.0" prefWidth="99.0">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </ListView>
+                  <ComboBox fx:id="comboBoxAuthors" prefHeight="25.0" prefWidth="109.0">
+                     <HBox.margin>
+                        <Insets bottom="25.0" left="25.0" right="25.0" top="40.0" />
+                     </HBox.margin>
+                  </ComboBox>
                </children>
             </HBox>
          </content>
@@ -162,13 +199,13 @@
                 <Font name="Bauhaus 93" size="22.0" />
             </font>
         </Text>
-        <Text fill="#c2518c" layoutX="241.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="buyers" wrappingWidth="77.6171875">
+        <Text fill="#c2518c" layoutX="245.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="sellers" wrappingWidth="77.6171875">
             <font>
                 <Font name="Bauhaus 93" size="22.0" />
             </font>
         </Text>
-        <Button layoutX="14.0" layoutY="581.0" mnemonicParsing="false" text="Back" />
-      <Button layoutX="548.0" layoutY="580.0" mnemonicParsing="false" text="Delete Book" />
-      <Button layoutX="632.0" layoutY="580.0" mnemonicParsing="false" text="Save Details" />
+        <Button layoutX="14.0" layoutY="581.0" mnemonicParsing="false" onAction="#onBack" text="Back" />
+      <Button layoutX="548.0" layoutY="580.0" mnemonicParsing="false" onAction="#onDeleteBook" text="Delete Book" />
+      <Button layoutX="632.0" layoutY="580.0" mnemonicParsing="false" onAction="#onSave" text="Save Details" />
     </children>
 </AnchorPane>

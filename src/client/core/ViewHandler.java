@@ -5,6 +5,7 @@ import client.views.buyer.mainPageView.MainPageController;
 import client.views.buyer.shoppingCartView.ShoppingCartController;
 import client.views.seller.addBookForSaleView.AddBookForSaleController;
 import client.views.seller.addBooksView.AddBooksController;
+import client.views.seller.bookDetails.BookDetailsSellerController;
 import client.views.seller.mainPage.MainPageSellerController;
 import client.views.shared.createAccountView.CreateAccountViewController;
 import client.views.shared.signView.SignViewController;
@@ -21,6 +22,8 @@ public class ViewHandler {
     private Stage stage;
     private BookDetailsController bookDetailsController;
     private MainPageController mainPageController;
+
+    private MainPageSellerController mainPageSellerController;
 
     public static ViewHandler getInstance(){
         return instance;
@@ -129,8 +132,8 @@ public class ViewHandler {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("../views/seller/mainPage/mainpage.fxml"));
                 Parent root = loader.load();
-                MainPageSellerController mainPageController = loader.getController();
-                mainPageController.init(this,ViewModelFactory.getInstance().getMainPageSellersViewModel());
+                mainPageSellerController = loader.getController();
+                mainPageSellerController.init(this,ViewModelFactory.getInstance().getMainPageSellersViewModel());
                 stage.setTitle("Main Page");
                 scene = new Scene(root);
             }
@@ -206,6 +209,33 @@ public class ViewHandler {
     public MainPageController getMainPageController(){
         return mainPageController;
     }
+
+
+    public void openBookDetailsSeller() {
+        Scene scene= null;
+        try
+        {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../views/seller/bookDetails/bookdetails.fxml"));
+            Parent root = loader.load();
+            BookDetailsSellerController bookDetailsController = loader.getController();
+            bookDetailsController.init(ViewModelFactory.getInstance().getBookDetailsViewModel());
+            stage.setTitle("BookDetails - SELLER");
+            scene = new Scene(root);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+    public MainPageSellerController getMainPageSellerController() {
+        return mainPageSellerController;
+    }
+
 
 
 }

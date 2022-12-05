@@ -10,7 +10,9 @@
     </content>
     <orderEntry type="jdk" jdkName="Java JDK 17" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="JavaFX" level="application" />
-    <orderEntry type="library" exported="" name="postgresql-42.5.1" level="project" />
+    <orderEntry type="library" exported="" name="javafx" level="project" />
+    <orderEntry type="library" name="postgresql-42.5.0" level="application" />
+    <orderEntry type="library" name="JavaFX" level="application" />
+    <orderEntry type="library" name="postgresql-42.5.0" level="project" />
   </component>
 </module>

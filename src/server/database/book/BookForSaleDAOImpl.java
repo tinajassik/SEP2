@@ -46,6 +46,21 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
             throw new RuntimeException(e);
         }
     }
+    @Override
+    public List<BookForSale> getBooksSoldBy(String id) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from bookforsale where seller_id =?;");
+            preparedStatement.setString(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<BookForSale> books = new ArrayList<>();
+            while (resultSet.next()) {
+                books.add(new BookForSale(resultSet.getInt(1), resultSet.getString(5),resultSet.getDouble(4), BookDAOImpl.getInstance().readByISBN(resultSet.getString(2)), UserDAOImpl.getInstance().getUserByUsername(resultSet.getString(3))));
+            }
+            return books;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
     @Override
@@ -65,6 +80,63 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
         }
     }
 
+
+    @Override public List<BookForSale> getBooksByTitle(String title)
+    {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM book JOIN bookforsale on book.isbn = bookforsale.isbn WHERE lower(title) LIKE lower(?);");
+            preparedStatement.setString(1, "%" + title +  "%" );
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<BookForSale> booksForSale = new ArrayList<>();
+            while (resultSet.next()) {
+                booksForSale.add(new BookForSale(resultSet.getInt("id"), resultSet.getString("condition"),
+                    resultSet.getDouble("price"), BookDAOImpl.getInstance().readByISBN(resultSet.getString("isbn")),
+                    UserDAOImpl.getInstance().getUserByUsername(resultSet.getString("seller_id"))));
+            }
+            return booksForSale;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override public List<BookForSale> getBooksByGenre(String genre)
+    {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM bookforsale JOIN book ON bookforsale.isbn = book.isbn JOIN bookgenre b ON book.isbn = b.isbn WHERE b.genre_name = ?;");
+            preparedStatement.setString(1, genre );
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<BookForSale> booksForSale = new ArrayList<>();
+            while (resultSet.next()) {
+                booksForSale.add(new BookForSale(resultSet.getInt("id"), resultSet.getString("condition"),
+                    resultSet.getDouble("price"), BookDAOImpl.getInstance().readByISBN(resultSet.getString("isbn")),
+                    UserDAOImpl.getInstance().getUserByUsername(resultSet.getString("seller_id"))));
+            }
+            return booksForSale;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override public List<BookForSale> getBooksByAuthor(String authorFName, String authorLName)
+    {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM bookforsale JOIN book ON bookforsale.isbn = book.isbn JOIN author a ON book.author_id = a.id WHERE  first_name = ? AND last_name = ?;");
+            preparedStatement.setString(1, authorFName );
+            preparedStatement.setString(2, authorLName );
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<BookForSale> booksForSale = new ArrayList<>();
+            while (resultSet.next()) {
+                booksForSale.add(new BookForSale(resultSet.getInt("id"), resultSet.getString("condition"),
+                    resultSet.getDouble("price"), BookDAOImpl.getInstance().readByISBN(resultSet.getString("isbn")),
+                    UserDAOImpl.getInstance().getUserByUsername(resultSet.getString("seller_id"))));
+            }
+            return booksForSale;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
     public Book getBookById(int id) throws SQLException {
 
         Book poop;
@@ -80,7 +152,6 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
         return poop;
 
     }
-
 
 
 

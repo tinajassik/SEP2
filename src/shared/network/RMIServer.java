@@ -21,4 +21,11 @@ public interface RMIServer extends Remote
   ArrayList<Genre> getGenres() throws RemoteException;
   User getUser(String username) throws RemoteException;
 
+  List<BookForSale> getBooksByTitle(String title) throws RemoteException;
+  List<BookForSale> getBooksByGenre(String genre) throws RemoteException;
+  List<BookForSale> getBooksByAuthor(String authorFName, String authorLName) throws RemoteException;
+
+  List<BookForSale> getBooksSoldBy(String id) throws RemoteException;
+
+
 }

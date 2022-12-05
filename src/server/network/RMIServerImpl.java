@@ -141,24 +141,41 @@ public class RMIServerImpl implements Remote, RMIServer
 
   @Override
   public ArrayList<Author> getAuthors() {
-    try {
-      return (ArrayList<Author>)AuthorDAOImpl.getInstance().getAllAuthors();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
+      return storeModelManager.getAllAuthors();
   }
 
   @Override
   public ArrayList<Genre> getGenres() {
-    try {
-      return (ArrayList<Genre>) GenreDAOImpl.getInstance().getAllGenres();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
+   return storeModelManager.getAllGenres();
   }
 
   @Override
   public User getUser(String username) throws RemoteException {
     return logInModelManager.getUser(username);
   }
+
+
+  @Override public List<BookForSale> getBooksByTitle(String title) throws RemoteException
+  {
+    return storeModelManager.getBooksByTile(title);
+  }
+
+  @Override public List<BookForSale> getBooksByGenre(String genre)
+      throws RemoteException
+  {
+    return storeModelManager.getBooksByGenre(genre);
+  }
+
+  @Override public List<BookForSale> getBooksByAuthor(String authorFName, String authorLName)
+      throws RemoteException
+  {
+    return storeModelManager.getBookByAuthor(authorFName, authorLName);
+  }
+
+  @Override
+  public List<BookForSale> getBooksSoldBy(String id) throws RemoteException {
+    return storeModelManager.getBooksSoldBy(id);
+  }
+
+
 }
