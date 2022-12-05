@@ -2,17 +2,14 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -26,17 +23,7 @@
       </ImageView>
       <ScrollPane layoutX="241.0" layoutY="164.0" prefHeight="425.0" prefWidth="469.0" style="-fx-background-color: #f3f4d7;">
          <content>
-            <GridPane fx:id="gridPaneBooks" prefHeight="423.0" prefWidth="449.0" style="-fx-background-color: #f3f4d7;">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-            </GridPane>
+            <ListView fx:id="listViewBooks" prefHeight="423.0" prefWidth="455.0" />
          </content>
       </ScrollPane>
       <Text fill="#32afc9" layoutX="86.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book" wrappingWidth="139.6171875">
@@ -64,7 +51,7 @@
                   <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                </VBox.margin>
             </TextField>
-            <Button fx:id="buttonSearchTitle" mnemonicParsing="false" onAction="#onSearchByTitle" style="-fx-background-color: #f3f4d7;" text="Search">
+            <Button fx:id="buttonSearch" mnemonicParsing="false" onAction="#onSearchByTitle" style="-fx-background-color: #f3f4d7;" text="Search">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="33.0">
                      <image>
@@ -76,68 +63,12 @@
                   <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                </VBox.margin>
             </Button>
-            <Text fill="#f3f4d7" strokeType="OUTSIDE" strokeWidth="0.0" text="Genre" wrappingWidth="59.10806655883789">
-               <font>
-                  <Font name="Bauhaus 93" size="19.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="1.0" left="1.0" right="1.0" top="2.0" />
-               </VBox.margin>
-            </Text>
-            <ComboBox fx:id="comboBoxGenres" prefHeight="25.0" prefWidth="239.0" promptText="Search for existing book by genre">
-               <VBox.margin>
-                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-               </VBox.margin>
-            </ComboBox>
-            <Button fx:id="buttonSearchGenres" mnemonicParsing="false" onAction="#onSearchByGenres" style="-fx-background-color: #f3f4d7;" text="Search">
-               <graphic>
-                  <ImageView fitHeight="29.0" fitWidth="33.0">
-                     <image>
-                        <Image url="@../../pictures/search icon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
+            <Button fx:id="buttonModify" mnemonicParsing="false" onAction="#onButtonModify" style="-fx-background-color: #f3f4d7;" text="Modify">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
                <VBox.margin>
-                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-               </VBox.margin>
-            </Button>
-            <Text fill="#f3f4d7" strokeType="OUTSIDE" strokeWidth="0.0" text="Author" wrappingWidth="59.10806655883789">
-               <font>
-                  <Font name="Bauhaus 93" size="19.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="1.0" left="1.0" right="1.0" top="2.0" />
-               </VBox.margin>
-            </Text>
-            <ComboBox fx:id="comboBoxAuthors" prefHeight="25.0" prefWidth="239.0" promptText="Search for existing book by author">
-               <VBox.margin>
-                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-               </VBox.margin>
-            </ComboBox>
-            <Button fx:id="buttonSearchAuthor" mnemonicParsing="false" onAction="#onSearchByAuthors" style="-fx-background-color: #f3f4d7;" text="Search">
-               <graphic>
-                  <ImageView fitHeight="29.0" fitWidth="33.0">
-                     <image>
-                        <Image url="@../../pictures/search icon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <VBox.margin>
-                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="buttonSearchAuthor1" mnemonicParsing="false" onAction="#onSearchByAuthors" style="-fx-background-color: #f3f4d7;" text="Modify">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <VBox.margin>
-                  <Insets left="180.0" top="105.0" />
+                  <Insets left="180.0" top="300.0" />
                </VBox.margin>
             </Button>
          </children>

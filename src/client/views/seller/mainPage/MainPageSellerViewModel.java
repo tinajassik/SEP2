@@ -56,10 +56,16 @@ public class MainPageSellerViewModel {
     ObservableList<BookForSale> getBooksSoldBySeller() {
         return books;
     }
-    void loadBooksForSale() {
+    public  ListView loadBooksForSale() {
         List<BookForSale> booksForSaleList = sellerModelManager.getBooksSoldByMe(username.get());
-        books = FXCollections.observableArrayList(booksForSaleList);
-        books.setAll(booksForSaleList);
+        ListView listView = new ListView<>();
+        System.out.println(booksForSaleList.get(0).getBook());
+        for (BookForSale book: booksForSaleList) {
+            listView.getItems().add(book);
+        }
+        return listView;
+//        books = FXCollections.observableArrayList(booksForSaleList);
+//        books.setAll(booksForSaleList);
 
     }
 
