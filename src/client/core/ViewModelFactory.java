@@ -4,6 +4,7 @@ import client.views.buyer.mainPageView.MainPageViewModel;
 import client.views.buyer.shoppingCartView.ShoppingCartViewModel;
 import client.views.seller.addBookForSaleView.AddBookForSaleViewModel;
 import client.views.seller.addBooksView.AddBooksViewModel;
+import client.views.seller.bookDetails.BookDetailsSellerViewModel;
 import client.views.seller.mainPage.MainPageSellerViewModel;
 import client.views.shared.createAccountView.CreateAccountViewModel;
 import client.views.shared.signView.SignViewModel;
@@ -26,6 +27,7 @@ public class ViewModelFactory {
   private AddBookForSaleViewModel addBookForSaleViewModel;
 
   private ShoppingCartViewModel shoppingCartViewModel;
+  private BookDetailsSellerViewModel bookDetailsViewModel;
 
   private ViewModelFactory() {
   }
@@ -77,6 +79,14 @@ public class ViewModelFactory {
       shoppingCartViewModel = new ShoppingCartViewModel();
     }
     return shoppingCartViewModel;
+  }
+
+  //seller
+  public BookDetailsSellerViewModel getBookDetailsViewModel() {
+    if (bookDetailsViewModel == null) {
+      bookDetailsViewModel = new BookDetailsSellerViewModel();
+    }
+    return bookDetailsViewModel;
   }
 
 

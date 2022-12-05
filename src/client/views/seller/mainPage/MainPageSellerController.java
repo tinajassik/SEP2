@@ -2,13 +2,20 @@ package client.views.seller.mainPage;
 
 
 import client.core.ViewHandler;
+import client.core.ViewModelFactory;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import shared.Author;
+import shared.BookForSale;
+
+import java.util.ArrayList;
 
 public class MainPageSellerController {
+
+
 
     private MainPageSellerViewModel mainPageViewModel;
     private ViewHandler viewHandler;
@@ -23,7 +30,7 @@ public class MainPageSellerController {
     @FXML
     private Button buttonSignOut;
     @FXML private Button buttonModify;
-    @FXML private ListView listViewBooks;
+    @FXML private  ListView listViewBooks;
 
     @FXML private Button buttonSearch;
 
@@ -33,9 +40,11 @@ public class MainPageSellerController {
         labelFullName.textProperty().bindBidirectional(mainPageViewModel.getFullNameProperty());
         labelUsername.textProperty().bindBidirectional(mainPageViewModel.getUsernameProperty());
         mainPageViewModel.updateLabels();
-        mainPageViewModel.loadBooksForSale();
-        listViewBooks.setItems(mainPageSellerViewModel.getBooksSoldBySeller());
+        listViewBooks.getItems().setAll(mainPageViewModel.loadBooksForSale().getItems());
+
     }
+
+
 
     @FXML
     public void onSignOut(ActionEvent actionEvent) {
@@ -51,6 +60,27 @@ public class MainPageSellerController {
     public void onSearchByTitle(ActionEvent actionEvent) {
 
     }
+
+//    public ListView getListViewBooks() {
+//        return listViewBooks;
+//    }
+    @FXML
+    public void onButtonModify(ActionEvent actionEvent) {
+        if (listViewBooks.getSelectionModel().getSelectedItem() != null) {
+            ViewHandler.getInstance().openBookDetailsSeller();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("You have not selected any book :(");
+            alert.show();
+        }
+    }
+
+    public BookForSale sendBookToDetailsView() {
+        return (BookForSale) listViewBooks.getSelectionModel().getSelectedItem();
+    }
+
+
 
 
 }

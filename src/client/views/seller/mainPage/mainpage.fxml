@@ -63,7 +63,7 @@
                   <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="buttonModify" mnemonicParsing="false"  style="-fx-background-color: #f3f4d7;" text="Modify">
+            <Button fx:id="buttonModify" mnemonicParsing="false" onAction="#onButtonModify" style="-fx-background-color: #f3f4d7;" text="Modify">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
