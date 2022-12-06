@@ -1,5 +1,7 @@
 package client.core;
 
+import client.views.buyer.bookDetails.BookDetailsController;
+import client.views.buyer.bookDetails.BookDetailsViewModel;
 import client.views.buyer.mainPageView.MainPageViewModel;
 import client.views.buyer.shoppingCartView.ShoppingCartViewModel;
 import client.views.seller.addBookForSaleView.AddBookForSaleViewModel;
@@ -27,7 +29,8 @@ public class ViewModelFactory {
   private AddBookForSaleViewModel addBookForSaleViewModel;
 
   private ShoppingCartViewModel shoppingCartViewModel;
-  private BookDetailsSellerViewModel bookDetailsViewModel;
+  private BookDetailsSellerViewModel bookDetailsSellerViewModel;
+  private BookDetailsViewModel bookDetailsViewModel;
 
   private ViewModelFactory() {
   }
@@ -82,9 +85,16 @@ public class ViewModelFactory {
   }
 
   //seller
-  public BookDetailsSellerViewModel getBookDetailsViewModel() {
+  public BookDetailsSellerViewModel getBookDetailsSellerViewModel() {
+    if (bookDetailsSellerViewModel == null) {
+      bookDetailsSellerViewModel = new BookDetailsSellerViewModel();
+    }
+    return bookDetailsSellerViewModel;
+  }
+
+  public BookDetailsViewModel getBookDetailsViewModel() {
     if (bookDetailsViewModel == null) {
-      bookDetailsViewModel = new BookDetailsSellerViewModel();
+      bookDetailsViewModel = new BookDetailsViewModel();
     }
     return bookDetailsViewModel;
   }

@@ -219,7 +219,7 @@ public class ViewHandler {
             loader.setLocation(getClass().getResource("../views/seller/bookDetails/bookdetails.fxml"));
             Parent root = loader.load();
             BookDetailsSellerController bookDetailsController = loader.getController();
-            bookDetailsController.init(ViewModelFactory.getInstance().getBookDetailsViewModel());
+            bookDetailsController.init(ViewModelFactory.getInstance().getBookDetailsSellerViewModel());
             stage.setTitle("BookDetails - SELLER");
             scene = new Scene(root);
         }
@@ -235,6 +235,8 @@ public class ViewHandler {
     public MainPageSellerController getMainPageSellerController() {
         return mainPageSellerController;
     }
+
+
 
 
 
