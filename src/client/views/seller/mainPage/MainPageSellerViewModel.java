@@ -16,6 +16,7 @@ public class MainPageSellerViewModel {
 
     private StringProperty fullName;
     private StringProperty username;
+    private StringProperty title;
     private UserModelManager userModelManager;
     private SellerModelManager sellerModelManager;
     private ObservableList<BookForSale> books;
@@ -23,6 +24,7 @@ public class MainPageSellerViewModel {
     public MainPageSellerViewModel() {
         fullName = new SimpleStringProperty();
         username = new SimpleStringProperty();
+        title = new SimpleStringProperty();
         userModelManager = ModelFactory.getInstance().getUserModelManager();
         sellerModelManager = ModelFactory.getInstance().getSellerModelManager();
     }
@@ -41,6 +43,10 @@ public class MainPageSellerViewModel {
 
     public StringProperty getUsernameProperty() {
         return username;
+    }
+
+    public StringProperty getTitleProperty() {
+        return title;
     }
 
     public void updateLabels()
@@ -67,6 +73,11 @@ public class MainPageSellerViewModel {
 //        books = FXCollections.observableArrayList(booksForSaleList);
 //        books.setAll(booksForSaleList);
 
+    }
+
+    public ObservableList<BookForSale> searchBooksByTitle() {
+        List<BookForSale> searchedBooks = sellerModelManager.searchBooksByTitle(title.get());
+        return FXCollections.observableArrayList(searchedBooks);
     }
 
 }

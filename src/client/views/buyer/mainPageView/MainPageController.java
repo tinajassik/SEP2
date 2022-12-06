@@ -67,19 +67,19 @@ public class MainPageController {
 
     @FXML
     public void onSearchByGenres (ActionEvent actionEvent) {
-
+        if (comboBoxGenres.getSelectionModel().getSelectedItem() != null)
         listViewBooks.setItems(mainPageViewModel.searchBooksByGenre(comboBoxGenres.getSelectionModel().getSelectedItem().toString()));
 
     }
 
     @FXML
     public void onSearchByAuthors (ActionEvent actionEvent) {
-
-        Author chosenAuthor = mainPageViewModel.getAllAuthors().get(comboBoxAuthors.getSelectionModel().getSelectedIndex());
-        String authorFName = chosenAuthor.getFname();
-        String authorLName = chosenAuthor.getLname();
-        listViewBooks.setItems(mainPageViewModel.searchBooksByAuthor(authorFName, authorLName));
-
+        if (comboBoxAuthors.getSelectionModel().getSelectedItem() != null) {
+            Author chosenAuthor = mainPageViewModel.getAllAuthors().get(comboBoxAuthors.getSelectionModel().getSelectedIndex());
+            String authorFName = chosenAuthor.getFname();
+            String authorLName = chosenAuthor.getLname();
+            listViewBooks.setItems(mainPageViewModel.searchBooksByAuthor(authorFName, authorLName));
+        }
     }
 
     public void displayGenres()
