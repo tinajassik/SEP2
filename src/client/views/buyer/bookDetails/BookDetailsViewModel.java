@@ -7,6 +7,8 @@ import client.model.UserModelManager;
 import javafx.beans.property.*;
 import shared.BookForSale;
 
+import java.beans.PropertyChangeEvent;
+
 public class BookDetailsViewModel {
     private StringProperty fullName;
     private StringProperty username;
@@ -17,6 +19,7 @@ public class BookDetailsViewModel {
     private StringProperty  title,  genre , coverType, isbn, soldBy , condition;
     private StringProperty price;
     private StringProperty yearOfPublication;
+    private StringProperty numberOfItems;
     private ObjectProperty Author;
 
 
@@ -31,11 +34,13 @@ public class BookDetailsViewModel {
         this.price = new SimpleStringProperty();
         this.soldBy = new SimpleStringProperty();
         this.condition = new SimpleStringProperty();
+        this.numberOfItems = new SimpleStringProperty();
         loadInitialData();
         fullName = new SimpleStringProperty();
         username = new SimpleStringProperty();
         model = ModelFactory.getInstance().getUserModelManager();
         buyerModelManager = ModelFactory.getInstance().getBuyerModelManager();
+        buyerModelManager.addPropertyChangeListener("New number of items", this::newNumberOfItems);
         //buyerModelManager.addPropertyChangeListener("NewBookForSale", this::onNewBookForSale);
     }
 
@@ -60,10 +65,27 @@ public class BookDetailsViewModel {
         return username;
     }
 
+    public StringProperty getNumberOfItemsProperty(){return username;}
+
+    public void newNumberOfItems(PropertyChangeEvent evt)
+    {
+        numberOfItems.set(Integer.toString(buyerModelManager.getShoppingCart().size()));
+    }
+
+    public void setNumberOfItems()
+    {
+        numberOfItems.set(Integer.toString(buyerModelManager.getShoppingCart().size()));
+    }
+
     public void updateLabels()
     {
         username.set(model.getUser().getUsername());
         fullName.set(model.getUser().getFullName());
+    }
+
+    public void addToShoppingCart()
+    {
+        buyerModelManager.addToShoppingCart(bookForSale);
     }
 
 

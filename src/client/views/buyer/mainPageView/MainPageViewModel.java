@@ -22,8 +22,7 @@ import java.util.List;
 
 public class MainPageViewModel {
 
-    private StringProperty fullName;
-    private StringProperty username;
+    private StringProperty fullName, username, numberOfItems;
     private UserModelManager model;
     private BuyerModelManager buyerModelManager;
 
@@ -32,9 +31,11 @@ public class MainPageViewModel {
     public MainPageViewModel() {
         fullName = new SimpleStringProperty();
         username = new SimpleStringProperty();
+        numberOfItems = new SimpleStringProperty();
         model = ModelFactory.getInstance().getUserModelManager();
         buyerModelManager = ModelFactory.getInstance().getBuyerModelManager();
         buyerModelManager.addPropertyChangeListener("NewBookForSale", this::onNewBookForSale);
+        buyerModelManager.addPropertyChangeListener("New number of items", this::newNumberOfItems);
     }
 
     private void onNewBookForSale(PropertyChangeEvent evt) {
@@ -47,6 +48,18 @@ public class MainPageViewModel {
 
     public StringProperty getUsernameProperty() {
         return username;
+    }
+
+    public StringProperty getNumberOfItemsProperty(){return numberOfItems;}
+
+    public void newNumberOfItems(PropertyChangeEvent evt)
+    {
+        numberOfItems.set(Integer.toString(buyerModelManager.getShoppingCart().size()));
+    }
+
+    public void setNumberOfItems()
+    {
+        numberOfItems.set(Integer.toString(buyerModelManager.getShoppingCart().size()));
     }
 
     public void updateLabels()

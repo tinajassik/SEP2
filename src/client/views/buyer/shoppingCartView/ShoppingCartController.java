@@ -1,26 +1,22 @@
 package client.views.buyer.shoppingCartView;
 
 import client.core.ViewHandler;
+import client.core.ViewModelFactory;
 import client.views.buyer.mainPageView.MainPageViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import shared.BookForSale;
+
+import java.util.ArrayList;
 
 public class ShoppingCartController {
 
+
     private MainPageViewModel mainPageViewModel;
     @FXML
-    private GridPane gridPaneBooks;
-    @FXML
-    private TextField textFieldSearch;
-    @FXML
-    private ComboBox comboBoxAuthors;
-    @FXML
-    private ComboBox comboBoxGenres;
+    public ListView listViewBooksToBuy;
     @FXML
     private Label labelUsername;
     @FXML
@@ -37,8 +33,20 @@ public class ShoppingCartController {
 
     public void init(ShoppingCartViewModel shoppingCartViewModel) {
         this.shoppingCartViewModel = shoppingCartViewModel;
-        labelUsername.textProperty().bindBidirectional(mainPageViewModel.getUsernameProperty());
-        labelFullName.textProperty().bindBidirectional(mainPageViewModel.getFullNameProperty());
+        labelUsername.textProperty().bindBidirectional(shoppingCartViewModel.getUsernameProperty());
+        labelFullName.textProperty().bindBidirectional(shoppingCartViewModel.getFullNameProperty());
+        labelPrice.textProperty().bindBidirectional(shoppingCartViewModel.getPriceProperty());
+        shoppingCartViewModel.setPrice();
+        loadShoppingCart();
+    }
+
+    public void loadShoppingCart()
+    {
+        ArrayList<BookForSale> shoppingCart = shoppingCartViewModel.getShoppingCart();
+        for (BookForSale book:shoppingCart )
+        {
+            listViewBooksToBuy.getItems().add(book);
+        }
     }
 
     @FXML
@@ -46,5 +54,24 @@ public class ShoppingCartController {
         ViewHandler.getInstance().openSign();
     }
 
+    @FXML
+    public void onCheckOut(ActionEvent actionEvent)
+    {
+    }
 
+    @FXML
+    public void onBackToMainPage(ActionEvent actionEvent)
+    {
+        ViewHandler.getInstance().openMainViewBuyers();
+    }
+
+    public void onRemoveItem(ActionEvent actionEvent)
+    {
+        BookForSale bookToRemove = shoppingCartViewModel.getShoppingCart().get(listViewBooksToBuy.getSelectionModel().getSelectedIndex());
+        shoppingCartViewModel.removeFromShoppingCart(bookToRemove);
+        listViewBooksToBuy.getItems().clear();
+        loadShoppingCart();
+        shoppingCartViewModel.setPrice();
+
+    }
 }

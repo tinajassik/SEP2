@@ -16,10 +16,13 @@ public class BuyerModelManagerImpl implements BuyerModelManager {
 
     private Client client;
     private PropertyChangeSupport support = new PropertyChangeSupport(this);
+    private ArrayList<BookForSale> shoppingCart;
+    private double shoppingCartPrice;
 
     public BuyerModelManagerImpl() {
         client = ClientFactory.getInstance().getClient();
         client.addPropertyChangeListener("NewBookForSale", this::onNewBookForSale);
+        shoppingCart = new ArrayList<>();
     }
 
     private void onNewBookForSale(PropertyChangeEvent evt) {
@@ -56,6 +59,40 @@ public class BuyerModelManagerImpl implements BuyerModelManager {
     @Override public ArrayList<Author> getAllAuthors()
     {
         return client.getAuthors();
+    }
+
+    @Override public void addToShoppingCart(BookForSale bookForSale)
+    {
+        shoppingCart.add(bookForSale);
+        support.firePropertyChange("New number of items",null, null);
+    }
+
+    @Override public void removeFromShoppingCart(BookForSale bookForSale)
+    {
+        shoppingCart.remove(bookForSale);
+        support.firePropertyChange("New number of items",null, null);
+
+    }
+
+    @Override public ArrayList<BookForSale> getShoppingCart()
+    {
+        return shoppingCart;
+    }
+
+    @Override public double calculatePrice()
+    {
+        double price = 0;
+        for (BookForSale book: shoppingCart)
+        {
+            price += book.getPrice();
+        }
+        shoppingCartPrice = price;
+        return price;
+    }
+
+    @Override public double getPrice()
+    {
+        return shoppingCartPrice;
     }
 
     @Override
