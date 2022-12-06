@@ -41,7 +41,7 @@ public class AddBooksController {
     public  void init(AddBooksViewModel addBooksViewModel)
     {
         selectedGenres = new ArrayList<>();
-        listViewGenres.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+//        listViewGenres.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         listViewGenres.setOnMouseClicked(new EventHandler<Event>() {
             String genres = "";
             @Override

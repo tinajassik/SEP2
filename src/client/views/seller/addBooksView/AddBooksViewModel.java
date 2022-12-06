@@ -36,7 +36,6 @@ public class AddBooksViewModel {
     }
 
     public void addBook( Author author, ArrayList<Genre> genres) {
-        System.out.println("View Model Add BOOk");
         sellerModelManager.AddBook(title.get(),isbn.get(), coverType.get(),Integer.parseInt(yearOfPublication.get()), author,genres);
     }
 

@@ -177,5 +177,10 @@ public class RMIServerImpl implements Remote, RMIServer
     return storeModelManager.getBooksSoldBy(id);
   }
 
+  @Override
+  public void editBook(String condition, double price, Book book, String username) {
+    storeModelManager.editBook(condition, price, book, username);
+  }
+
 
 }

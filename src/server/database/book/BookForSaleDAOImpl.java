@@ -62,6 +62,20 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
         }
     }
 
+    @Override
+    public void update(String condition, double price, String isbn, String username) {
+        try {
+            PreparedStatement preparedStatement =connection.prepareStatement("UPDATE bookforsale SET price = ?, condition =? where isbn =? and seller_id =?;");
+            preparedStatement.setDouble(1, price);
+            preparedStatement.setString(2, condition);
+            preparedStatement.setString(3, isbn);
+            preparedStatement.setString(4, username);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     @Override
     public List<BookForSale> getAllBooks() {
@@ -138,16 +152,14 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
 
 
     public Book getBookById(int id) throws SQLException {
-
         Book poop;
-
-        try (Connection connection = DatabaseConnection.getInstance().getConnection()) {
+        try  {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from bookforsale where id = ?;");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-
-
             poop = BookDAOImpl.getInstance().readByISBN(resultSet.getString(1));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
         return poop;
 

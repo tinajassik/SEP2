@@ -26,7 +26,6 @@ public class SellerModelManagerImpl implements SellerModelManager {
     @Override
     public void AddBook(String title, String isbn, String coverType, int publicationYear, Author author, ArrayList<Genre> genres) {
         bookGeneric = new Book(isbn, title, publicationYear,coverType,author,genres);
-        System.out.println("Seller Model Manager");
         client.AddBook(bookGeneric);
     }
 
@@ -49,4 +48,13 @@ public class SellerModelManagerImpl implements SellerModelManager {
     public List<BookForSale> searchBooksByTitle(String title) {
         return client.searchBooksByTitle(title);
     }
+
+    @Override
+    public void editBook(String title, String isbn, int publicationYear, String coverType, String condition, double price, Author author, ArrayList<Genre> genres) {
+        Book genericBookEdited = new Book(isbn, title,publicationYear,coverType,author,genres);
+        User soldBy = client.getUser();
+        client.editBook(condition,price,genericBookEdited, soldBy.getUsername());
+    }
+
+
 }

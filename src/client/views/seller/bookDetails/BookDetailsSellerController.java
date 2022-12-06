@@ -36,8 +36,12 @@ public class BookDetailsSellerController {
     @FXML private ComboBox comboBoxAuthors;
 
     @FXML private ListView listViewGenres;
+
+    private ArrayList<Genre> selectedGenres;
     private BookDetailsSellerViewModel bookDetailsSellerViewModel;
+
     public void init(BookDetailsSellerViewModel bookDetailsSellerViewModel) {
+        selectedGenres = new ArrayList<>();
         this.bookDetailsSellerViewModel = bookDetailsSellerViewModel;
         textFieldAuthor.textProperty().bindBidirectional(this.bookDetailsSellerViewModel.authorProperty());
         textFieldCondition.textProperty().bindBidirectional(this.bookDetailsSellerViewModel.conditionProperty());
@@ -58,7 +62,7 @@ public class BookDetailsSellerController {
                 for(Genre g : selectedItems){
                     System.out.println("selected item " + g.getGenreName());
                     genres += g.getGenreName() +", ";
-//                    selectedGenres.add(g);
+                    selectedGenres.add(g);
                 }
                 labelGenres.setText(genres);
 
@@ -101,6 +105,6 @@ public class BookDetailsSellerController {
     }
 
     public void onSave() {
-
+        bookDetailsSellerViewModel.editBook((Author)comboBoxAuthors.getSelectionModel().getSelectedItem(), selectedGenres);
     }
 }

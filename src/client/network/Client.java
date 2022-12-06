@@ -24,5 +24,6 @@ public interface Client extends Subject
   List<BookForSale> searchBooksByGenre(String genre);
   List<BookForSale> searchBooksByAuthor(String authorFName, String authorLName);
   List<BookForSale> getBooksSoldBy(String id);
+  void editBook(String condition,double price, Book book, String username);
 
 }
