@@ -76,6 +76,18 @@ public class StoreModelManagerImpl implements StoreModelManager{
         }
     }
 
+    @Override
+    public void editBook(String condition, double price, Book book, String username) {
+        try {
+            BookDAOImpl.getInstance().update(book);
+            BookForSaleDAOImpl.getInstance().update(condition,price, book.getIsbn(), username);
+            BookGenreDAOImpl.getInstance().update(book.getIsbn(), book.getGenre());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
     @Override public List<BookForSale> getBooksByTile(String title)
     {
         return bookForSaleDAO.getBooksByTitle(title);

@@ -16,5 +16,6 @@ public interface SellerModelManager {
     List<BookForSale> getBooksSoldByMe(String id);
 
     List<BookForSale> searchBooksByTitle(String title);
+    void editBook(String title, String isbn, int publicationYear, String coverType, String condition, double price, Author author, ArrayList<Genre> genres);
 
 }

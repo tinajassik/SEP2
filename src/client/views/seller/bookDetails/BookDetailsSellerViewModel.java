@@ -68,6 +68,11 @@ public class BookDetailsSellerViewModel {
         return genres;
     }
 
+    public void editBook(Author author, ArrayList<Genre> selectedGenres) {
+        sellerModelManager.editBook(title.get(), isbn.get(),Integer.parseInt(publicationYear.get()),coverType.get(),condition.get(),Double.parseDouble(price.get())
+                ,author,selectedGenres);
+    }
+
     public ArrayList<Author> getAuthors() {
         return sellerModelManager.getAuthors();
     }

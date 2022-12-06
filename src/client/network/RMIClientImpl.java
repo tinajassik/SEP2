@@ -192,6 +192,16 @@ public class RMIClientImpl implements Client, ClientCallback
     }
   }
 
+  @Override
+  public void editBook(String condition, double price, Book book, String username) {
+    try {
+      server.editBook(condition, price, book, username);
+    } catch (RemoteException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+
   @Override public boolean checkUsername(String username)  {
     try {
       return server.isUsernameTaken(username);

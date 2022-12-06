@@ -20,4 +20,6 @@ public interface StoreModelManager extends Subject {
 
     List<BookForSale> getBooksSoldBy(String id);
 
+    void editBook(String condition, double price, Book book, String username);
+
 }
