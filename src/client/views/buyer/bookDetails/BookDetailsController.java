@@ -44,7 +44,7 @@ public class BookDetailsController {
     @FXML
     private Button buttonAddToShoppingCart;
     @FXML
-    private Button  buttonCheckout;
+    private Button buttonCheckout;
     @FXML
     private Button backButton;
 
@@ -71,5 +71,15 @@ public class BookDetailsController {
 
     }
 
+    public void onBackButton() {
+        if (ViewHandler.getInstance() != null) {
+            ViewHandler.getInstance().openMainViewBuyers();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("You have not selected any book BITCH:(");
+            alert.show();
+        }
 
+
+    }
 }

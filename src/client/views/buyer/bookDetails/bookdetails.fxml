@@ -215,7 +215,7 @@
             <Insets right="30.0" />
          </padding>
         </Button>
-      <Button fx:id="backButton" layoutX="14.0" layoutY="559.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="107.0" text="Back" />
+      <Button fx:id="backButton" layoutX="14.0" layoutY="559.0" mnemonicParsing="false" onAction="#onBackButton" prefHeight="47.0" prefWidth="107.0" text="Back" />
           <ImageView fitHeight="35.0" fitWidth="36.0" layoutX="525.0" layoutY="565.0">
               <image>
                   <Image url="@../../pictures/shoppingcartpng.png" />
