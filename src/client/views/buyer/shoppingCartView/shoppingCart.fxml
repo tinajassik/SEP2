@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="620.0" prefWidth="712.0" style="-fx-background-color: #2d206f;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.views.buyer.mainPageView.MainPageController">
+<AnchorPane prefHeight="620.0" prefWidth="712.0" style="-fx-background-color: #2d206f;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.views.buyer.shoppingCartView.ShoppingCartController">
    <children>
       <HBox layoutX="-3.0" layoutY="532.0" prefHeight="62.0" prefWidth="712.0" style="-fx-background-color: #f4f4f4;">
          <children>
@@ -38,7 +39,10 @@
             <Image url="@../../pictures/image-removebg-preview (4).png" />
          </image>
       </ImageView>
-      <ScrollPane layoutX="-3.0" layoutY="164.0" prefHeight="374.0" prefWidth="712.0" style="-fx-background-color: #f3f4d7;" />
+      <ScrollPane layoutX="-3.0" layoutY="164.0" prefHeight="374.0" prefWidth="712.0" style="-fx-background-color: #f3f4d7;">
+         <content>
+            <ListView fx:id="listViewBooksToBuy" prefHeight="369.0" prefWidth="705.0" />
+         </content></ScrollPane>
       <Text fill="#32afc9" layoutX="86.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book" wrappingWidth="139.6171875">
          <font>
             <Font name="Bauhaus 93" size="56.0" />
@@ -49,9 +53,9 @@
             <Font name="Bauhaus 93" size="55.0" />
          </font>
       </Text>
-      <HBox layoutX="-2.0" layoutY="591.0" prefHeight="47.0" prefWidth="712.0" style="-fx-background-color: #c2518c;">
+      <HBox layoutY="594.0" prefHeight="47.0" prefWidth="712.0" style="-fx-background-color: #c2518c;">
          <children>
-            <Button fx:id="buttonSignOut" mnemonicParsing="false" onAction="#onSignOut" prefHeight="36.0" prefWidth="103.0" style="-fx-background-color: #f3f4d7;" text="Sign Out">
+            <Button mnemonicParsing="false" onAction="#onSignOut" prefHeight="36.0" prefWidth="103.0" style="-fx-background-color: #f3f4d7;" text="Sign Out">
                <graphic>
                   <ImageView fx:id="bu" fitHeight="28.0" fitWidth="22.0">
                      <image>
@@ -62,10 +66,21 @@
                <HBox.margin>
                   <Insets left="5.0" top="5.0" />
                </HBox.margin>
+               <opaqueInsets>
+                  <Insets right="40.0" />
+               </opaqueInsets>
             </Button>
-            <Button fx:id="buttonCheckOut" mnemonicParsing="false" onAction="#onSignOut" prefHeight="36.0" prefWidth="103.0" style="-fx-background-color: #f3f4d7;" text="Check Out">
+            <Button mnemonicParsing="false" onAction="#onRemoveItem" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: #f3f4d7;" text="Remove item from shopping cart">
                <HBox.margin>
-                  <Insets bottom="5.0" left="500.0" right="5.0" top="5.0" />
+                  <Insets left="40.0" top="5.0" />
+               </HBox.margin>
+               <opaqueInsets>
+                  <Insets left="40.0" right="40.0" />
+               </opaqueInsets>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#onCheckOut" prefHeight="36.0" prefWidth="129.0" style="-fx-background-color: #f3f4d7;" text="Check Out">
+               <HBox.margin>
+                  <Insets left="230.0" top="5.0" />
                </HBox.margin>
                <graphic>
                   <ImageView fitHeight="28.0" fitWidth="22.0">
@@ -89,7 +104,7 @@
             <Font name="Bauhaus 93" size="22.0" />
          </font>
       </Text>
-      <Button fx:id="buttonMainPage" layoutX="561.0" layoutY="77.0" mnemonicParsing="false" onAction="#onShoppingCart" prefHeight="36.0" prefWidth="140.0" style="-fx-background-color: #f3f4d7;" text="Main page">
+      <Button layoutX="561.0" layoutY="77.0" mnemonicParsing="false" onAction="#onBackToMainPage" prefHeight="36.0" prefWidth="140.0" style="-fx-background-color: #f3f4d7;" text="Main page">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="42.0">
                <image>

@@ -2,6 +2,7 @@ package client.views.buyer.bookDetails;
 
 import client.core.ViewHandler;
 import javafx.beans.property.Property;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import server.database.book.BookDAOImpl;
@@ -15,9 +16,13 @@ import java.sql.SQLException;
 
 public class BookDetailsController {
 
+
     private Book book;
 
+
     private BookDetailsViewModel bookDetailsViewModel;
+    @FXML
+    public Label numberOfItemsLabel;
     @FXML
     private Label labelUsername;
     @FXML
@@ -63,6 +68,8 @@ public class BookDetailsController {
         labelCondition.textProperty().bindBidirectional(bookDetailsViewModel.conditionProperty());
         labelAuthor.textProperty().bindBidirectional(bookDetailsViewModel.authorProperty());
         labelPubliYear.textProperty().bindBidirectional(bookDetailsViewModel.yearOfPublicationProperty());
+        numberOfItemsLabel.textProperty().bindBidirectional(bookDetailsViewModel.getNumberOfItemsProperty());
+        bookDetailsViewModel.setNumberOfItems();
 
 
         this.bookDetailsViewModel = bookDetailsViewModel;
@@ -81,5 +88,10 @@ public class BookDetailsController {
         }
 
 
+    }
+
+    public void onAddToShoppingCart(ActionEvent actionEvent)
+    {
+        bookDetailsViewModel.addToShoppingCart();
     }
 }

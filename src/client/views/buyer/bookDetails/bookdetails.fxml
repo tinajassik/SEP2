@@ -210,7 +210,7 @@
                 <Font name="Bauhaus 93" size="22.0" />
             </font>
         </Text>
-        <Button fx:id="buttonShoppingCart" layoutX="448.0" layoutY="559.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="131.0" style="-fx-background-color: #f3f4d7;" text="Add to">
+        <Button layoutX="448.0" layoutY="559.0" mnemonicParsing="false" onAction="#onAddToShoppingCart" prefHeight="47.0" prefWidth="131.0" style="-fx-background-color: #f3f4d7;" text="Add to">
          <padding>
             <Insets right="30.0" />
          </padding>
@@ -222,5 +222,7 @@
               </image>
           </ImageView>
       <Button fx:id="buttonCheckout" layoutX="591.0" layoutY="559.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="107.0" text="Check Out" />
+      <Label fx:id="numberOfItemsLabel" layoutX="652.0" layoutY="69.0" text="number" textFill="WHITE" />
+      <Text fill="WHITE" layoutX="561.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Items in the cart: " />
     </children>
 </AnchorPane>

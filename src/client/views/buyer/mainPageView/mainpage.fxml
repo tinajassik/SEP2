@@ -158,7 +158,7 @@
             <Font name="Bauhaus 93" size="22.0" />
          </font>
       </Text>
-      <Button fx:id="buttonShoppingCart" layoutX="561.0" layoutY="77.0" mnemonicParsing="false" onAction="#onShoppingCart" prefHeight="47.0" prefWidth="140.0" style="-fx-background-color: #f3f4d7;" text="Shopping Cart">
+      <Button layoutX="561.0" layoutY="77.0" mnemonicParsing="false" onAction="#onShoppingCart" prefHeight="47.0" prefWidth="140.0" style="-fx-background-color: #f3f4d7;" text="Shopping Cart">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="36.0">
                <image>
@@ -167,5 +167,7 @@
             </ImageView>
          </graphic>
       </Button>
+      <Label fx:id="itemsInCartLabel" layoutX="659.0" layoutY="137.0" text="number" textFill="WHITE" />
+      <Text fill="WHITE" layoutX="561.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Items in the cart: " />
    </children>
 </AnchorPane>

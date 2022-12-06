@@ -171,7 +171,7 @@ public class ViewHandler {
         try
         {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../views/buyer/shoppingCart/shoppingCart.fxml"));
+            loader.setLocation(getClass().getResource("../views/buyer/shoppingCartView/shoppingCart.fxml"));
             Parent root = loader.load();
             ShoppingCartController shoppingCartController = loader.getController();
             shoppingCartController.init(ViewModelFactory.getInstance().getShoppingCartViewModel());

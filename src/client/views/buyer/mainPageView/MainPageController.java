@@ -19,10 +19,12 @@ import java.util.ArrayList;
 
 public class MainPageController {
 
+
     private MainPageViewModel mainPageViewModel;
     @FXML
+    public Label itemsInCartLabel;
+    @FXML
     private GridPane gridPaneBooks;
-
     @FXML
     private ListView listViewBooks;
     @FXML
@@ -43,9 +45,11 @@ public class MainPageController {
     public void init(MainPageViewModel mainPageViewModel) {
         labelUsername.textProperty().bindBidirectional(mainPageViewModel.getUsernameProperty());
         labelFullName.textProperty().bindBidirectional(mainPageViewModel.getFullNameProperty());
+        itemsInCartLabel.textProperty().bindBidirectional(mainPageViewModel.getNumberOfItemsProperty());
         this.mainPageViewModel = mainPageViewModel;
         this.mainPageViewModel.loadBooksForSale();
         listViewBooks.setItems(this.mainPageViewModel.getBooksForSale());
+        mainPageViewModel.setNumberOfItems();
         mainPageViewModel.updateLabels();
         displayGenres();
         displayAuthors();
@@ -57,6 +61,7 @@ public class MainPageController {
 
     @FXML
     public void onShoppingCart (ActionEvent actionEvent) {
+        ViewHandler.getInstance().openShoppingCart();
 
     }
 
@@ -120,5 +125,13 @@ public class MainPageController {
             alert.setContentText("You have not selected any book BITCH:(");
             alert.show();
         }
+    }
+
+    public void onCheckOut(ActionEvent actionEvent)
+    {
+    }
+
+    public void onBackToMainPage(ActionEvent actionEvent)
+    {
     }
 }
