@@ -15,4 +15,6 @@ public interface SellerModelManager {
     ArrayList<Genre> getGenres();
     List<BookForSale> getBooksSoldByMe(String id);
 
+    List<BookForSale> searchBooksByTitle(String title);
+
 }

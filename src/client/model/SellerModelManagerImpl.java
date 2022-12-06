@@ -44,4 +44,9 @@ public class SellerModelManagerImpl implements SellerModelManager {
     public List<BookForSale> getBooksSoldByMe(String id) {
        return client.getBooksSoldBy(id);
     }
+
+    @Override
+    public List<BookForSale> searchBooksByTitle(String title) {
+        return client.searchBooksByTitle(title);
+    }
 }
