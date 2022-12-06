@@ -29,12 +29,6 @@ public class StoreModelManagerImpl implements StoreModelManager{
     public BookForSale addBookForSale(String condition, double price, Book book, User user) {
         try {
             BookForSale bookForSale = BookForSaleDAOImpl.getInstance().create(condition,price, book, user);
-            ArrayList<Genre> genres = book.getGenre();
-            for (Genre genre: genres)
-            {
-                BookGenreDAOImpl.getInstance().create(genre.getGenreName(), book.getIsbn());
-
-            }
             propertyChangeSupport.firePropertyChange("NewBookForSale", null, bookForSale);
             return bookForSale;
         } catch (SQLException e) {
@@ -48,6 +42,12 @@ public class StoreModelManagerImpl implements StoreModelManager{
             System.out.println("Store Model Manager");
             if (bookDAO.readByISBN(book.getIsbn()) == null) {
                 bookDAO.create(book.getIsbn(),book.getTitle(),book.getCoverType(), book.getAuthor(), book.getYearOfPublish(), book.getGenre());
+                ArrayList<Genre> genres = book.getGenre();
+                for (Genre genre: genres)
+                {
+                    BookGenreDAOImpl.getInstance().create(genre.getGenreName(), book.getIsbn());
+
+                }
             }
             else {
                 //do nothing, because the book is already in the database
