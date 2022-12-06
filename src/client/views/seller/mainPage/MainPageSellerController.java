@@ -41,6 +41,7 @@ public class MainPageSellerController {
         labelUsername.textProperty().bindBidirectional(mainPageViewModel.getUsernameProperty());
         mainPageViewModel.updateLabels();
         listViewBooks.getItems().setAll(mainPageViewModel.loadBooksForSale().getItems());
+        textFieldSearch.textProperty().bindBidirectional(mainPageViewModel.getTitleProperty());
 
     }
 
@@ -58,7 +59,8 @@ public class MainPageSellerController {
 
     @FXML
     public void onSearchByTitle(ActionEvent actionEvent) {
-
+        listViewBooks.setItems(mainPageViewModel.searchBooksByTitle());
+        textFieldSearch.clear();
     }
 
 //    public ListView getListViewBooks() {
@@ -74,6 +76,10 @@ public class MainPageSellerController {
             alert.setContentText("You have not selected any book :(");
             alert.show();
         }
+    }
+
+    public void onSeeAll() {
+        listViewBooks.getItems().setAll(mainPageViewModel.loadBooksForSale().getItems());
     }
 
     public BookForSale sendBookToDetailsView() {

@@ -68,7 +68,15 @@
                   <Insets />
                </opaqueInsets>
                <VBox.margin>
-                  <Insets left="180.0" top="300.0" />
+                  <Insets left="180.0" top="270.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="buttonAllBooks" mnemonicParsing="false" onAction="#onSeeAll" style="-fx-background-color: #f3f4d7;" text="See All">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets left="180.0" top="5.0" />
                </VBox.margin>
             </Button>
          </children>
