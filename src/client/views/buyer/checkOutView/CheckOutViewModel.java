@@ -1,6 +1,7 @@
 package client.views.buyer.checkOutView;
 
 import client.core.ModelFactory;
+import client.model.BuyerModelManager;
 import client.model.UserModelManager;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -10,6 +11,7 @@ import java.beans.PropertyChangeEvent;
 
 public class CheckOutViewModel {
 
+    private final BuyerModelManager buyerModelManager;
     private StringProperty fullName;
     private StringProperty username;
     private UserModelManager model;
@@ -21,6 +23,7 @@ public class CheckOutViewModel {
         username = new SimpleStringProperty();
         price = new SimpleStringProperty();
         model = ModelFactory.getInstance().getUserModelManager();
+        buyerModelManager = ModelFactory.getInstance().getBuyerModelManager();
         //model.addPropertyChangeListener("Labels", evt -> updateLabels(evt));
     }
 
@@ -36,10 +39,10 @@ public class CheckOutViewModel {
         return price;
     }
 
-    /*public void updateLabels(PropertyChangeEvent evt) {
+    public void updateLabels(PropertyChangeEvent evt) {
         Platform.runLater(() -> {
             username.set(model.getUser().getUsername());
             fullName.set(model.getUser().getUsername());
         });
-    }*/
+    }
 }

@@ -1,23 +1,16 @@
-package client.views.buyer.bookDetails;
+package client.views.buyer.checkOutView.details;
 
 import client.core.ViewHandler;
-import javafx.beans.property.Property;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import server.database.book.BookDAOImpl;
-import server.database.book.BookForSaleDAO;
-import server.database.book.BookForSaleDAOImpl;
 import shared.Book;
-import shared.BookForSale;
-
-import java.sql.SQLException;
 
 
-public class BookDetailsController {
+public class CheckOutDetailsController {
 
     private Book book;
 
-    private BookDetailsViewModel bookDetailsViewModel;
+    private CheckOutDetailsViewModel bookDetailsViewModel;
     @FXML
     private Label labelUsername;
     @FXML
@@ -42,14 +35,10 @@ public class BookDetailsController {
     public Label labelPubliYear;
 
     @FXML
-    private Button buttonAddToShoppingCart;
-    @FXML
-    private Button buttonCheckout;
-    @FXML
     private Button backButton;
 
 
-    public void init(BookDetailsViewModel bookDetailsViewModel) {
+    public void init(CheckOutDetailsViewModel bookDetailsViewModel) {
         labelUsername.textProperty().bindBidirectional(bookDetailsViewModel.getUsernameProperty());
         labelFullName.textProperty().bindBidirectional(bookDetailsViewModel.getFullNameProperty());
         labelTitle.textProperty().bindBidirectional(bookDetailsViewModel.titleProperty());
@@ -73,10 +62,10 @@ public class BookDetailsController {
 
     public void onBackButton() {
         if (ViewHandler.getInstance() != null) {
-            ViewHandler.getInstance().openMainViewBuyers();
+            ViewHandler.getInstance().openBookDetails();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("No");
+            alert.setContentText("You have not selected any book BITCH:(");
             alert.show();
         }
 
