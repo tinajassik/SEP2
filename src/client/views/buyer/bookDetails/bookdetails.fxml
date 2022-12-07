@@ -107,7 +107,7 @@
                   </VBox>
                   <VBox prefHeight="318.0" prefWidth="321.0">
                      <children>
-                        <Label fx:id="labelTitle" text="Label">
+                        <Label fx:id="labelTitle" prefHeight="27.0" prefWidth="307.0" text="Label">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -115,7 +115,7 @@
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="labelAuthor" text="Label">
+                        <Label fx:id="labelAuthor" prefHeight="27.0" prefWidth="315.0" text="Label">
                            <VBox.margin>
                               <Insets left="10.0" top="7.0" />
                            </VBox.margin>
@@ -123,7 +123,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labelISBN" text="Label">
+                        <Label fx:id="labelISBN" prefHeight="27.0" prefWidth="180.0" text="Label">
                            <VBox.margin>
                               <Insets left="10.0" top="5.0" />
                            </VBox.margin>
@@ -131,7 +131,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labelCoverType" text="Label">
+                        <Label fx:id="labelCoverType" prefHeight="27.0" prefWidth="269.0" text="Label">
                            <VBox.margin>
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
@@ -139,7 +139,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labelPubliYear" text="Label">
+                        <Label fx:id="labelPubliYear" prefHeight="27.0" prefWidth="110.0" text="Label">
                            <VBox.margin>
                               <Insets left="10.0" top="7.0" />
                            </VBox.margin>
@@ -147,7 +147,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labelCondition" text="Label">
+                        <Label fx:id="labelCondition" prefHeight="27.0" prefWidth="299.0" text="Label">
                            <VBox.margin>
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
@@ -155,7 +155,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labelPrice" text="Label">
+                        <Label fx:id="labelPrice" prefHeight="27.0" prefWidth="153.0" text="Label">
                            <VBox.margin>
                               <Insets left="10.0" top="6.0" />
                            </VBox.margin>
@@ -163,7 +163,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labelGenres" text="Label">
+                        <Label fx:id="labelGenres" prefHeight="27.0" prefWidth="302.0" text="Label">
                            <VBox.margin>
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
@@ -171,7 +171,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labelSoldBy" text="Label">
+                        <Label fx:id="labelSoldBy" prefHeight="27.0" prefWidth="297.0" text="Label">
                            <VBox.margin>
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
@@ -210,18 +210,17 @@
                 <Font name="Bauhaus 93" size="22.0" />
             </font>
         </Text>
-        <Button fx:id="addToCartButton" layoutX="448.0" layoutY="559.0" mnemonicParsing="false" onAction="#onAddToShoppingCart" prefHeight="47.0" prefWidth="131.0" style="-fx-background-color: #f3f4d7;" text="Add to">
+        <Button fx:id="addToCartButton" layoutX="567.0" layoutY="559.0" mnemonicParsing="false" onAction="#onAddToShoppingCart" prefHeight="47.0" prefWidth="131.0" style="-fx-background-color: #f3f4d7;" text="Add to">
          <padding>
             <Insets right="30.0" />
          </padding>
         </Button>
       <Button fx:id="backButton" layoutX="14.0" layoutY="559.0" mnemonicParsing="false" onAction="#onBackButton" prefHeight="47.0" prefWidth="107.0" text="Back" />
-          <ImageView fitHeight="35.0" fitWidth="36.0" layoutX="525.0" layoutY="565.0">
+          <ImageView fitHeight="35.0" fitWidth="36.0" layoutX="646.0" layoutY="565.0">
               <image>
                   <Image url="@../../pictures/shoppingcartpng.png" />
               </image>
           </ImageView>
-      <Button fx:id="buttonCheckout" layoutX="591.0" layoutY="559.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="107.0" text="Check Out" />
       <Label fx:id="numberOfItemsLabel" layoutX="652.0" layoutY="69.0" text="number" textFill="WHITE" />
       <Text fill="WHITE" layoutX="561.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Items in the cart: " />
     </children>

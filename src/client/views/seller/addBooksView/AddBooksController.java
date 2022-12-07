@@ -1,7 +1,6 @@
 package client.views.seller.addBooksView;
 
 import client.core.ViewHandler;
-import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -10,13 +9,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import shared.Author;
 import shared.Genre;
-
 import java.util.ArrayList;
 
 public class AddBooksController {
 
     private AddBooksViewModel addBooksViewModel;
-
     @FXML
     public ComboBox comboBoxAuthors;
     @FXML
@@ -41,20 +38,16 @@ public class AddBooksController {
     public  void init(AddBooksViewModel addBooksViewModel)
     {
         selectedGenres = new ArrayList<>();
-//        listViewGenres.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         listViewGenres.setOnMouseClicked(new EventHandler<Event>() {
             String genres = "";
             @Override
             public void handle(Event event) {
                 ObservableList<Genre> selectedItems =  listViewGenres.getSelectionModel().getSelectedItems();
-
                 for(Genre g : selectedItems){
-                    System.out.println("selected item " + g.getGenreName());
-                    genres += g.getGenreName() +", ";
+                    genres += g.getGenreName() +" ";
                     selectedGenres.add(g);
                 }
                 labelGenres.setText(genres);
-
             }
 
         });
@@ -74,6 +67,10 @@ public class AddBooksController {
         addBooksViewModel.addBook((Author) comboBoxAuthors.getSelectionModel().getSelectedItem(),selectedGenres);
     }
 
+    public void onBackButton() {
+        ViewHandler.getInstance().openMainViewSellers();
+    }
+
     public void displayAuthors() {
         ArrayList<Author> authors = addBooksViewModel.getAuthors();
 
@@ -88,6 +85,5 @@ public class AddBooksController {
             listViewGenres.getItems().add(genre);
         }
     }
-
 
 }

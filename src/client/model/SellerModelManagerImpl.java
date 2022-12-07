@@ -5,6 +5,9 @@ import client.network.Client;
 import client.network.RMIClientImpl;
 import shared.*;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +16,16 @@ public class SellerModelManagerImpl implements SellerModelManager {
    private Client client;
    private Book bookGeneric;
 
+   private PropertyChangeSupport support;
+
     public SellerModelManagerImpl() {
         client = ClientFactory.getInstance().getClient();
+        support = new PropertyChangeSupport(this);
+        client.addPropertyChangeListener("BookForSaleDeleted", this::onBookGotPurchased);
+    }
+
+    public void onBookGotPurchased(PropertyChangeEvent evt) {
+        support.firePropertyChange(evt);
     }
 
     @Override
@@ -62,4 +73,13 @@ public class SellerModelManagerImpl implements SellerModelManager {
     }
 
 
+    @Override
+    public void addPropertyChangeListener(String eventName, PropertyChangeListener listener) {
+        support.addPropertyChangeListener(eventName, listener);
+    }
+
+    @Override
+    public void removePropertyChangeListener(String eventName, PropertyChangeListener listener) {
+        support.removePropertyChangeListener(eventName,listener);
+    }
 }

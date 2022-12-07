@@ -213,6 +213,15 @@ public class RMIClientImpl implements Client, ClientCallback
     }
   }
 
+  @Override
+  public void purchase(ArrayList<BookForSale> booksToBeSold) {
+    try {
+      server.purchase(booksToBeSold);
+    } catch (RemoteException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
 
   @Override public boolean checkUsername(String username)  {
     try {

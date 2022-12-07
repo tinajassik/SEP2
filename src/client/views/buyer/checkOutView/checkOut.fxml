@@ -78,6 +78,5 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <Button layoutX="69.0" layoutY="546.0" mnemonicParsing="false" onAction="#onSeeDetails" text="Selected Book Details" />
    </children>
 </AnchorPane>

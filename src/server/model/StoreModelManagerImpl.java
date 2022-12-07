@@ -99,6 +99,19 @@ public class StoreModelManagerImpl implements StoreModelManager{
         }
     }
 
+    @Override
+    public void purchase(ArrayList<BookForSale> booksToBeSold) {
+        for (BookForSale book: booksToBeSold
+             ) {
+            try {
+                BookForSaleDAOImpl.getInstance().changePrice(book.getId());
+                propertyChangeSupport.firePropertyChange("BookForSaleDeleted", null, book);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
     @Override public List<BookForSale> getBooksByTile(String title)
     {
         return bookForSaleDAO.getBooksByTitle(title);

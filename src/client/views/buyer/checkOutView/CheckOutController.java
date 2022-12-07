@@ -6,6 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import shared.BookForSale;
+
+import java.util.ArrayList;
 
 public class CheckOutController {
 
@@ -36,7 +39,7 @@ public class CheckOutController {
     public void init(CheckOutViewModel checkOutViewModel) {
         this.checkOutViewModel = checkOutViewModel;
         //fill out listview with books in cart
-        //listViewBooks.setItems(this.mainPageViewModel.getBooksForSale());
+        loadBooksFromShoppingCart();
         labelUsername.textProperty().bindBidirectional(checkOutViewModel.getUsernameProperty());
         labelFullName.textProperty().bindBidirectional(checkOutViewModel.getFullNameProperty());
     }
@@ -55,9 +58,23 @@ public class CheckOutController {
 
     public void onBackButton(ActionEvent actionEvent)
     {
+        ViewHandler.getInstance().openShoppingCart();
     }
 
     public void purchase(ActionEvent actionEvent)
     {
+        checkOutViewModel.purchase();
     }
+
+    public void loadBooksFromShoppingCart() {
+        ArrayList<BookForSale> booksToBePurchased = checkOutViewModel.getBooksFromShoppingCart();
+        for (BookForSale book: booksToBePurchased
+             ) {
+            listViewBooks.getItems().add(book);
+        }
+
+
+    }
+
+//
 }

@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="369.0" prefWidth="603.0" style="-fx-background-color: #2d206f;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.views.seller.addBooksView.AddBooksController">
+<AnchorPane prefHeight="388.0" prefWidth="603.0" style="-fx-background-color: #2d206f;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.views.seller.addBooksView.AddBooksController">
    <children>
       <TextField fx:id="title" layoutX="166.0" layoutY="71.0" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
@@ -59,5 +59,10 @@
       <ComboBox fx:id="comboBoxAuthors" layoutX="166.0" layoutY="107.0" prefWidth="150.0" promptText="Select an author" />
       <ListView fx:id="listViewGenres" layoutX="166.0" layoutY="223.0" prefHeight="59.0" prefWidth="150.0" />
       <Label fx:id="labelGenres" layoutX="412.0" layoutY="238.0" prefHeight="47.0" prefWidth="136.0" textFill="#f3f4d7" />
+      <Button fx:id="backButton" layoutX="509.0" layoutY="341.0" mnemonicParsing="false" onAction="#onBackButton" prefHeight="27.0" prefWidth="80.0" style="-fx-background-color: #32afc9;" text="Back" textFill="#f3f4d7">
+         <font>
+            <Font name="Bauhaus 93" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

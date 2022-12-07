@@ -31,4 +31,6 @@ public interface RMIServer extends Remote
   void editBook(String condition, double price, Book book, String username) throws RemoteException;
   void deleteBook(int id) throws RemoteException;
 
+  void purchase(ArrayList<BookForSale> booksToBeSold) throws RemoteException;
+
 }

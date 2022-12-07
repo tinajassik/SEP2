@@ -46,8 +46,8 @@ public class ShoppingCartViewModel {
     public void removeFromShoppingCart(BookForSale bookForSale)
     {
         buyerModelManager.removeFromShoppingCart(bookForSale);
-
     }
+
 
     public void setPrice()
     {

@@ -49,7 +49,7 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
     @Override
     public List<BookForSale> getBooksSoldBy(String id) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from bookforsale where seller_id =?;");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from bookforsale where seller_id =? and price != -1;");
             preparedStatement.setString(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             List<BookForSale> books = new ArrayList<>();
@@ -89,11 +89,24 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
         }
     }
 
+    // this method is used when a book gets sold
+    // price -1 will indicate that the book is no longer available for sale
+    @Override
+    public void changePrice(int id) throws SQLException {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE bookforsale SET price = -1 where id =?");
+            preparedStatement.setInt(1,id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     @Override
     public List<BookForSale> getAllBooks() {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from bookforsale");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from bookforsale where price != -1");
             ResultSet resultSet = preparedStatement.executeQuery();
             List<BookForSale> booksForSale = new ArrayList<>();
             while (resultSet.next()) {

@@ -2,16 +2,10 @@ package client.views.seller.mainPage;
 
 
 import client.core.ViewHandler;
-import client.core.ViewModelFactory;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import shared.Author;
 import shared.BookForSale;
-
-import java.util.ArrayList;
 
 public class MainPageSellerController {
 
@@ -31,7 +25,9 @@ public class MainPageSellerController {
         labelFullName.textProperty().bindBidirectional(mainPageViewModel.getFullNameProperty());
         labelUsername.textProperty().bindBidirectional(mainPageViewModel.getUsernameProperty());
         mainPageViewModel.updateLabels();
-        listViewBooks.getItems().setAll(mainPageViewModel.loadBooksForSale().getItems());
+        this.mainPageViewModel.loadBooksForSale();
+        listViewBooks.setItems(this.mainPageViewModel.getBooksSoldBySeller());
+//        listViewBooks.getItems().setAll(mainPageViewModel.getBooksForSale().getItems());
         textFieldSearch.textProperty().bindBidirectional(mainPageViewModel.getTitleProperty());
 
     }
@@ -71,7 +67,7 @@ public class MainPageSellerController {
     }
 
     public void onSeeAll() {
-        listViewBooks.getItems().setAll(mainPageViewModel.loadBooksForSale().getItems());
+        listViewBooks.getItems().setAll(mainPageViewModel.getBooksForSale().getItems());
     }
 
     public BookForSale sendBookToDetailsView() {
