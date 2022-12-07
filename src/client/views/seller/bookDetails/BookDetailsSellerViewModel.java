@@ -3,18 +3,12 @@ package client.views.seller.bookDetails;
 import client.core.ModelFactory;
 import client.core.ViewHandler;
 import client.model.SellerModelManager;
-import client.views.seller.mainPage.MainPageSellerController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import shared.Author;
-import shared.Book;
 import shared.BookForSale;
 import shared.Genre;
 
-import javax.swing.event.ChangeListener;
 import java.util.ArrayList;
 
 
@@ -33,8 +27,9 @@ public class BookDetailsSellerViewModel {
     private BookForSale bookForSale;
     private SellerModelManager sellerModelManager;
     public BookDetailsSellerViewModel() {
+
         sellerModelManager = ModelFactory.getInstance().getSellerModelManager();
-        setBook(ViewHandler.getInstance().getMainPageSellerController().sendBookToDetailsView());
+//        setBook(ViewHandler.getInstance().getMainPageSellerController().sendBookToDetailsView());
         title = new SimpleStringProperty();
         condition = new SimpleStringProperty();
         publicationYear = new SimpleStringProperty();
@@ -43,9 +38,10 @@ public class BookDetailsSellerViewModel {
         genres = new SimpleStringProperty();
         isbn = new SimpleStringProperty();
         coverType = new SimpleStringProperty();
-        loadInitialData();
+//        loadInitialData();
 
     }
+
 
     public void loadInitialData() {
         title.set(bookForSale.getBook().getTitle());
@@ -71,6 +67,10 @@ public class BookDetailsSellerViewModel {
     public void editBook(Author author, ArrayList<Genre> selectedGenres) {
         sellerModelManager.editBook(title.get(), isbn.get(),Integer.parseInt(publicationYear.get()),coverType.get(),condition.get(),Double.parseDouble(price.get())
                 ,author,selectedGenres);
+    }
+
+    public void deleteBook() {
+        sellerModelManager.deleteBook(bookForSale);
     }
 
     public ArrayList<Author> getAuthors() {

@@ -1,6 +1,7 @@
 package client.views.buyer.bookDetails;
 
 import client.core.ViewHandler;
+import client.core.ViewModelFactory;
 import javafx.beans.property.Property;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +19,6 @@ public class BookDetailsController {
 
 
     private Book book;
-
 
     private BookDetailsViewModel bookDetailsViewModel;
     @FXML
@@ -46,21 +46,11 @@ public class BookDetailsController {
     @FXML
     public Label labelPubliYear;
 
-    @FXML
-    private Button buttonAddToShoppingCart;
-    @FXML
-    private Button buttonCheckout;
-    @FXML
-    private Button backButton;
-
-
     public void init(BookDetailsViewModel bookDetailsViewModel) {
         labelUsername.textProperty().bindBidirectional(bookDetailsViewModel.getUsernameProperty());
         labelFullName.textProperty().bindBidirectional(bookDetailsViewModel.getFullNameProperty());
         labelTitle.textProperty().bindBidirectional(bookDetailsViewModel.titleProperty());
         labelISBN.textProperty().bindBidirectional(bookDetailsViewModel.isbnProperty());
-        //comboBoxAuthors.textProperty().bindBidirectional(bookDetailsViewModel.authorProperty());
-        //labelGenres.textProperty().bindBidirectional(bookDetailsViewModel.genreProperty());
         labelCoverType.textProperty().bindBidirectional(bookDetailsViewModel.coverTypeProperty());
         labelGenres.textProperty().bindBidirectional(bookDetailsViewModel.genreProperty());
         labelPrice.textProperty().bindBidirectional(bookDetailsViewModel.priceProperty());
@@ -70,11 +60,10 @@ public class BookDetailsController {
         labelPubliYear.textProperty().bindBidirectional(bookDetailsViewModel.yearOfPublicationProperty());
         numberOfItemsLabel.textProperty().bindBidirectional(bookDetailsViewModel.getNumberOfItemsProperty());
         bookDetailsViewModel.setNumberOfItems();
-
-
+        bookDetailsViewModel.setBook(ViewHandler.getInstance().getMainPageController().getSelectedBook());
+        bookDetailsViewModel.loadInitialData();
         this.bookDetailsViewModel = bookDetailsViewModel;
         bookDetailsViewModel.updateLabels();
-
 
     }
 

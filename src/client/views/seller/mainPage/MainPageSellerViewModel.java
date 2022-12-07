@@ -65,7 +65,7 @@ public class MainPageSellerViewModel {
     public  ListView loadBooksForSale() {
         List<BookForSale> booksForSaleList = sellerModelManager.getBooksSoldByMe(username.get());
         ListView listView = new ListView<>();
-        System.out.println(booksForSaleList.get(0).getBook());
+//        System.out.println(booksForSaleList.get(0).getBook());
         for (BookForSale book: booksForSaleList) {
             listView.getItems().add(book);
         }

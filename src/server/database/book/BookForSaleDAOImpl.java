@@ -76,6 +76,17 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
         }
     }
 
+    @Override
+    public void delete(int id) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM bookforsale WHERE isbn = ?");
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     @Override
     public List<BookForSale> getAllBooks() {

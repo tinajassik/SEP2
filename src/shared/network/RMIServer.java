@@ -28,6 +28,6 @@ public interface RMIServer extends Remote
   List<BookForSale> getBooksSoldBy(String id) throws RemoteException;
 
   void editBook(String condition, double price, Book book, String username) throws RemoteException;
-
+  void deleteBook(int id) throws RemoteException;
 
 }

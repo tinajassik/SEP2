@@ -182,5 +182,10 @@ public class RMIServerImpl implements Remote, RMIServer
     storeModelManager.editBook(condition, price, book, username);
   }
 
+  @Override
+  public void deleteBook(int id) {
+    storeModelManager.deleteBook(id);
+  }
+
 
 }

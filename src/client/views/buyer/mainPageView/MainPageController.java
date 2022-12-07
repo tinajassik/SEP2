@@ -119,10 +119,11 @@ public class MainPageController {
     public void onSeeDetails(){
         if (listViewBooks.getSelectionModel().getSelectedItem() != null) {
             ViewHandler.getInstance().openBookDetails();
+            getSelectedBook();
         }
         else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("You have not selected any book BITCH:(");
+            alert.setContentText("You have not selected any book, sorry :(");
             alert.show();
         }
     }

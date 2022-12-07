@@ -43,6 +43,8 @@ public class BookDetailsSellerController {
     public void init(BookDetailsSellerViewModel bookDetailsSellerViewModel) {
         selectedGenres = new ArrayList<>();
         this.bookDetailsSellerViewModel = bookDetailsSellerViewModel;
+        this.bookDetailsSellerViewModel.setBook(ViewHandler.getInstance().getMainPageSellerController().sendBookToDetailsView());
+        this.bookDetailsSellerViewModel.loadInitialData();
         textFieldAuthor.textProperty().bindBidirectional(this.bookDetailsSellerViewModel.authorProperty());
         textFieldCondition.textProperty().bindBidirectional(this.bookDetailsSellerViewModel.conditionProperty());
         textFieldISBN.textProperty().bindBidirectional(this.bookDetailsSellerViewModel.isbnProperty());
@@ -101,7 +103,7 @@ public class BookDetailsSellerController {
     }
 
     public void onDeleteBook() {
-
+        bookDetailsSellerViewModel.deleteBook();
     }
 
     public void onSave() {
