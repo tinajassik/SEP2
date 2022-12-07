@@ -210,7 +210,7 @@
                 <Font name="Bauhaus 93" size="22.0" />
             </font>
         </Text>
-        <Button layoutX="448.0" layoutY="559.0" mnemonicParsing="false" onAction="#onAddToShoppingCart" prefHeight="47.0" prefWidth="131.0" style="-fx-background-color: #f3f4d7;" text="Add to">
+        <Button fx:id="addToCartButton" layoutX="448.0" layoutY="559.0" mnemonicParsing="false" onAction="#onAddToShoppingCart" prefHeight="47.0" prefWidth="131.0" style="-fx-background-color: #f3f4d7;" text="Add to">
          <padding>
             <Insets right="30.0" />
          </padding>
