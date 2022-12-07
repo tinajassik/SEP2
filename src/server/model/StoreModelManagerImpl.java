@@ -91,7 +91,9 @@ public class StoreModelManagerImpl implements StoreModelManager{
     @Override
     public void deleteBook(int id) {
         try {
-            BookForSaleDAOImpl.getInstance().delete(id);
+            BookForSale deletedBook = BookForSaleDAOImpl.getInstance().delete(id);
+            System.out.println("in delete book in store model manager");
+            propertyChangeSupport.firePropertyChange("BookForSaleDeleted", null, deletedBook);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

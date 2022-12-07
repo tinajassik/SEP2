@@ -63,4 +63,12 @@ public class BookForSale implements Serializable {
         return "Title: " + book.getTitle() + "\nAuthor:" + book.getAuthor().toString()
                 + "\nPrice: " + price + "$" + "\nCondition: " + condition;
     }
+
+    public boolean equals(Object obj) {
+        if (!(obj instanceof BookForSale)) return false;
+
+        if (id == ((BookForSale) obj).getId()) return true;
+
+        else return false;
+    }
 }

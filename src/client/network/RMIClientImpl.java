@@ -40,7 +40,10 @@ public class RMIClientImpl implements Client, ClientCallback
     try {
       registry = LocateRegistry.getRegistry("localhost", 1992);
       server = (RMIServer) registry.lookup("Server");
-      server.registerClientCallback(this);
+
+        server.registerClientCallbackUpdate(this);
+        server.registerClientCallbackDelete(this);
+
     }
     catch (RemoteException | NotBoundException e)
     {
@@ -241,5 +244,11 @@ public class RMIClientImpl implements Client, ClientCallback
   public void update(BookForSale bookForSale) {
     System.out.println("in update method");
     propertyChangeSupport.firePropertyChange("NewBookForSale", null, bookForSale);
+  }
+
+  @Override
+  public void delete(BookForSale bookForSale) throws RemoteException {
+    System.out.println("in delete method");
+    propertyChangeSupport.firePropertyChange("BookForSaleDeleted", null, bookForSale);
   }
 }

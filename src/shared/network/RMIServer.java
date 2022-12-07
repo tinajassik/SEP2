@@ -9,7 +9,8 @@ import java.util.List;
 
 public interface RMIServer extends Remote
 {
-  void registerClientCallback(ClientCallback clientCallback) throws RemoteException;
+  void registerClientCallbackUpdate(ClientCallback clientCallback) throws RemoteException;
+  void registerClientCallbackDelete(ClientCallback clientCallback) throws RemoteException;
   void unregisterClientCallback(ClientCallback clientCallback) throws RemoteException;
   boolean registerNewUser(User user) throws RemoteException;
   boolean isUsernameTaken(String username) throws RemoteException;
