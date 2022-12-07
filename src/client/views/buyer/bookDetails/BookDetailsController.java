@@ -17,12 +17,13 @@ import java.sql.SQLException;
 
 public class BookDetailsController {
 
-
     private Book book;
 
     private BookDetailsViewModel bookDetailsViewModel;
     @FXML
     public Label numberOfItemsLabel;
+    @FXML
+    public Button addToCartButton;
     @FXML
     private Label labelUsername;
     @FXML
@@ -82,5 +83,7 @@ public class BookDetailsController {
     public void onAddToShoppingCart(ActionEvent actionEvent)
     {
         bookDetailsViewModel.addToShoppingCart();
+        addToCartButton.setDisable(true);
+
     }
 }

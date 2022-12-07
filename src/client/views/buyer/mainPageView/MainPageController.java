@@ -135,4 +135,12 @@ public class MainPageController {
     public void onBackToMainPage(ActionEvent actionEvent)
     {
     }
+
+    public void onBackButton(ActionEvent actionEvent)
+    {
+    }
+
+    public void purchase(ActionEvent actionEvent)
+    {
+    }
 }

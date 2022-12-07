@@ -68,7 +68,7 @@ public class BookDetailsViewModel {
         return username;
     }
 
-    public StringProperty getNumberOfItemsProperty(){return username;}
+    public StringProperty getNumberOfItemsProperty(){return numberOfItems;}
 
     public void newNumberOfItems(PropertyChangeEvent evt)
     {

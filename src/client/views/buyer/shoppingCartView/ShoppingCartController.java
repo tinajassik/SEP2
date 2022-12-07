@@ -57,6 +57,18 @@ public class ShoppingCartController {
     @FXML
     public void onCheckOut(ActionEvent actionEvent)
     {
+        if (!shoppingCartViewModel.getShoppingCart().isEmpty())
+        {
+            ViewHandler.getInstance().openCheckOut();
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("The cart is empty");
+            alert.show();
+
+        }
+
     }
 
     @FXML
@@ -67,11 +79,13 @@ public class ShoppingCartController {
 
     public void onRemoveItem(ActionEvent actionEvent)
     {
-        BookForSale bookToRemove = shoppingCartViewModel.getShoppingCart().get(listViewBooksToBuy.getSelectionModel().getSelectedIndex());
-        shoppingCartViewModel.removeFromShoppingCart(bookToRemove);
-        listViewBooksToBuy.getItems().clear();
-        loadShoppingCart();
-        shoppingCartViewModel.setPrice();
-
+        if (!shoppingCartViewModel.getShoppingCart().isEmpty())
+        {
+            BookForSale bookToRemove = shoppingCartViewModel.getShoppingCart().get(listViewBooksToBuy.getSelectionModel().getSelectedIndex());
+            shoppingCartViewModel.removeFromShoppingCart(bookToRemove);
+            listViewBooksToBuy.getItems().clear();
+            loadShoppingCart();
+            shoppingCartViewModel.setPrice();
+        }
     }
 }

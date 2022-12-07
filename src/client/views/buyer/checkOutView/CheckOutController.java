@@ -9,7 +9,7 @@ import javafx.scene.layout.GridPane;
 
 public class CheckOutController {
 
-    private MainPageViewModel mainPageViewModel;
+    private CheckOutViewModel checkOutViewModel;
     @FXML
     private ListView listViewBooks;
     @FXML
@@ -34,11 +34,11 @@ public class CheckOutController {
     private Button buttonCheckOut;
 
     public void init(CheckOutViewModel checkOutViewModel) {
-        this.mainPageViewModel = mainPageViewModel;
+        this.checkOutViewModel = checkOutViewModel;
         //fill out listview with books in cart
         //listViewBooks.setItems(this.mainPageViewModel.getBooksForSale());
-        labelUsername.textProperty().bindBidirectional(mainPageViewModel.getUsernameProperty());
-        labelFullName.textProperty().bindBidirectional(mainPageViewModel.getFullNameProperty());
+        labelUsername.textProperty().bindBidirectional(checkOutViewModel.getUsernameProperty());
+        labelFullName.textProperty().bindBidirectional(checkOutViewModel.getFullNameProperty());
     }
 
 
@@ -53,8 +53,11 @@ public class CheckOutController {
         }
     }
 
+    public void onBackButton(ActionEvent actionEvent)
+    {
+    }
 
-
-
-
+    public void purchase(ActionEvent actionEvent)
+    {
+    }
 }
