@@ -35,11 +35,28 @@ public class MainPageViewModel {
         model = ModelFactory.getInstance().getUserModelManager();
         buyerModelManager = ModelFactory.getInstance().getBuyerModelManager();
         buyerModelManager.addPropertyChangeListener("NewBookForSale", this::onNewBookForSale);
+
+        buyerModelManager.addPropertyChangeListener("BookForSaleDeleted", this::onBookForSaleDeleted);
     }
 
     private void onNewBookForSale(PropertyChangeEvent evt) {
-        System.out.println("observer in view model");
+        System.out.println("book new for sale in view model");
         Platform.runLater(() -> booksForSale.add((BookForSale) evt.getNewValue()));
+    }
+
+    private void onBookForSaleDeleted(PropertyChangeEvent evt) {
+        System.out.println("book deleted in view model");
+//        BookForSale book = (BookForSale) evt.getNewValue();
+//        System.out.println(book);
+        for (BookForSale bookY: booksForSale
+             ) {
+            System.out.println(bookY);
+        }
+        Platform.runLater(() -> booksForSale.remove((BookForSale) evt.getNewValue()));
+        for (BookForSale bookY: booksForSale
+        ) {
+            System.out.println(bookY);
+        }
     }
     public StringProperty getFullNameProperty() {
         return fullName;

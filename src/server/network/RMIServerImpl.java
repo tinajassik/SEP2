@@ -71,19 +71,18 @@ public class RMIServerImpl implements Remote, RMIServer
 
   }
 
-  public void registerClientCallback(ClientCallback clientCallback) {
+  public void registerClientCallbackUpdate(ClientCallback clientCallback) {
     PropertyChangeListener listener = new PropertyChangeListener() {
       @Override
       public void propertyChange(PropertyChangeEvent evt) {
 
         try {
           clientCallback.update((BookForSale) evt.getNewValue());
-          System.out.println("in registerclientcallback method");
+          System.out.println("in registerclientcallback update method");
         } catch (RemoteException e) {
           throw new RuntimeException(e);
         }
         storeModelManager.removePropertyChangeListener("NewBookForSale", this);
-
       }
     };
     listeners.put(clientCallback, listener);
@@ -92,14 +91,35 @@ public class RMIServerImpl implements Remote, RMIServer
   }
 
   @Override
+  public void registerClientCallbackDelete(ClientCallback clientCallback) throws RemoteException {
+    PropertyChangeListener listener = new PropertyChangeListener() {
+      @Override
+      public void propertyChange(PropertyChangeEvent evt) {
+
+        try {
+          clientCallback.delete((BookForSale) evt.getNewValue());
+          System.out.println("in registerclientcallback delete method");
+        } catch (RemoteException e) {
+          throw new RuntimeException(e);
+        }
+        storeModelManager.removePropertyChangeListener("BookForSaleDeleted", this);
+      }
+    };
+    listeners.put(clientCallback, listener);
+    System.out.println(listeners.toString());
+    storeModelManager.addPropertyChangeListener("BookForSaleDeleted", listener);
+  }
+
+
+  @Override
   public void unregisterClientCallback(ClientCallback client) {
     PropertyChangeListener listener = listeners.get(client);
     if(listener != null) {
       storeModelManager.removePropertyChangeListener("NewBookForSale", listener);
+      storeModelManager.removePropertyChangeListener("BookForSaleDeleted", listener);
     }
 
   }
-
 
 
 
