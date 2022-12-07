@@ -10,7 +10,6 @@ public interface StoreModelManager extends Subject {
     BookForSale addBookForSale(String condition, double price, Book book, User user);
     void AddBook(Book book);
     List<BookForSale> getBooks();
-
     List<BookForSale> getBooksByTile(String title);
     ArrayList<Genre> getAllGenres();
     ArrayList<Author> getAllAuthors();
@@ -21,5 +20,6 @@ public interface StoreModelManager extends Subject {
     List<BookForSale> getBooksSoldBy(String id);
 
     void editBook(String condition, double price, Book book, String username);
+    void deleteBook(int id);
 
 }

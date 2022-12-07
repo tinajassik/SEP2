@@ -17,6 +17,8 @@ public interface BookForSaleDAO {
 
     List<BookForSale> getAllBooks() throws SQLException;
     List<BookForSale> getBooksSoldBy(String id) throws SQLException;
-    void update(String condition,double price, String isbn, String username);
+    void update(String condition,double price, String isbn, String username) throws SQLException;
+    void delete(int id) throws SQLException;
+
 
 }

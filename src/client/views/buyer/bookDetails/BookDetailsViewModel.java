@@ -24,7 +24,7 @@ public class BookDetailsViewModel {
 
 
     public BookDetailsViewModel() {
-        bookForSale = ViewHandler.getInstance().getMainPageController().getSelectedBook();
+//        bookForSale = ViewHandler.getInstance().getMainPageController().getSelectedBook();
         this.title = new SimpleStringProperty();
         this.coverType = new SimpleStringProperty();
         this.Author = new SimpleObjectProperty();
@@ -35,13 +35,16 @@ public class BookDetailsViewModel {
         this.soldBy = new SimpleStringProperty();
         this.condition = new SimpleStringProperty();
         this.numberOfItems = new SimpleStringProperty();
-        loadInitialData();
+//        loadInitialData();
         fullName = new SimpleStringProperty();
         username = new SimpleStringProperty();
         model = ModelFactory.getInstance().getUserModelManager();
         buyerModelManager = ModelFactory.getInstance().getBuyerModelManager();
         buyerModelManager.addPropertyChangeListener("New number of items", this::newNumberOfItems);
         //buyerModelManager.addPropertyChangeListener("NewBookForSale", this::onNewBookForSale);
+    }
+    public void setBook(BookForSale bookForSale) {
+        this.bookForSale = bookForSale;
     }
 
     public void loadInitialData() {

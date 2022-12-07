@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 public class UserModelManagerImpl implements UserModelManager, Subject
 {
-
+    // model responsible for logging in/creating account
     private HashMap<String, User> allRegisteredUsers = new HashMap<>();
 
     private PropertyChangeSupport propertyChangeSupport ;

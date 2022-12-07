@@ -33,6 +33,7 @@ public class MainPageSellerController {
         mainPageViewModel.updateLabels();
         listViewBooks.getItems().setAll(mainPageViewModel.loadBooksForSale().getItems());
         textFieldSearch.textProperty().bindBidirectional(mainPageViewModel.getTitleProperty());
+
     }
 
 
@@ -59,6 +60,7 @@ public class MainPageSellerController {
     @FXML
     public void onButtonModify(ActionEvent actionEvent) {
         if (listViewBooks.getSelectionModel().getSelectedItem() != null) {
+            sendBookToDetailsView();
             ViewHandler.getInstance().openBookDetailsSeller();
         }
         else {

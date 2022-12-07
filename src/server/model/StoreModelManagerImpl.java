@@ -88,6 +88,15 @@ public class StoreModelManagerImpl implements StoreModelManager{
 
     }
 
+    @Override
+    public void deleteBook(int id) {
+        try {
+            BookForSaleDAOImpl.getInstance().delete(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override public List<BookForSale> getBooksByTile(String title)
     {
         return bookForSaleDAO.getBooksByTitle(title);

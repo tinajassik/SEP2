@@ -56,5 +56,10 @@ public class SellerModelManagerImpl implements SellerModelManager {
         client.editBook(condition,price,genericBookEdited, soldBy.getUsername());
     }
 
+    @Override
+    public void deleteBook(BookForSale bookToBeDeleted) {
+        client.deleteBook(bookToBeDeleted.getId());
+    }
+
 
 }

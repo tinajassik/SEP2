@@ -68,7 +68,7 @@ public class MainPageViewModel {
         fullName.set(model.getUser().getFullName());
     }
 
-    ObservableList<BookForSale> getBooksForSale() {
+    public ObservableList<BookForSale> getBooksForSale() {
         return booksForSale;
     }
     void loadBooksForSale() {
@@ -77,26 +77,26 @@ public class MainPageViewModel {
     }
 
 
-    ObservableList<BookForSale> searchBooksByTitle(String title)
+    public ObservableList<BookForSale> searchBooksByTitle(String title)
     {
         List<BookForSale> searchedBooks = buyerModelManager.searchBooksByTitle(title);
 
         return FXCollections.observableArrayList(searchedBooks);
     }
 
-    ArrayList<Genre> getAllGenres()
+    public ArrayList<Genre> getAllGenres()
     {
         return buyerModelManager.getAllGenres();
     }
 
-    ObservableList<BookForSale> searchBooksByGenre(String genre)
+    public ObservableList<BookForSale> searchBooksByGenre(String genre)
     {
         List<BookForSale> searchedBooks = buyerModelManager.searchBooksByGenre(genre);
 
         return FXCollections.observableArrayList(searchedBooks);
     }
 
-    ObservableList<BookForSale> searchBooksByAuthor(String authorFName, String authorLName)
+    public ObservableList<BookForSale> searchBooksByAuthor(String authorFName, String authorLName)
     {
         List<BookForSale> searchedBooks = buyerModelManager.searchBooksByAuthor(authorFName, authorLName);
 

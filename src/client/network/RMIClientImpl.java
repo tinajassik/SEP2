@@ -201,6 +201,15 @@ public class RMIClientImpl implements Client, ClientCallback
     }
   }
 
+  @Override
+  public void deleteBook(int id) {
+    try {
+      server.deleteBook(id);
+    } catch (RemoteException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
 
   @Override public boolean checkUsername(String username)  {
     try {
