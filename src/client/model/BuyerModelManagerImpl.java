@@ -102,6 +102,11 @@ public class BuyerModelManagerImpl implements BuyerModelManager {
     }
 
     @Override
+    public void purchase() {
+        client.purchase(shoppingCart);
+    }
+
+    @Override
     public void addPropertyChangeListener(String eventName, PropertyChangeListener listener) {
         support.addPropertyChangeListener(eventName,listener);
     }

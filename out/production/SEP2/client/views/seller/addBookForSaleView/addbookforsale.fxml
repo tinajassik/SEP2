@@ -34,5 +34,10 @@
                 <Image url="@../../pictures/image-removebg-preview (4).png" />
             </image>
         </ImageView>
+      <Button fx:id="backButton" layoutX="503.0" layoutY="185.0" mnemonicParsing="false" onAction="#onBackButton" prefHeight="27.0" prefWidth="71.0" style="-fx-background-color: #32afc9;" text="Back" textFill="#f3f4d7">
+         <font>
+            <Font name="Bauhaus 93" size="14.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

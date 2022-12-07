@@ -3,6 +3,7 @@ package client.views.seller.mainPage;
 import client.core.ModelFactory;
 import client.model.SellerModelManager;
 import client.model.UserModelManager;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -10,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import shared.BookForSale;
 
+import java.beans.PropertyChangeEvent;
 import java.util.List;
 
 public class MainPageSellerViewModel {
@@ -27,8 +29,12 @@ public class MainPageSellerViewModel {
         title = new SimpleStringProperty();
         userModelManager = ModelFactory.getInstance().getUserModelManager();
         sellerModelManager = ModelFactory.getInstance().getSellerModelManager();
+        sellerModelManager.addPropertyChangeListener("BookForSaleDeleted", this::onBookSold);
     }
 
+    private void onBookSold(PropertyChangeEvent evt) {
+        Platform.runLater(() -> books.remove((BookForSale) evt.getNewValue()));
+    }
     public String getFullName() {
         return fullName.get();
     }
@@ -62,17 +68,18 @@ public class MainPageSellerViewModel {
     ObservableList<BookForSale> getBooksSoldBySeller() {
         return books;
     }
-    public  ListView loadBooksForSale() {
+    public  ListView getBooksForSale() {
         List<BookForSale> booksForSaleList = sellerModelManager.getBooksSoldByMe(username.get());
         ListView listView = new ListView<>();
-//        System.out.println(booksForSaleList.get(0).getBook());
+
         for (BookForSale book: booksForSaleList) {
             listView.getItems().add(book);
         }
         return listView;
-//        books = FXCollections.observableArrayList(booksForSaleList);
-//        books.setAll(booksForSaleList);
-
+    }
+    void loadBooksForSale() {
+        List<BookForSale> bookForSaleList = sellerModelManager.getBooksSoldByMe(username.get());
+        books = FXCollections.observableArrayList(bookForSaleList);
     }
 
     public ObservableList<BookForSale> searchBooksByTitle() {

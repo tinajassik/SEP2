@@ -3,11 +3,12 @@ package client.model;
 import shared.Author;
 import shared.BookForSale;
 import shared.Genre;
+import util.Subject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public interface SellerModelManager {
+public interface SellerModelManager extends Subject {
 
     void addBookForSale(double price, String condition);
     void AddBook(String title, String isbn, String coverType, int publicationYear, Author author, ArrayList<Genre> genres);
@@ -19,4 +20,6 @@ public interface SellerModelManager {
     void editBook(String title, String isbn, int publicationYear, String coverType, String condition, double price, Author author, ArrayList<Genre> genres);
 
     void deleteBook(BookForSale bookToBeDeleted);
+
+
 }

@@ -10,7 +10,6 @@ import client.views.seller.bookDetails.BookDetailsSellerController;
 import client.views.seller.mainPage.MainPageSellerController;
 import client.views.shared.createAccountView.CreateAccountViewController;
 import client.views.shared.signView.SignViewController;
-import client.views.buyer.checkOutView.details.CheckOutDetailsController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

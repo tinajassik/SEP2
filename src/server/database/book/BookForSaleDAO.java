@@ -20,5 +20,7 @@ public interface BookForSaleDAO {
     void update(String condition,double price, String isbn, String username) throws SQLException;
     BookForSale delete(int id) throws SQLException;
 
+    void changePrice(int id) throws SQLException;
+
 
 }

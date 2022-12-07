@@ -21,4 +21,6 @@ public interface BuyerModelManager extends Subject {
     ArrayList<BookForSale> getShoppingCart();
     double calculatePrice();
     double getPrice();
+
+    void purchase();
 }

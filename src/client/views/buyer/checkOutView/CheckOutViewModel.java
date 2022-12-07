@@ -4,10 +4,15 @@ import client.core.ModelFactory;
 import client.model.BuyerModelManager;
 import client.model.UserModelManager;
 import javafx.application.Platform;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import shared.BookForSale;
 
 import java.beans.PropertyChangeEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CheckOutViewModel {
 
@@ -15,7 +20,7 @@ public class CheckOutViewModel {
     private StringProperty fullName;
     private StringProperty username;
     private UserModelManager model;
-
+    private List<BookForSale> booksToBeSold;
     private StringProperty price;
 
     public CheckOutViewModel() {
@@ -39,10 +44,22 @@ public class CheckOutViewModel {
         return price;
     }
 
-    public void updateLabels(PropertyChangeEvent evt) {
-        Platform.runLater(() -> {
-            username.set(model.getUser().getUsername());
-            fullName.set(model.getUser().getUsername());
-        });
+//    public void updateLabels(PropertyChangeEvent evt) {
+//        Platform.runLater(() -> {
+//            username.set(model.getUser().getUsername());
+//            fullName.set(model.getUser().getUsername());
+//        });
+//    }
+
+    public ArrayList<BookForSale> getBooksFromShoppingCart() {
+        return buyerModelManager.getShoppingCart();
+    }
+
+    public List<BookForSale> getBooksToBeSoldProperty() {
+        return booksToBeSold;
+    }
+
+    public void purchase() {
+        buyerModelManager.purchase();
     }
 }

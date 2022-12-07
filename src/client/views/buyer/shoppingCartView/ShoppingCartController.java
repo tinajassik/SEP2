@@ -79,13 +79,18 @@ public class ShoppingCartController {
 
     public void onRemoveItem(ActionEvent actionEvent)
     {
-        if (!shoppingCartViewModel.getShoppingCart().isEmpty())
+        if (!shoppingCartViewModel.getShoppingCart().isEmpty() && !listViewBooksToBuy.getSelectionModel().isEmpty())
         {
             BookForSale bookToRemove = shoppingCartViewModel.getShoppingCart().get(listViewBooksToBuy.getSelectionModel().getSelectedIndex());
             shoppingCartViewModel.removeFromShoppingCart(bookToRemove);
             listViewBooksToBuy.getItems().clear();
             loadShoppingCart();
             shoppingCartViewModel.setPrice();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("The cart is empty/You have not selected any book");
+            alert.show();
         }
     }
 }

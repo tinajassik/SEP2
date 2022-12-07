@@ -22,4 +22,6 @@ public interface StoreModelManager extends Subject {
     void editBook(String condition, double price, Book book, String username);
     void deleteBook(int id);
 
+    void purchase(ArrayList<BookForSale> booksToBeSold);
+
 }

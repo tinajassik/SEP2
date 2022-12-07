@@ -1,5 +1,6 @@
 package client.views.seller.addBookForSaleView;
 
+import client.core.ViewHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -22,5 +23,9 @@ public class AddBookForSaleController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText("Book is now AVAILABLE for sale. :)");
         alert.show();
+    }
+
+    public void onBackButton() {
+        ViewHandler.getInstance().openAddBook();
     }
 }
