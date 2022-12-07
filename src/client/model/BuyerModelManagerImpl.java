@@ -22,15 +22,21 @@ public class BuyerModelManagerImpl implements BuyerModelManager {
     public BuyerModelManagerImpl() {
         client = ClientFactory.getInstance().getClient();
         client.addPropertyChangeListener("NewBookForSale", this::onNewBookForSale);
+        client.addPropertyChangeListener("BookForSaleDeleted", this::onBookForSaleDeleted);
         shoppingCart = new ArrayList<>();
     }
 
     private void onNewBookForSale(PropertyChangeEvent evt) {
-        System.out.println(evt.getNewValue().toString());
-        System.out.println("observer in buyer model manager");
+//        System.out.println(evt.getNewValue().toString());
+        System.out.println("new book for sale in buyer model manager");
         support.firePropertyChange(evt);
-
     }
+
+    private void onBookForSaleDeleted(PropertyChangeEvent evt) {
+        System.out.println("book deleted in buyer model manager");
+        support.firePropertyChange(evt);
+    }
+
 
     public List<BookForSale> getBooks() {
          return client.getBooks();
