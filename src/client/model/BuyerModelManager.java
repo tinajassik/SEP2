@@ -2,6 +2,7 @@ package client.model;
 
 import shared.Author;
 import shared.BookForSale;
+import shared.Buyer;
 import shared.Genre;
 import util.Subject;
 
@@ -21,6 +22,6 @@ public interface BuyerModelManager extends Subject {
     ArrayList<BookForSale> getShoppingCart();
     double calculatePrice();
     double getPrice();
-
-    void purchase();
+    void purchase() throws Exception;
+    void createOrder(Buyer buyer);
 }

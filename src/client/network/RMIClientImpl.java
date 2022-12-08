@@ -222,6 +222,17 @@ public class RMIClientImpl implements Client, ClientCallback
     }
   }
 
+  @Override public void createOrder(Order order)
+  {
+    try
+    {
+      server.createOrder(order);
+    }
+    catch (RemoteException e)
+    {
+      throw new RuntimeException(e);
+    }
+  }
 
   @Override public boolean checkUsername(String username)  {
     try {

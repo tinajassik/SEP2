@@ -73,6 +73,7 @@ public class BookDetailsViewModel {
     public void newNumberOfItems(PropertyChangeEvent evt)
     {
         numberOfItems.set(Integer.toString(buyerModelManager.getShoppingCart().size()));
+
     }
 
     public void setNumberOfItems()

@@ -28,5 +28,6 @@ public interface Client extends Subject
 
   void deleteBook(int id);
   void purchase(ArrayList<BookForSale> booksToBeSold);
+  void createOrder(Order order);
 
 }
