@@ -16,45 +16,20 @@ public class CheckOutController {
     @FXML
     private ListView listViewBooks;
     @FXML
-    private GridPane gridPaneBooks;
-    @FXML
-    private TextField textFieldSearch;
-    @FXML
-    private ComboBox comboBoxAuthors;
-    @FXML
-    private ComboBox comboBoxGenres;
-    @FXML
     private Label labelUsername;
     @FXML
     private Label labelFullName;
-    @FXML
-    private Label labelPrice;
-    @FXML
-    private Button buttonMainPage;
-    @FXML
-    private Button buttonSignOut;
-    @FXML
-    private Button buttonCheckOut;
 
     public void init(CheckOutViewModel checkOutViewModel) {
         this.checkOutViewModel = checkOutViewModel;
         //fill out listview with books in cart
-        loadBooksFromShoppingCart();
+//        loadBooksFromShoppingCart();
+        checkOutViewModel.loadShoppingCart();
+        listViewBooks.setItems(checkOutViewModel.getShoppingCart());
         labelUsername.textProperty().bindBidirectional(checkOutViewModel.getUsernameProperty());
         labelFullName.textProperty().bindBidirectional(checkOutViewModel.getFullNameProperty());
     }
 
-
-    public void onSeeDetails(){
-        if (listViewBooks.getSelectionModel().getSelectedItem() != null) {
-            ViewHandler.getInstance().openBookDetails();
-        }
-        else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("You have not selected any book BITCH:(");
-            alert.show();
-        }
-    }
 
     public void onBackButton(ActionEvent actionEvent)
     {
@@ -63,18 +38,18 @@ public class CheckOutController {
 
     public void purchase(ActionEvent actionEvent)
     {
-        checkOutViewModel.purchase();
-    }
-
-    public void loadBooksFromShoppingCart() {
-        ArrayList<BookForSale> booksToBePurchased = checkOutViewModel.getBooksFromShoppingCart();
-        for (BookForSale book: booksToBePurchased
-             ) {
-            listViewBooks.getItems().add(book);
+        try
+        {
+            checkOutViewModel.purchase();
+            checkOutViewModel.createOrder();
+        }
+        catch (Exception e)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Some of the books from your shopping cart have already been sold! Please go back to the shopping cart");
+            alert.show();
         }
 
-
     }
 
-//
 }

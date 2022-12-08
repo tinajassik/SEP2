@@ -35,8 +35,9 @@ public class MainPageViewModel {
         model = ModelFactory.getInstance().getUserModelManager();
         buyerModelManager = ModelFactory.getInstance().getBuyerModelManager();
         buyerModelManager.addPropertyChangeListener("NewBookForSale", this::onNewBookForSale);
-        buyerModelManager.addPropertyChangeListener("New number of items", this::newNumberOfItems);
+//        buyerModelManager.addPropertyChangeListener("New number of items", this::newNumberOfItems);
         buyerModelManager.addPropertyChangeListener("BookForSaleDeleted", this::onBookForSaleDeleted);
+        buyerModelManager.addPropertyChangeListener("BookAddedToCart", this::onBookAddedToCart);
     }
 
     private void onNewBookForSale(PropertyChangeEvent evt) {
@@ -58,6 +59,9 @@ public class MainPageViewModel {
 //            System.out.println(bookY);
 //        }
     }
+    public void onBookAddedToCart(PropertyChangeEvent evt) {
+        Platform.runLater(() -> booksForSale.remove((BookForSale) evt.getNewValue()));
+    }
     public StringProperty getFullNameProperty() {
         return fullName;
     }
@@ -68,10 +72,12 @@ public class MainPageViewModel {
 
     public StringProperty getNumberOfItemsProperty(){return numberOfItems;}
 
-    public void newNumberOfItems(PropertyChangeEvent evt)
-    {
-        numberOfItems.set(Integer.toString(buyerModelManager.getShoppingCart().size()));
-    }
+//    public void newNumberOfItems(PropertyChangeEvent evt)
+//    {
+////        numberOfItems.set(Integer.toString(buyerModelManager.getShoppingCart().size()));
+//        Platform.runLater(() -> booksForSale.remove((BookForSale) evt.getNewValue()));
+//
+//    }
 
     public void setNumberOfItems()
     {

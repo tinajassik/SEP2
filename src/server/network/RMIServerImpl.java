@@ -82,7 +82,6 @@ public class RMIServerImpl implements Remote, RMIServer
         } catch (RemoteException e) {
           throw new RuntimeException(e);
         }
-        storeModelManager.removePropertyChangeListener("NewBookForSale", this);
       }
     };
     listeners.put(clientCallback, listener);
@@ -102,7 +101,6 @@ public class RMIServerImpl implements Remote, RMIServer
         } catch (RemoteException e) {
           throw new RuntimeException(e);
         }
-        storeModelManager.removePropertyChangeListener("BookForSaleDeleted", this);
       }
     };
     listeners.put(clientCallback, listener);
@@ -212,5 +210,9 @@ public class RMIServerImpl implements Remote, RMIServer
     storeModelManager.purchase(booksToBeSold);
   }
 
+  @Override public void createOrder(Order order)
+  {
+    storeModelManager.createOrder(order);
+  }
 
 }
