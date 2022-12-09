@@ -36,12 +36,12 @@
          <font>
             <Font name="Bauhaus 93" size="16.0" />
          </font></Text>
-      <Text fill="#f3f4d7" layoutX="14.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year of Publication">
+      <Text fill="#f3f4d7" layoutX="14.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year of Publication" wrappingWidth="104.4921875">
          <font>
             <Font name="Bauhaus 93" size="16.0" />
          </font></Text>
       <TextField fx:id="coverType" layoutX="166.0" layoutY="150.0" />
-      <TextField fx:id="isbn" layoutX="166.0" layoutY="187.0" />
+      <TextField fx:id="isbn" layoutX="166.0" layoutY="187.0" promptText="exactly 13 digits (0-9)" />
       <TextField fx:id="yearOfPublication" layoutX="166.0" layoutY="294.0" />
       <Text fill="#c2518c" layoutX="23.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add your book to our store! " wrappingWidth="351.6171875">
          <font>
@@ -64,5 +64,35 @@
             <Font name="Bauhaus 93" size="14.0" />
          </font>
       </Button>
+      <Text fill="#e10808" layoutX="141.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fill="#e10808" layoutX="141.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fill="#e10808" layoutX="141.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fill="#e10808" layoutX="141.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fill="#e10808" layoutX="141.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fill="#e10808" layoutX="141.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

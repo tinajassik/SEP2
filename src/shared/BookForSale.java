@@ -8,7 +8,7 @@ public class BookForSale implements Serializable {
     private String condition;
     private double price;
     private Book book;
-    private User user;
+    private User user; //sold By
 
 
     public BookForSale(int id, String condition, double price, Book book, User user) {

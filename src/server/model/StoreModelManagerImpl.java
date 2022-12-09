@@ -1,6 +1,8 @@
 package server.model;
 
 import server.database.book.*;
+import server.database.user.OrderDAO;
+import server.database.user.OrderDAOImpl;
 import shared.*;
 
 import java.beans.PropertyChangeListener;
@@ -16,6 +18,7 @@ public class StoreModelManagerImpl implements StoreModelManager{
     private PropertyChangeSupport propertyChangeSupport;
     private GenreDAO genreDAO;
     private AuthorDAO authorDAO;
+    private OrderDAO orderDAO;
 
     public StoreModelManagerImpl() throws SQLException {
         bookDAO = BookDAOImpl.getInstance();
@@ -23,6 +26,7 @@ public class StoreModelManagerImpl implements StoreModelManager{
         propertyChangeSupport = new PropertyChangeSupport(this);
         genreDAO = GenreDAOImpl.getInstance();
         authorDAO = AuthorDAOImpl.getInstance();
+        orderDAO = OrderDAOImpl.getInstance();
     }
 
     @Override
@@ -109,6 +113,18 @@ public class StoreModelManagerImpl implements StoreModelManager{
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+        }
+    }
+
+    @Override public void createOrder(Order order)
+    {
+        try
+        {
+            orderDAO.createOrder(order);
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
         }
     }
 

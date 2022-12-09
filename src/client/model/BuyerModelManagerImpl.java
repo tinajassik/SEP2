@@ -2,9 +2,7 @@ package client.model;
 
 import client.core.ClientFactory;
 import client.network.Client;
-import shared.Author;
-import shared.BookForSale;
-import shared.Genre;
+import shared.*;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -38,8 +36,7 @@ public class BuyerModelManagerImpl implements BuyerModelManager {
     }
 
 
-
-
+    //get Available books
     public List<BookForSale> getBooks() {
          return client.getBooks();
     }
@@ -72,14 +69,15 @@ public class BuyerModelManagerImpl implements BuyerModelManager {
     @Override public void addToShoppingCart(BookForSale bookForSale)
     {
         shoppingCart.add(bookForSale);
+        System.out.println(bookForSale);
         support.firePropertyChange("New number of items",null, null);
+        support.firePropertyChange("BookAddedToCart", null, bookForSale);
+
     }
 
     @Override public void removeFromShoppingCart(BookForSale bookForSale)
     {
         shoppingCart.remove(bookForSale);
-        support.firePropertyChange("New number of items",null, null);
-
     }
 
     @Override public ArrayList<BookForSale> getShoppingCart()
@@ -104,8 +102,35 @@ public class BuyerModelManagerImpl implements BuyerModelManager {
     }
 
     @Override
-    public void purchase() {
+    public void purchase() throws Exception
+    {
+        for (BookForSale book: shoppingCart)
+        {
+            if (!getBooks().contains(book)) {
+                shoppingCart.remove(book);
+                throw new Exception();
+            }
+        }
         client.purchase(shoppingCart);
+        shoppingCart.clear();
+    }
+
+//    @Override public boolean checkIfBookSold(BookForSale bookForSale)
+//    {
+//        if (bookForSale.getPrice() == -1)
+//            return true;
+//        else
+//            return false;
+//    }
+
+    @Override public void createOrder(Buyer buyer)
+    {
+        for (BookForSale soldBook:shoppingCart)
+        {
+                Seller seller = (Seller) soldBook.getUser();
+                Order order = new Order(buyer, seller, soldBook);
+                client.createOrder(order);
+        }
     }
 
     @Override

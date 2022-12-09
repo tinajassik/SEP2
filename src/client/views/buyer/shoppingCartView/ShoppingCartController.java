@@ -37,7 +37,9 @@ public class ShoppingCartController {
         labelFullName.textProperty().bindBidirectional(shoppingCartViewModel.getFullNameProperty());
         labelPrice.textProperty().bindBidirectional(shoppingCartViewModel.getPriceProperty());
         shoppingCartViewModel.setPrice();
-        loadShoppingCart();
+        shoppingCartViewModel.loadBooksForSale();
+        listViewBooksToBuy.setItems(shoppingCartViewModel.getShoppingCartList());
+//        loadShoppingCart();
     }
 
     public void loadShoppingCart()
@@ -45,6 +47,9 @@ public class ShoppingCartController {
         ArrayList<BookForSale> shoppingCart = shoppingCartViewModel.getShoppingCart();
         for (BookForSale book:shoppingCart )
         {
+            if (!shoppingCartViewModel.getAvailableBooks().contains(book)) {
+                shoppingCart.remove(book);
+            }
             listViewBooksToBuy.getItems().add(book);
         }
     }

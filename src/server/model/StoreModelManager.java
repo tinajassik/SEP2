@@ -15,13 +15,10 @@ public interface StoreModelManager extends Subject {
     ArrayList<Author> getAllAuthors();
     List<BookForSale> getBooksByGenre(String genre);
     List<BookForSale> getBookByAuthor(String authorFName, String authorLName);
-
-
     List<BookForSale> getBooksSoldBy(String id);
-
     void editBook(String condition, double price, Book book, String username);
     void deleteBook(int id);
-
     void purchase(ArrayList<BookForSale> booksToBeSold);
+    void createOrder(Order order);
 
 }

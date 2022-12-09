@@ -5,16 +5,19 @@ import client.model.BuyerModelManager;
 import client.model.UserModelManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import shared.BookForSale;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ShoppingCartViewModel {
 
     private StringProperty fullName, username, price;
     private UserModelManager model;
     private BuyerModelManager buyerModelManager;
+    ObservableList<BookForSale> shoppingCart;
 
     public ShoppingCartViewModel() {
         fullName = new SimpleStringProperty();
@@ -46,6 +49,18 @@ public class ShoppingCartViewModel {
     public void removeFromShoppingCart(BookForSale bookForSale)
     {
         buyerModelManager.removeFromShoppingCart(bookForSale);
+    }
+
+    public ArrayList<BookForSale> getAvailableBooks() {
+       return (ArrayList<BookForSale>) buyerModelManager.getBooks();
+    }
+
+    public ObservableList<BookForSale> getShoppingCartList() {
+        return shoppingCart;
+    }
+    void loadBooksForSale() {
+        List<BookForSale> booksForSaleList = buyerModelManager.getShoppingCart();
+        shoppingCart = FXCollections.observableArrayList(booksForSaleList);
     }
 
 
