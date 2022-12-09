@@ -250,14 +250,16 @@ public class RMIClientImpl implements Client, ClientCallback
   }
 
   @Override
-  public void update(BookForSale bookForSale) {
+  public void updateNewBook(BookForSale bookForSale) {
     System.out.println("in update method");
     propertyChangeSupport.firePropertyChange("NewBookForSale", null, bookForSale);
   }
 
   @Override
-  public void delete(BookForSale bookForSale) throws RemoteException {
+  public void updateDeletedBook(BookForSale bookForSale) throws RemoteException {
     System.out.println("in delete method");
     propertyChangeSupport.firePropertyChange("BookForSaleDeleted", null, bookForSale);
   }
+
+
 }

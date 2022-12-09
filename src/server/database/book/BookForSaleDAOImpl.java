@@ -71,6 +71,11 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
             preparedStatement.setString(3, isbn);
             preparedStatement.setString(4, username);
             preparedStatement.executeUpdate();
+//            BookForSale editedBook = null;
+//            if (resultSet.next()) {
+//                editedBook = new BookForSale(resultSet.getInt(1), resultSet.getString(5),resultSet.getDouble(4), BookDAOImpl.getInstance().readByISBN(resultSet.getString(2)), UserDAOImpl.getInstance().getUserByUsername(resultSet.getString(3)));
+//            }
+//            return editedBook;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

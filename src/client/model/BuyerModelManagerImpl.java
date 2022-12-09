@@ -38,6 +38,8 @@ public class BuyerModelManagerImpl implements BuyerModelManager {
     }
 
 
+
+
     public List<BookForSale> getBooks() {
          return client.getBooks();
     }

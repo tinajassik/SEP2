@@ -147,4 +147,8 @@ public class BookDetailsSellerViewModel {
     public void setBook(BookForSale book) {
         bookForSale = book;
     }
+
+    public BookForSale getBookForSale() {
+        return bookForSale;
+    }
 }

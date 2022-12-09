@@ -1,7 +1,6 @@
 package server.network;
 
 import server.core.ModelFactory;
-import server.database.book.*;
 import server.model.LogInModelManager;
 import server.model.StoreModelManager;
 import shared.*;
@@ -16,7 +15,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -77,12 +75,12 @@ public class RMIServerImpl implements Remote, RMIServer
       public void propertyChange(PropertyChangeEvent evt) {
 
         try {
-          clientCallback.update((BookForSale) evt.getNewValue());
+          clientCallback.updateNewBook((BookForSale) evt.getNewValue());
           System.out.println("in registerclientcallback update method");
         } catch (RemoteException e) {
           throw new RuntimeException(e);
         }
-        storeModelManager.removePropertyChangeListener("NewBookForSale", this);
+//        storeModelManager.removePropertyChangeListener("NewBookForSale", this);
       }
     };
     listeners.put(clientCallback, listener);
@@ -97,18 +95,19 @@ public class RMIServerImpl implements Remote, RMIServer
       public void propertyChange(PropertyChangeEvent evt) {
 
         try {
-          clientCallback.delete((BookForSale) evt.getNewValue());
+          clientCallback.updateDeletedBook((BookForSale) evt.getNewValue());
           System.out.println("in registerclientcallback delete method");
         } catch (RemoteException e) {
           throw new RuntimeException(e);
         }
-        storeModelManager.removePropertyChangeListener("BookForSaleDeleted", this);
+//        storeModelManager.removePropertyChangeListener("BookForSaleDeleted", this);
       }
     };
     listeners.put(clientCallback, listener);
     System.out.println(listeners.toString());
     storeModelManager.addPropertyChangeListener("BookForSaleDeleted", listener);
   }
+
 
 
   @Override
