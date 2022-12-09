@@ -39,7 +39,7 @@ public class ShoppingCartController {
         labelPrice.textProperty().bindBidirectional(shoppingCartViewModel.getPriceProperty());
         shoppingCartViewModel.setPrice();
         shoppingCartViewModel.loadBooksForSale();
-        listViewBooksToBuy.setItems(shoppingCartViewModel.getShoppingCartList());
+        listViewBooksToBuy.setItems(shoppingCartViewModel.getShoppingCartObservableList());
 //        loadShoppingCart();
     }
 
@@ -87,10 +87,10 @@ public class ShoppingCartController {
     {
         if (!shoppingCartViewModel.getShoppingCart().isEmpty() && !listViewBooksToBuy.getSelectionModel().isEmpty())
         {
-            BookForSale bookToRemove = shoppingCartViewModel.getShoppingCart().get(listViewBooksToBuy.getSelectionModel().getSelectedIndex());
+            BookForSale bookToRemove = (BookForSale) listViewBooksToBuy.getSelectionModel().getSelectedItem();
             shoppingCartViewModel.removeFromShoppingCart(bookToRemove);
-            listViewBooksToBuy.getItems().clear();
             shoppingCartViewModel.loadBooksForSale();
+            listViewBooksToBuy.setItems(shoppingCartViewModel.getShoppingCartObservableList());
             shoppingCartViewModel.setPrice();
         }
         else {

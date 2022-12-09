@@ -59,13 +59,17 @@ public class ShoppingCartViewModel {
     }
 
 
-    public ObservableList<BookForSale> getShoppingCartList() {
+    public List<BookForSale> getShoppingCartList() {
+        return shoppingCartList;
+    }
+
+    public ObservableList<BookForSale> getShoppingCartObservableList() {
         return shoppingCart;
     }
 
 
-    public void loadBooksForSale() {
 
+    public void loadBooksForSale() {
         // loading cart with each opening - works !
         List<BookForSale> booksFromShoppingCart = buyerModelManager.getShoppingCart();
         List<BookForSale> availableBooks = buyerModelManager.getBooks();
