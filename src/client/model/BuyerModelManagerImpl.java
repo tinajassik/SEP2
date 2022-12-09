@@ -112,12 +112,10 @@ public class BuyerModelManagerImpl implements BuyerModelManager {
                 throw new Exception();
             }
         }
-
 //        THIS Was throwing an error I think
 //        for (BookForSale book: shoppingCart) {
 //            client.createOrder(new Order((Buyer) client.getUser(), (Seller) book.getUser(), book));
 //        }
-
         client.purchase(shoppingCart);
         shoppingCart.clear();
     }
