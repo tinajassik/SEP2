@@ -77,7 +77,7 @@ public class RMIServerImpl implements Remote, RMIServer
       public void propertyChange(PropertyChangeEvent evt) {
 
         try {
-          clientCallback.update((BookForSale) evt.getNewValue());
+          clientCallback.updateNewBook((BookForSale) evt.getNewValue());
           System.out.println("in registerclientcallback update method");
         } catch (RemoteException e) {
           throw new RuntimeException(e);
@@ -96,7 +96,7 @@ public class RMIServerImpl implements Remote, RMIServer
       public void propertyChange(PropertyChangeEvent evt) {
 
         try {
-          clientCallback.delete((BookForSale) evt.getNewValue());
+          clientCallback.updateDeletedBook((BookForSale) evt.getNewValue());
           System.out.println("in registerclientcallback delete method");
         } catch (RemoteException e) {
           throw new RuntimeException(e);
