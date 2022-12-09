@@ -13,8 +13,6 @@ public class CreateAccountViewController
   @FXML
   private TextField fullNameField;
   @FXML
-  private TextField dateOfBirthField;
-  @FXML
   private TextField addressField;
   @FXML
   private TextField phoneNumberField;
@@ -31,7 +29,6 @@ public class CreateAccountViewController
   {
     this.createAccountViewModel = createAccountViewModel;
     this.fullNameField.textProperty().bindBidirectional(createAccountViewModel.fullNameProperty());
-    this.dateOfBirthField.textProperty().bindBidirectional(createAccountViewModel.dateOfBirthProperty());
     this.addressField.textProperty().bindBidirectional(createAccountViewModel.addressProperty());
     this.phoneNumberField.textProperty().bindBidirectional(createAccountViewModel.phoneNumberProperty());
     this.emailField.textProperty().bindBidirectional(createAccountViewModel.emailProperty());
@@ -44,7 +41,7 @@ public class CreateAccountViewController
 
   public void onRegisterSeller(ActionEvent actionEvent)
   {
-
+    if (HighSchoolMusical()){
     if (createAccountViewModel.registerSeller()) {
       ViewHandler.getInstance().openMainViewSellers();
       System.out.println("in Controller");
@@ -53,13 +50,20 @@ public class CreateAccountViewController
       Alert alert = new Alert(Alert.AlertType.ERROR);
       alert.setContentText("Username already exists. Sorry");
       alert.show();
+    }}
+    else {
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setHeaderText("Fields can't stay empty");
+      alert.setContentText("Make sure to fill out all mandatory fields");
+      alert.show();
+
     }
 
   }
 
   public void onRegisterBuyer(ActionEvent actionEvent)
   {
-
+    if (HighSchoolMusical()){
     if (createAccountViewModel.registerBuyer())
     ViewHandler.getInstance().openMainViewBuyers();
     else {
@@ -67,6 +71,12 @@ public class CreateAccountViewController
       alert.setContentText("Username already exists. Sorry");
       alert.show();
 
+    }}
+    else{
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setHeaderText("Fields can't stay empty");
+      alert.setContentText("Make sure to fill out all mandatory fields");
+      alert.show();
     }
 
   }
@@ -84,5 +94,34 @@ public class CreateAccountViewController
   public void usernameError(PropertyChangeEvent e)
   {
 
+  }
+
+  public boolean HighSchoolMusical(){
+    if(fullNameField.getText() == null ||
+            addressField.getText() == null ||
+            phoneNumberField.getText() == null ||
+            emailField.getText() == null ||
+            usernameField.getText() == null ||
+            passwordField.getText() == null
+    )
+    {
+      return false;
+    }
+    else if (fullNameField.getText().isEmpty() ||
+            fullNameField.getText().length() > 25 ||
+            addressField.getText().isEmpty() ||
+            addressField.getText().length() > 100 ||
+            phoneNumberField.getText().isEmpty() ||
+            emailField.getText().isEmpty() ||
+            emailField.getText().length() > 50 ||
+            usernameField.getText().isEmpty() ||
+            usernameField.getText().length() > 25 ||
+            passwordField.getText().isEmpty() ||
+            passwordField.getText().length() > 50
+              ){
+      return false;
+
+    }
+    else return true;
   }
 }

@@ -10,10 +10,9 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f3f4d7;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.views.shared.createAccountView.CreateAccountViewController">
    <children>
-      <Text layoutX="70.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter your personal information: " />
-      <TextField fx:id="fullNameField" layoutX="168.0" layoutY="93.0" />
-      <Text layoutX="68.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full name: " />
-      <Text layoutX="68.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of birth: " />
+      <Text layoutX="70.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter your personal information: " />
+      <TextField fx:id="fullNameField" layoutX="168.0" layoutY="124.0" />
+      <Text layoutX="67.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full name: " />
       <Text layoutX="65.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address: " />
       <Text layoutX="65.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone number:" />
       <Text layoutX="68.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email address:" />
@@ -51,6 +50,35 @@
             <Image url="@../../pictures/questionmark.gif" />
          </image>
       </ImageView>
-      <TextField fx:id="dateOfBirthField" layoutX="168.0" layoutY="126.0" />
+      <Text fill="RED" layoutX="152.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fill="RED" layoutX="152.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fill="RED" layoutX="152.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fill="RED" layoutX="152.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fill="RED" layoutX="152.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fill="RED" layoutX="152.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

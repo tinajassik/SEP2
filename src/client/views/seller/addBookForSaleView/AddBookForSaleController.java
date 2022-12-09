@@ -46,7 +46,12 @@ public class AddBookForSaleController {
 
     public boolean AreWeAllInThisTogetherPartTwo(){
 
-        if (priceTextField.getText().isEmpty() || conditionTextField.getText().isEmpty() || (!priceTextField.getText().matches("[0-9]+"))){
+         if (priceTextField.getText() == null || conditionTextField.getText() == null){
+             return false;
+
+         }
+
+         else if (priceTextField.getText().isEmpty() || conditionTextField.getText().isEmpty() || (!priceTextField.getText().matches("[0-9]+"))){
 
             return false;
         }

@@ -12,14 +12,13 @@ import java.beans.PropertyChangeSupport;
 
 public class CreateAccountViewModel implements Subject
 {
-  private StringProperty fullName, dateOfBirth, address, phoneNumber, email, username, password;
+  private StringProperty fullName, address, phoneNumber, email, username, password;
   private UserModelManager userModelManager;
   private PropertyChangeSupport propertyChangeSupport;
 
   public CreateAccountViewModel()
   {
     this.fullName = new SimpleStringProperty();
-    this.dateOfBirth = new SimpleStringProperty();
     this.address = new SimpleStringProperty();
     this.phoneNumber = new SimpleStringProperty();
     this.email = new SimpleStringProperty();
@@ -32,11 +31,6 @@ public class CreateAccountViewModel implements Subject
   public StringProperty fullNameProperty()
   {
     return fullName;
-  }
-
-  public StringProperty dateOfBirthProperty()
-  {
-    return dateOfBirth;
   }
 
   public StringProperty addressProperty()
