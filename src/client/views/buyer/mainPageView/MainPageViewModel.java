@@ -60,7 +60,9 @@ public class MainPageViewModel {
 //        }
     }
     public void onBookAddedToCart(PropertyChangeEvent evt) {
-        Platform.runLater(() -> booksForSale.remove((BookForSale) evt.getNewValue()));
+        Platform.runLater(() ->
+            booksForSale.remove((BookForSale) evt.getNewValue()));
+        System.out.println("I'm in the main page view model deleting book from the list");
     }
     public StringProperty getFullNameProperty() {
         return fullName;
@@ -97,7 +99,6 @@ public class MainPageViewModel {
         List<BookForSale> booksForSaleList = buyerModelManager.getBooks();
         booksForSale = FXCollections.observableArrayList(booksForSaleList);
     }
-
 
     public ObservableList<BookForSale> searchBooksByTitle(String title)
     {

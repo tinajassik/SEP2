@@ -35,8 +35,12 @@ public class CheckOutViewModel {
         model = ModelFactory.getInstance().getUserModelManager();
         buyerModelManager = ModelFactory.getInstance().getBuyerModelManager();
         userModelManager = ModelFactory.getInstance().getUserModelManager();
+        buyerModelManager.addPropertyChangeListener("BookForSaleDeleted", this::onBookPurchased);
     }
 
+    private void onBookPurchased(PropertyChangeEvent evt) {
+        Platform.runLater(() -> booksToBeSold.remove((BookForSale) evt.getNewValue()));
+    }
     public StringProperty getFullNameProperty() {
         return fullName;
     }
@@ -72,8 +76,9 @@ public class CheckOutViewModel {
             buyerModelManager.purchase();
     }
 
-    public void createOrder()
+    public void checkBooks() throws Exception
     {
-        buyerModelManager.createOrder((Buyer) userModelManager.getUser());
+        buyerModelManager.checkBooks();
     }
+
 }

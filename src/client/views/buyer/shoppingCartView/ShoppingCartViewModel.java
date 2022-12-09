@@ -78,6 +78,7 @@ public class ShoppingCartViewModel {
             for (BookForSale book: booksFromShoppingCart) {
                 if (!availableBooks.contains(book)) {
                     shoppingCartList.remove(book);
+                    buyerModelManager.removeFromShoppingCart(book);
                 }
         }}
             catch(ConcurrentModificationException e) {

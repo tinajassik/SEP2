@@ -41,8 +41,8 @@ public class CheckOutController {
     {
         try
         {
+            checkOutViewModel.checkBooks();
             checkOutViewModel.purchase();
-//            checkOutViewModel.createOrder();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Your books have been successfully purchased. We received your order. Thank you :)");
             alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);

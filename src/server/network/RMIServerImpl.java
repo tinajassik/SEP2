@@ -212,6 +212,7 @@ public class RMIServerImpl implements Remote, RMIServer
 
   @Override public void createOrder(Order order)
   {
+    System.out.println("I'm in the server order");
     storeModelManager.createOrder(order);
   }
 
