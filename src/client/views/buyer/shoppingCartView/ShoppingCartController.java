@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 import shared.BookForSale;
 
 import java.util.ArrayList;
@@ -42,17 +43,17 @@ public class ShoppingCartController {
 //        loadShoppingCart();
     }
 
-    public void loadShoppingCart()
-    {
-        ArrayList<BookForSale> shoppingCart = shoppingCartViewModel.getShoppingCart();
-        for (BookForSale book:shoppingCart )
-        {
-            if (!shoppingCartViewModel.getAvailableBooks().contains(book)) {
-                shoppingCart.remove(book);
-            }
-            listViewBooksToBuy.getItems().add(book);
-        }
-    }
+//    public void loadShoppingCart()
+//    {
+//        ArrayList<BookForSale> shoppingCart = shoppingCartViewModel.getShoppingCart();
+//        for (BookForSale book:shoppingCart )
+//        {
+//            if (!shoppingCartViewModel.getAvailableBooks().contains(book)) {
+//                shoppingCart.remove(book);
+//            }
+//            listViewBooksToBuy.getItems().add(book);
+//        }
+//    }
 
     @FXML
     public void onSignOut(ActionEvent actionEvent) {
@@ -89,12 +90,13 @@ public class ShoppingCartController {
             BookForSale bookToRemove = shoppingCartViewModel.getShoppingCart().get(listViewBooksToBuy.getSelectionModel().getSelectedIndex());
             shoppingCartViewModel.removeFromShoppingCart(bookToRemove);
             listViewBooksToBuy.getItems().clear();
-            loadShoppingCart();
+            shoppingCartViewModel.loadBooksForSale();
             shoppingCartViewModel.setPrice();
         }
         else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("The cart is empty/You have not selected any book");
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
             alert.show();
         }
     }

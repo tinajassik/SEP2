@@ -22,6 +22,7 @@ public class SignViewController {
     this.signViewModel = signViewModel;
     this.usernameField.textProperty().bindBidirectional(signViewModel.usernameProperty());
     this.passwordField.textProperty().bindBidirectional(signViewModel.passwordProperty());
+    clearAllFields();
   }
 
   public void onSignUp(ActionEvent actionEvent) {
@@ -45,6 +46,13 @@ public class SignViewController {
     {
       e.printStackTrace();
     }
+
+
+  }
+
+  public void clearAllFields() {
+    usernameField.clear();
+    passwordField.clear();
   }
 }
 

@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import shared.BookForSale;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 
 public class ShoppingCartViewModel {
@@ -17,7 +18,9 @@ public class ShoppingCartViewModel {
     private StringProperty fullName, username, price;
     private UserModelManager model;
     private BuyerModelManager buyerModelManager;
-    ObservableList<BookForSale> shoppingCart;
+
+    ObservableList<BookForSale> shoppingCart; // observable to be loaded in the controller (with the "is book already sold" check)
+    List<BookForSale>  shoppingCartList; // regular list to get all books from the cart
 
     public ShoppingCartViewModel() {
         fullName = new SimpleStringProperty();
@@ -26,7 +29,7 @@ public class ShoppingCartViewModel {
         model = ModelFactory.getInstance().getUserModelManager();
         updateLabels();
         buyerModelManager = ModelFactory.getInstance().getBuyerModelManager();
-//        model.addPropertyChangeListener("Labels", evt -> updateLabels(evt));
+        shoppingCartList = buyerModelManager.getShoppingCart();
     }
 
     public StringProperty getFullNameProperty() {
@@ -55,13 +58,31 @@ public class ShoppingCartViewModel {
        return (ArrayList<BookForSale>) buyerModelManager.getBooks();
     }
 
+
     public ObservableList<BookForSale> getShoppingCartList() {
         return shoppingCart;
     }
-    void loadBooksForSale() {
-        List<BookForSale> booksForSaleList = buyerModelManager.getShoppingCart();
-        shoppingCart = FXCollections.observableArrayList(booksForSaleList);
+
+
+    public void loadBooksForSale() {
+
+        // loading cart with each opening - works !
+        List<BookForSale> booksFromShoppingCart = buyerModelManager.getShoppingCart();
+        List<BookForSale> availableBooks = buyerModelManager.getBooks();
+
+        try {
+            for (BookForSale book: booksFromShoppingCart) {
+                if (!availableBooks.contains(book)) {
+                    shoppingCartList.remove(book);
+                }
+        }}
+            catch(ConcurrentModificationException e) {
+                System.out.println("There is an exception but it does not affect the functionality I think");
+            }
+
+        shoppingCart = FXCollections.observableArrayList(shoppingCartList);
     }
+
 
 
     public void setPrice()

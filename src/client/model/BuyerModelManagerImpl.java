@@ -71,7 +71,6 @@ public class BuyerModelManagerImpl implements BuyerModelManager {
         shoppingCart.add(bookForSale);
         System.out.println(bookForSale);
         support.firePropertyChange("New number of items",null, null);
-        support.firePropertyChange("BookAddedToCart", null, bookForSale);
 
     }
 
@@ -102,26 +101,27 @@ public class BuyerModelManagerImpl implements BuyerModelManager {
     }
 
     @Override
+    // also works
     public void purchase() throws Exception
     {
+        List<BookForSale> availableBooks = getBooks();
         for (BookForSale book: shoppingCart)
         {
-            if (!getBooks().contains(book)) {
+            if (!availableBooks.contains(book)) {
                 shoppingCart.remove(book);
                 throw new Exception();
             }
         }
+
+//        THIS Was throwing an error I think
+//        for (BookForSale book: shoppingCart) {
+//            client.createOrder(new Order((Buyer) client.getUser(), (Seller) book.getUser(), book));
+//        }
+
         client.purchase(shoppingCart);
         shoppingCart.clear();
     }
 
-//    @Override public boolean checkIfBookSold(BookForSale bookForSale)
-//    {
-//        if (bookForSale.getPrice() == -1)
-//            return true;
-//        else
-//            return false;
-//    }
 
     @Override public void createOrder(Buyer buyer)
     {
