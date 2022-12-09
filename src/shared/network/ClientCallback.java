@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 
 public interface ClientCallback extends Remote
 {
-    void update(BookForSale bookForSale) throws RemoteException;
-    void delete(BookForSale bookForSale) throws RemoteException;
+    void updateNewBook(BookForSale bookForSale) throws RemoteException;
+    void updateDeletedBook(BookForSale bookForSale) throws RemoteException;
+
 }

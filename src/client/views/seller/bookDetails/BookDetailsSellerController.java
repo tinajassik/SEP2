@@ -53,6 +53,7 @@ public class BookDetailsSellerController {
         textFieldTitle.textProperty().bindBidirectional(this.bookDetailsSellerViewModel.titleProperty());
         textFieldPublicationYear.textProperty().bindBidirectional(this.bookDetailsSellerViewModel.publicationYearProperty());
         textFieldCoverType.textProperty().bindBidirectional(this.bookDetailsSellerViewModel.coverTypeProperty());
+        comboBoxAuthors.getSelectionModel().select(bookDetailsSellerViewModel.getBookForSale().getBook().getAuthor());
         displayAuthors();
         displayGenres();
         listViewGenres.setOnMouseClicked(new EventHandler<Event>() {
