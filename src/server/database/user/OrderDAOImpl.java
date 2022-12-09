@@ -29,7 +29,7 @@ public class OrderDAOImpl implements OrderDAO {
     {
         try(Connection connection = DatabaseConnection.getInstance().getConnection())
         {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO order(book_id,seller_id,buyer_id) VALUES (?,?,?);");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO orders(book_id, seller_id, buyer_id) VALUES (?, ?, ?);");
             preparedStatement.setInt(1, order.getSoldBookId());
             preparedStatement.setString(2,order.getSellerUsername());
             preparedStatement.setString(3, order.getBuyerUsername());

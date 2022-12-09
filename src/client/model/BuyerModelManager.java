@@ -22,6 +22,8 @@ public interface BuyerModelManager extends Subject {
     ArrayList<BookForSale> getShoppingCart();
     double calculatePrice();
     double getPrice();
+    // also works
     void purchase() throws Exception;
+    void checkBooks() throws Exception;
     void createOrder(Buyer buyer);
 }

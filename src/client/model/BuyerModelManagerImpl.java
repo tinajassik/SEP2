@@ -68,9 +68,12 @@ public class BuyerModelManagerImpl implements BuyerModelManager {
 
     @Override public void addToShoppingCart(BookForSale bookForSale)
     {
-        shoppingCart.add(bookForSale);
-        System.out.println(bookForSale);
-        support.firePropertyChange("New number of items",null, null);
+        if (!shoppingCart.contains(bookForSale))
+        {
+            shoppingCart.add(bookForSale);
+            System.out.println(bookForSale);
+            support.firePropertyChange("New number of items",null, null);
+        }
 
     }
 
@@ -100,9 +103,20 @@ public class BuyerModelManagerImpl implements BuyerModelManager {
         return shoppingCartPrice;
     }
 
+
     @Override
     // also works
-    public void purchase() throws Exception
+    public void purchase()
+    {
+//        THIS Was throwing an error I think
+        for (BookForSale book: shoppingCart) {
+            client.createOrder(new Order((Buyer) client.getUser(), (Seller) book.getUser(), book));
+        }
+        client.purchase(shoppingCart);
+        shoppingCart.clear();
+    }
+
+    @Override public void checkBooks() throws Exception
     {
         List<BookForSale> availableBooks = getBooks();
         for (BookForSale book: shoppingCart)
@@ -112,12 +126,6 @@ public class BuyerModelManagerImpl implements BuyerModelManager {
                 throw new Exception();
             }
         }
-//        THIS Was throwing an error I think
-//        for (BookForSale book: shoppingCart) {
-//            client.createOrder(new Order((Buyer) client.getUser(), (Seller) book.getUser(), book));
-//        }
-        client.purchase(shoppingCart);
-        shoppingCart.clear();
     }
 
 
@@ -129,6 +137,7 @@ public class BuyerModelManagerImpl implements BuyerModelManager {
                 Order order = new Order(buyer, seller, soldBook);
                 client.createOrder(order);
         }
+
     }
 
     @Override

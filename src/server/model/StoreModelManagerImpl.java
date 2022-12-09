@@ -105,8 +105,7 @@ public class StoreModelManagerImpl implements StoreModelManager{
 
     @Override
     public void purchase(ArrayList<BookForSale> booksToBeSold) {
-        for (BookForSale book: booksToBeSold
-             ) {
+        for (BookForSale book: booksToBeSold) {
             try {
                 BookForSaleDAOImpl.getInstance().changePrice(book.getId());
                 propertyChangeSupport.firePropertyChange("BookForSaleDeleted", null, book);
@@ -120,6 +119,7 @@ public class StoreModelManagerImpl implements StoreModelManager{
     {
         try
         {
+            System.out.println("I'm in the store model manager");
             orderDAO.createOrder(order);
         }
         catch (SQLException e)

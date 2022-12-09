@@ -37,8 +37,8 @@ public class ShoppingCartController {
         labelUsername.textProperty().bindBidirectional(shoppingCartViewModel.getUsernameProperty());
         labelFullName.textProperty().bindBidirectional(shoppingCartViewModel.getFullNameProperty());
         labelPrice.textProperty().bindBidirectional(shoppingCartViewModel.getPriceProperty());
-        shoppingCartViewModel.setPrice();
         shoppingCartViewModel.loadBooksForSale();
+        shoppingCartViewModel.setPrice();
         listViewBooksToBuy.setItems(shoppingCartViewModel.getShoppingCartObservableList());
 //        loadShoppingCart();
     }
