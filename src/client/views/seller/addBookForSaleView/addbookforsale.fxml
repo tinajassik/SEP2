@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="234.0" prefWidth="603.0" style="-fx-background-color: #2d206f;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.views.seller.addBookForSaleView.AddBookForSaleController">
     <children>
-        <TextField fx:id="priceTextField" layoutX="166.0" layoutY="71.0" />
+        <TextField fx:id="priceTextField" layoutX="166.0" layoutY="71.0" promptText="Currency: $" />
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
         <Text fill="#f3f4d7" layoutX="23.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price">
             <font>
@@ -39,5 +39,15 @@
             <Font name="Bauhaus 93" size="14.0" />
          </font>
       </Button>
+      <Text fill="#ee0909" layoutX="144.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fill="#ee0909" layoutX="144.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>

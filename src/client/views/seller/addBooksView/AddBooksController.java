@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import shared.Author;
 import shared.Genre;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class AddBooksController {
 
@@ -62,12 +63,25 @@ public class AddBooksController {
 
     @FXML
     public void addBook(ActionEvent event) {
+        if (AreWeAllInThisTogether())
+        {
         ViewHandler.getInstance().openAddBookForSaleView();
         System.out.println("Controller Add Book");
         addBooksViewModel.addBook((Author) comboBoxAuthors.getSelectionModel().getSelectedItem(),selectedGenres);
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Incorrect book information");
+            alert.setHeaderText(" ");
+            alert.setContentText("You must fill out all fields, \nISBN can not contain letters and be more than 13 digits");
+            alert.show();
+        }
+
     }
 
     public void onBackButton() {
+
         ViewHandler.getInstance().openMainViewSellers();
     }
 
@@ -84,6 +98,24 @@ public class AddBooksController {
         for (Genre genre: genres) {
             listViewGenres.getItems().add(genre);
         }
+    }
+
+    public boolean AreWeAllInThisTogether(){
+
+        if (comboBoxAuthors.getSelectionModel().isEmpty() ||
+                title.getText().isEmpty() ||
+                coverType.getText().isEmpty() ||
+                isbn.getText().isEmpty() ||
+                listViewGenres.getSelectionModel().isEmpty() ||
+                yearOfPublication.getText().isEmpty() ||
+                isbn.getText().length() != 13 ||
+                (!isbn.getText().matches("[0-9]+"))
+        )
+
+        {
+            return false;
+        }
+        else return true;
     }
 
 }
