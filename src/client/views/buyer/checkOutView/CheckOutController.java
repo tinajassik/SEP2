@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 import shared.BookForSale;
 
 import java.util.ArrayList;
@@ -41,12 +42,18 @@ public class CheckOutController {
         try
         {
             checkOutViewModel.purchase();
-            checkOutViewModel.createOrder();
+//            checkOutViewModel.createOrder();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Your books have been successfully purchased. We received your order. Thank you :)");
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.show();
+            listViewBooks.getItems().clear();
         }
         catch (Exception e)
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Some of the books from your shopping cart have already been sold! Please go back to the shopping cart");
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
             alert.show();
         }
 
