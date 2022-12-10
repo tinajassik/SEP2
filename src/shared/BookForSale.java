@@ -10,6 +10,9 @@ public class BookForSale implements Serializable {
     private Book book;
     private User user; //sold By
 
+    private String username; // seller id
+    private String isbn; // book generic id
+
 
     public BookForSale(int id, String condition, double price, Book book, User user) {
         this.id = id;
@@ -17,6 +20,22 @@ public class BookForSale implements Serializable {
         this.price = price;
         this.book = book;
         this.user = user;
+    }
+
+    public BookForSale(int id, String condition, double price, String isbn, String sellerId) {
+        this.id = id;
+        this.condition = condition;
+        this.price = price;
+        this.username = sellerId;
+        this.isbn = isbn;
+    }
+
+    public String getISBN() {
+        return isbn;
+    }
+
+    public String getSellerID() {
+        return username;
     }
 
     public int getId() {

@@ -3,6 +3,8 @@ package server.model;
 import server.database.book.*;
 import server.database.user.OrderDAO;
 import server.database.user.OrderDAOImpl;
+import server.database.user.UserDAOImpl;
+import server.database.user.UserDao;
 import shared.*;
 
 import java.beans.PropertyChangeListener;
@@ -19,6 +21,7 @@ public class StoreModelManagerImpl implements StoreModelManager{
     private GenreDAO genreDAO;
     private AuthorDAO authorDAO;
     private OrderDAO orderDAO;
+    private UserDao userDAO;
 
     public StoreModelManagerImpl() throws SQLException {
         bookDAO = BookDAOImpl.getInstance();
@@ -27,6 +30,7 @@ public class StoreModelManagerImpl implements StoreModelManager{
         genreDAO = GenreDAOImpl.getInstance();
         authorDAO = AuthorDAOImpl.getInstance();
         orderDAO = OrderDAOImpl.getInstance();
+        userDAO = UserDAOImpl.getInstance();
     }
 
     @Override
@@ -65,7 +69,8 @@ public class StoreModelManagerImpl implements StoreModelManager{
     @Override
     public List<BookForSale> getBooks() {
         try {
-            return bookForSaleDAO.getAllBooks();
+            List<BookForSale> booksFromDTBS = bookForSaleDAO.getAllBooks();
+            return convertBookList(booksFromDTBS);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -74,12 +79,24 @@ public class StoreModelManagerImpl implements StoreModelManager{
     @Override
     public List<BookForSale> getBooksSoldBy(String id) {
         try {
-            return bookForSaleDAO.getBooksSoldBy(id);
+            List<BookForSale> booksFromDTBS = bookForSaleDAO.getBooksSoldBy(id);
+            return convertBookList(booksFromDTBS);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
+    public List<BookForSale> convertBookList(List<BookForSale> booksFromDTBS) {
+        List<BookForSale> booksToDisplay = new ArrayList<>();
+        for (BookForSale book : booksFromDTBS) {
+            try {
+                booksToDisplay.add(new BookForSale(book.getId(), book.getCondition(), book.getPrice(), bookDAO.readByISBN(book.getISBN()), UserDAOImpl.getInstance().getUserByUsername(book.getSellerID())));
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return booksToDisplay;
+    }
     @Override
     public void editBook(String condition, double price, Book book, String username) {
         try {
@@ -95,7 +112,8 @@ public class StoreModelManagerImpl implements StoreModelManager{
     @Override
     public void deleteBook(int id) {
         try {
-            BookForSale deletedBook = BookForSaleDAOImpl.getInstance().delete(id);
+            BookForSale bookFROMDTBS = BookForSaleDAOImpl.getInstance().delete(id);
+            BookForSale deletedBook = new BookForSale(bookFROMDTBS.getId(), bookFROMDTBS.getCondition(), bookFROMDTBS.getPrice(), bookDAO.readByISBN(bookFROMDTBS.getISBN()), userDAO.getUserByUsername(bookFROMDTBS.getSellerID()));
             System.out.println("in delete book in store model manager");
             propertyChangeSupport.firePropertyChange("BookForSaleDeleted", null, deletedBook);
         } catch (SQLException e) {
@@ -107,7 +125,7 @@ public class StoreModelManagerImpl implements StoreModelManager{
     public void purchase(ArrayList<BookForSale> booksToBeSold) {
         for (BookForSale book: booksToBeSold) {
             try {
-                BookForSaleDAOImpl.getInstance().changePrice(book.getId());
+                bookForSaleDAO.changePrice(book.getId());
                 propertyChangeSupport.firePropertyChange("BookForSaleDeleted", null, book);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -130,7 +148,7 @@ public class StoreModelManagerImpl implements StoreModelManager{
 
     @Override public List<BookForSale> getBooksByTile(String title)
     {
-        return bookForSaleDAO.getBooksByTitle(title);
+        return convertBookList(bookForSaleDAO.getBooksByTitle(title));
     }
 
     @Override public ArrayList<Genre> getAllGenres()
@@ -159,12 +177,13 @@ public class StoreModelManagerImpl implements StoreModelManager{
 
     @Override public List<BookForSale> getBooksByGenre(String genre)
     {
-        return bookForSaleDAO.getBooksByGenre(genre);
+        return convertBookList(bookForSaleDAO.getBooksByGenre(genre));
     }
 
     @Override public List<BookForSale> getBookByAuthor(String authorFName, String authorLName)
     {
-        return bookForSaleDAO.getBooksByAuthor(authorFName, authorLName);
+
+        return convertBookList(bookForSaleDAO.getBooksByAuthor(authorFName, authorLName));
     }
 
     @Override

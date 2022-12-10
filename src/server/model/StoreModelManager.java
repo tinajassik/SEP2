@@ -21,4 +21,6 @@ public interface StoreModelManager extends Subject {
     void purchase(ArrayList<BookForSale> booksToBeSold);
     void createOrder(Order order);
 
+    List<BookForSale> convertBookList(List<BookForSale> booksFromDTBS);
+
 }

@@ -51,12 +51,8 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from bookforsale where seller_id =? and price != -1;");
             preparedStatement.setString(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            List<BookForSale> books = new ArrayList<>();
-            while (resultSet.next()) {
-                books.add(new BookForSale(resultSet.getInt(1), resultSet.getString(5),resultSet.getDouble(4), BookDAOImpl.getInstance().readByISBN(resultSet.getString(2)), UserDAOImpl.getInstance().getUserByUsername(resultSet.getString(3))));
-            }
-            return books;
+            return returnBooksUtilMethod(preparedStatement);
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -71,11 +67,7 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
             preparedStatement.setString(3, isbn);
             preparedStatement.setString(4, username);
             preparedStatement.executeUpdate();
-//            BookForSale editedBook = null;
-//            if (resultSet.next()) {
-//                editedBook = new BookForSale(resultSet.getInt(1), resultSet.getString(5),resultSet.getDouble(4), BookDAOImpl.getInstance().readByISBN(resultSet.getString(2)), UserDAOImpl.getInstance().getUserByUsername(resultSet.getString(3)));
-//            }
-//            return editedBook;
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -111,15 +103,12 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
     @Override
     public List<BookForSale> getAllBooks() {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from bookforsale where price != -1");
-            ResultSet resultSet = preparedStatement.executeQuery();
-            List<BookForSale> booksForSale = new ArrayList<>();
-            while (resultSet.next()) {
-                booksForSale.add(new BookForSale(resultSet.getInt("id"), resultSet.getString("condition"),
-                        resultSet.getDouble("price"), BookDAOImpl.getInstance().readByISBN(resultSet.getString("isbn")),
-                        UserDAOImpl.getInstance().getUserByUsername(resultSet.getString("seller_id"))));
-            }
-            return booksForSale;
+
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * from bookforsale where price != -1");
+
+            return returnBooksUtilMethod(preparedStatement);
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -131,14 +120,7 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM book JOIN bookforsale on book.isbn = bookforsale.isbn WHERE lower(title) LIKE lower(?) and price != -1;");
             preparedStatement.setString(1, "%" + title +  "%" );
-            ResultSet resultSet = preparedStatement.executeQuery();
-            List<BookForSale> booksForSale = new ArrayList<>();
-            while (resultSet.next()) {
-                booksForSale.add(new BookForSale(resultSet.getInt("id"), resultSet.getString("condition"),
-                    resultSet.getDouble("price"), BookDAOImpl.getInstance().readByISBN(resultSet.getString("isbn")),
-                    UserDAOImpl.getInstance().getUserByUsername(resultSet.getString("seller_id"))));
-            }
-            return booksForSale;
+            return returnBooksUtilMethod(preparedStatement);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -148,15 +130,8 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
     {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM bookforsale JOIN book ON bookforsale.isbn = book.isbn JOIN bookgenre b ON book.isbn = b.isbn WHERE b.genre_name = ? and price != -1;");
-            preparedStatement.setString(1, genre );
-            ResultSet resultSet = preparedStatement.executeQuery();
-            List<BookForSale> booksForSale = new ArrayList<>();
-            while (resultSet.next()) {
-                booksForSale.add(new BookForSale(resultSet.getInt("id"), resultSet.getString("condition"),
-                    resultSet.getDouble("price"), BookDAOImpl.getInstance().readByISBN(resultSet.getString("isbn")),
-                    UserDAOImpl.getInstance().getUserByUsername(resultSet.getString("seller_id"))));
-            }
-            return booksForSale;
+            preparedStatement.setString(1, genre);
+            return returnBooksUtilMethod(preparedStatement);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -168,14 +143,7 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM bookforsale JOIN book ON bookforsale.isbn = book.isbn JOIN author a ON book.author_id = a.id WHERE  first_name = ? AND last_name = ? and price != -1;");
             preparedStatement.setString(1, authorFName );
             preparedStatement.setString(2, authorLName );
-            ResultSet resultSet = preparedStatement.executeQuery();
-            List<BookForSale> booksForSale = new ArrayList<>();
-            while (resultSet.next()) {
-                booksForSale.add(new BookForSale(resultSet.getInt("id"), resultSet.getString("condition"),
-                    resultSet.getDouble("price"), BookDAOImpl.getInstance().readByISBN(resultSet.getString("isbn")),
-                    UserDAOImpl.getInstance().getUserByUsername(resultSet.getString("seller_id"))));
-            }
-            return booksForSale;
+           return returnBooksUtilMethod(preparedStatement);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -189,13 +157,30 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                return new BookForSale(resultSet.getInt("id"), resultSet.getString("condition"), resultSet.getDouble("price"), BookDAOImpl.getInstance().readByISBN(resultSet.getString("isbn")), UserDAOImpl.getInstance().getUserByUsername(resultSet.getString("seller_id")));
+                return new BookForSale(resultSet.getInt("id"), resultSet.getString("condition"), resultSet.getDouble("price"), resultSet.getString("isbn"),
+                        resultSet.getString("seller_id"));
             } return null;
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
+
+    }
+
+    public List<BookForSale> returnBooksUtilMethod(PreparedStatement preparedStatement) {
+        try {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<BookForSale> booksForSale = new ArrayList<>();
+
+            while (resultSet.next()) {
+                booksForSale.add(new BookForSale(resultSet.getInt("id"), resultSet.getString("condition"), resultSet.getDouble("price"), resultSet.getString("isbn"),
+                        resultSet.getString("seller_id")));
+            }
+            return booksForSale;
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
 
     }
 

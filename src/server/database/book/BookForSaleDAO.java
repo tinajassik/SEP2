@@ -4,7 +4,9 @@ import shared.Book;
 import shared.BookForSale;
 import shared.User;
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public interface BookForSaleDAO {
@@ -19,8 +21,8 @@ public interface BookForSaleDAO {
     List<BookForSale> getBooksSoldBy(String id) throws SQLException;
     void update(String condition,double price, String isbn, String username) throws SQLException;
     BookForSale delete(int id) throws SQLException;
-
     void changePrice(int id) throws SQLException;
+    List<BookForSale> returnBooksUtilMethod(PreparedStatement preparedStatement);
 
 
 }

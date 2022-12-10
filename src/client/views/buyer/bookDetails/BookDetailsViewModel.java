@@ -87,7 +87,7 @@ public class BookDetailsViewModel {
         fullName.set(model.getUser().getFullName());
     }
 
-    public void addToShoppingCart()
+    public void addToShoppingCart() throws Exception
     {
         buyerModelManager.addToShoppingCart(bookForSale);
     }
