@@ -52,7 +52,7 @@ public class BookDAOImpl implements BookDAO {
                 int authorId = resultSet.getInt("author_id");
                 int publicationYear = resultSet.getInt("publication_year");
                 String coverType = resultSet.getString("cover_type");
-                Author author = AuthorDAOImpl.getInstance().getAuthorById(authorId);
+                Author author = new Author(resultSet.getString("first_name"), resultSet.getString("last_name"), authorId);
                 Book book = new Book(isbn,title,publicationYear,coverType,author, BookGenreDAOImpl.getInstance().getGenresForBook(isbn));
                 return book;
             } else {

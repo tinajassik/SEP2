@@ -17,7 +17,7 @@ public interface BuyerModelManager extends Subject {
     List<BookForSale> searchBooksByGenre(String genre);
     List<BookForSale> searchBooksByAuthor(String authorFName, String authorLName);
     ArrayList<Author> getAllAuthors();
-    void addToShoppingCart(BookForSale bookForSale);
+    void addToShoppingCart(BookForSale bookForSale) throws Exception;
     void removeFromShoppingCart(BookForSale bookForSale);
     ArrayList<BookForSale> getShoppingCart();
     double calculatePrice();

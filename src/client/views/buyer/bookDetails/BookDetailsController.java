@@ -82,7 +82,13 @@ public class BookDetailsController {
 
     public void onAddToShoppingCart(ActionEvent actionEvent)
     {
-        bookDetailsViewModel.addToShoppingCart();
+        try {
+            bookDetailsViewModel.addToShoppingCart();
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("This item is already in your cart.");
+            alert.show();
+        }
         addToCartButton.setDisable(true);
 
     }

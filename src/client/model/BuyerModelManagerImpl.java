@@ -66,13 +66,15 @@ public class BuyerModelManagerImpl implements BuyerModelManager {
         return client.getAuthors();
     }
 
-    @Override public void addToShoppingCart(BookForSale bookForSale)
-    {
+    @Override public void addToShoppingCart(BookForSale bookForSale) throws Exception {
         if (!shoppingCart.contains(bookForSale))
         {
             shoppingCart.add(bookForSale);
             System.out.println(bookForSale);
             support.firePropertyChange("New number of items",null, null);
+        }
+        else {
+            throw new Exception();
         }
 
     }
