@@ -43,20 +43,20 @@ public class AddBooksController {
             String genres = "";
             @Override
             public void handle(Event event) {
-                ObservableList<Genre> selectedItems =  listViewGenres.getSelectionModel().getSelectedItems();
+                ObservableList<Genre> selectedItems = listViewGenres.getSelectionModel().getSelectedItems();
                 for(Genre g : selectedItems){
                     genres += g.getGenreName() +" ";
                     selectedGenres.add(g);
                 }
                 labelGenres.setText(genres);
             }
-
         });
         this.addBooksViewModel = addBooksViewModel;
         this.isbn.textProperty().bindBidirectional(addBooksViewModel.isbnProperty());
         this.coverType.textProperty().bindBidirectional(addBooksViewModel.coverTypeProperty());
         this.yearOfPublication.textProperty().bindBidirectional(addBooksViewModel.yearOfPublicationProperty());
         this.title.textProperty().bindBidirectional(addBooksViewModel.titleProperty());
+        this.labelGenres.textProperty().bindBidirectional(addBooksViewModel.genreProperty());
         displayAuthors();
         displayGenres();
     }
@@ -65,9 +65,8 @@ public class AddBooksController {
     public void addBook(ActionEvent event) {
         if (AreWeAllInThisTogether())
         {
-        ViewHandler.getInstance().openAddBookForSaleView();
-        System.out.println("Controller Add Book");
         addBooksViewModel.addBook((Author) comboBoxAuthors.getSelectionModel().getSelectedItem(),selectedGenres);
+        ViewHandler.getInstance().openAddBookForSaleView();
         }
         else
         {

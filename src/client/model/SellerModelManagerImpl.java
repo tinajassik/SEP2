@@ -15,7 +15,6 @@ public class SellerModelManagerImpl implements SellerModelManager {
 
    private Client client;
    private Book bookGeneric;
-
    private PropertyChangeSupport support;
 
     public SellerModelManagerImpl() {
@@ -24,15 +23,18 @@ public class SellerModelManagerImpl implements SellerModelManager {
         client.addPropertyChangeListener("BookForSaleDeleted", this::onBookGotPurchased);
     }
 
-    public void onBookGotPurchased(PropertyChangeEvent evt) {
-        support.firePropertyChange(evt);
-    }
-
     @Override
     public void addBookForSale(double price, String condition) {
         User soldBy = client.getUser();
         client.addBookForSale(condition, price, bookGeneric, soldBy);
     }
+
+
+    public void onBookGotPurchased(PropertyChangeEvent evt) {
+        support.firePropertyChange(evt);
+    }
+
+
 
     @Override
     public void AddBook(String title, String isbn, String coverType, int publicationYear, Author author, ArrayList<Genre> genres) {

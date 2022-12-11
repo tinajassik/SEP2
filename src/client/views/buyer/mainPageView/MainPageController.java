@@ -37,10 +37,6 @@ public class MainPageController {
     private Label labelUsername;
     @FXML
     private Label labelFullName;
-    @FXML
-    private Button  buttonShoppingCart;
-    @FXML
-    private Button  buttonSignOut;
 
     public void init(MainPageViewModel mainPageViewModel) {
         labelUsername.textProperty().bindBidirectional(mainPageViewModel.getUsernameProperty());

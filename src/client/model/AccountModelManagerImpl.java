@@ -10,18 +10,16 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.HashMap;
 
-public class UserModelManagerImpl implements UserModelManager, Subject
+public class AccountModelManagerImpl implements AccountModelManager, Subject
 {
     // model responsible for logging in/creating account
-    private HashMap<String, User> allRegisteredUsers = new HashMap<>();
-
     private PropertyChangeSupport propertyChangeSupport ;
 
     private Client client;
 
     private User user;
 
-    public UserModelManagerImpl(Client client)
+    public AccountModelManagerImpl(Client client)
     {
         this.client = client;
         client.startClient();
@@ -31,17 +29,15 @@ public class UserModelManagerImpl implements UserModelManager, Subject
 
     @Override
     public boolean registerBuyer(String fullName, String address, String phoneNumber, String email, String username, String password) {
-        this.user = new Buyer(fullName,address,phoneNumber, email, username, password);
+        user = new Buyer(fullName,address,phoneNumber, email, username, password);
         return client.registerUser(user);
 
     }
 
     @Override
     public boolean registerSeller(String fullName, String address, String phoneNumber, String email, String username, String password) {
-        this.user = new Seller(fullName,address,phoneNumber, email, username, password);
-//        client.startClient();
-        System.out.println("in user model manager - client side");
-       return client.registerUser(user);
+        user = new Seller(fullName,address,phoneNumber, email, username, password);
+        return client.registerUser(user);
     }
 
     @Override
@@ -50,7 +46,7 @@ public class UserModelManagerImpl implements UserModelManager, Subject
     }
 
     @Override
-    public boolean validatePassword(String username, String password) throws IllegalAccessException {
+    public boolean validatePassword(String username, String password) {
         return client.checkPassword(username,password);
     }
 

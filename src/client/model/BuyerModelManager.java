@@ -23,7 +23,7 @@ public interface BuyerModelManager extends Subject {
     double calculatePrice();
     double getPrice();
     // also works
-    void purchase() throws Exception;
+    void purchase();
     void checkBooks() throws Exception;
     void createOrder(Buyer buyer);
 }

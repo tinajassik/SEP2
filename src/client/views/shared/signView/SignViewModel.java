@@ -1,7 +1,7 @@
 package client.views.shared.signView;
 
 import client.core.ModelFactory;
-import client.model.UserModelManager;
+import client.model.AccountModelManager;
 import shared.User;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -9,27 +9,27 @@ import javafx.beans.property.StringProperty;
 public class SignViewModel
 {
   private StringProperty username, password;
-  private UserModelManager userModelManager;
+  private AccountModelManager accountModelManager;
 
   public SignViewModel()
   {
     this.username = new SimpleStringProperty();
     this.password = new SimpleStringProperty();
-    userModelManager = ModelFactory.getInstance().getUserModelManager();
+    accountModelManager = ModelFactory.getInstance().getUserModelManager();
   }
 
   public StringProperty usernameProperty(){return username;}
   public StringProperty passwordProperty(){return password;}
 
   public User getUserType() {
-    return userModelManager.getUserType(username.getValue());
+    return accountModelManager.getUserType(username.getValue());
   }
   public boolean validatePassword() throws IllegalAccessException {
-    return userModelManager.validatePassword(username.getValue(),password.getValue());
+    return accountModelManager.validatePassword(username.getValue(),password.getValue());
   }
 
   public boolean userExists() throws IllegalAccessException {
-    return userModelManager.validateUser(username.getValue());
+    return accountModelManager.validateUser(username.getValue());
   }
 
 }

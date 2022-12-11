@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BuyerModelManagerImpl implements BuyerModelManager {
-
     private Client client;
     private PropertyChangeSupport support = new PropertyChangeSupport(this);
     private ArrayList<BookForSale> shoppingCart;
@@ -25,8 +24,6 @@ public class BuyerModelManagerImpl implements BuyerModelManager {
     }
 
     private void onNewBookForSale(PropertyChangeEvent evt) {
-//        System.out.println(evt.getNewValue().toString());
-        System.out.println("new book for sale in buyer model manager");
         support.firePropertyChange(evt);
     }
 
@@ -34,7 +31,6 @@ public class BuyerModelManagerImpl implements BuyerModelManager {
         System.out.println("book deleted in buyer model manager");
         support.firePropertyChange(evt);
     }
-
 
     //get Available books
     public List<BookForSale> getBooks() {
@@ -67,16 +63,15 @@ public class BuyerModelManagerImpl implements BuyerModelManager {
     }
 
     @Override public void addToShoppingCart(BookForSale bookForSale) throws Exception {
-        if (!shoppingCart.contains(bookForSale))
-        {
+
+        if (!shoppingCart.contains(bookForSale)) {
+
             shoppingCart.add(bookForSale);
-            System.out.println(bookForSale);
             support.firePropertyChange("New number of items",null, null);
         }
         else {
             throw new Exception();
         }
-
     }
 
     @Override public void removeFromShoppingCart(BookForSale bookForSale)
@@ -105,12 +100,9 @@ public class BuyerModelManagerImpl implements BuyerModelManager {
         return shoppingCartPrice;
     }
 
-
     @Override
-    // also works
     public void purchase()
     {
-//        THIS Was throwing an error I think
         for (BookForSale book: shoppingCart) {
             client.createOrder(new Order((Buyer) client.getUser(), (Seller) book.getUser(), book));
         }

@@ -2,7 +2,7 @@ package client.views.buyer.mainPageView;
 
 import client.core.ModelFactory;
 import client.model.BuyerModelManager;
-import client.model.UserModelManager;
+import client.model.AccountModelManager;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -23,7 +23,7 @@ import java.util.List;
 public class MainPageViewModel {
 
     private StringProperty fullName, username, numberOfItems;
-    private UserModelManager model;
+    private AccountModelManager model;
     private BuyerModelManager buyerModelManager;
 
     private ObservableList<BookForSale> booksForSale;
@@ -35,15 +35,15 @@ public class MainPageViewModel {
         model = ModelFactory.getInstance().getUserModelManager();
         buyerModelManager = ModelFactory.getInstance().getBuyerModelManager();
         buyerModelManager.addPropertyChangeListener("NewBookForSale", this::onNewBookForSale);
-//        buyerModelManager.addPropertyChangeListener("New number of items", this::newNumberOfItems);
         buyerModelManager.addPropertyChangeListener("BookForSaleDeleted", this::onBookForSaleDeleted);
         buyerModelManager.addPropertyChangeListener("BookAddedToCart", this::onBookAddedToCart);
     }
 
     private void onNewBookForSale(PropertyChangeEvent evt) {
-        System.out.println("book new for sale in view model");
         Platform.runLater(() -> booksForSale.add((BookForSale) evt.getNewValue()));
     }
+
+
 
     private void onBookForSaleDeleted(PropertyChangeEvent evt) {
         System.out.println("book deleted in view model");
@@ -95,6 +95,7 @@ public class MainPageViewModel {
     public ObservableList<BookForSale> getBooksForSale() {
         return booksForSale;
     }
+
     void loadBooksForSale() {
         List<BookForSale> booksForSaleList = buyerModelManager.getBooks();
         booksForSale = FXCollections.observableArrayList(booksForSaleList);

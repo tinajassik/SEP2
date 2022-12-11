@@ -2,29 +2,24 @@ package client.views.buyer.checkOutView;
 
 import client.core.ModelFactory;
 import client.model.BuyerModelManager;
-import client.model.UserModelManager;
+import client.model.AccountModelManager;
 import javafx.application.Platform;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
 import shared.BookForSale;
-import shared.Buyer;
 
 import java.beans.PropertyChangeEvent;
-import java.util.ArrayList;
 import java.util.List;
 
 public class CheckOutViewModel {
 
     private final BuyerModelManager buyerModelManager;
-    private final UserModelManager userModelManager;
+    private final AccountModelManager accountModelManager;
     private StringProperty fullName;
     private StringProperty username;
-    private UserModelManager model;
+    private AccountModelManager model;
     private ObservableList<BookForSale> booksToBeSold;
     private StringProperty price;
 
@@ -34,7 +29,7 @@ public class CheckOutViewModel {
         price = new SimpleStringProperty();
         model = ModelFactory.getInstance().getUserModelManager();
         buyerModelManager = ModelFactory.getInstance().getBuyerModelManager();
-        userModelManager = ModelFactory.getInstance().getUserModelManager();
+        accountModelManager = ModelFactory.getInstance().getUserModelManager();
         buyerModelManager.addPropertyChangeListener("BookForSaleDeleted", this::onBookPurchased);
     }
 

@@ -3,7 +3,7 @@ package client.model;
 import shared.User;
 import util.Subject;
 
-public interface UserModelManager extends Subject {
+public interface AccountModelManager extends Subject {
 
     boolean registerBuyer(String fullName, String address, String phoneNumber, String email, String username, String password);
     boolean registerSeller(String fullName, String address, String phoneNumber, String email, String username, String password);
