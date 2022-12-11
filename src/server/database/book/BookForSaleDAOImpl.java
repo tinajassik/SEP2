@@ -1,9 +1,7 @@
 package server.database.book;
 
 import server.database.DatabaseConnection;
-import server.database.user.UserDAOImpl;
 import shared.*;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,6 +17,7 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
     private BookForSaleDAOImpl() {
         connection = DatabaseConnection.getInstance().getConnection();
     }
+
     public static synchronized BookForSaleDAOImpl getInstance() throws SQLException {
         if (instance == null) {
             instance = new BookForSaleDAOImpl();
@@ -29,14 +28,16 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
     @Override
     public BookForSale create(String condition, double price, Book book, User user) throws SQLException {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO bookforsale  (isbn,seller_id, price, condition) values (?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "INSERT INTO bookforsale  (isbn,seller_id, price, condition) values (?,?,?,?)",
+                    PreparedStatement.RETURN_GENERATED_KEYS);
+
             preparedStatement.setString(4,condition);
             preparedStatement.setDouble(3, price);
             preparedStatement.setString(1, book.getIsbn());
             preparedStatement.setString(2, user.getUsername());
             preparedStatement.executeUpdate();
             ResultSet keys = preparedStatement.getGeneratedKeys();
-
             if (keys.next()) {
                 return new BookForSale(keys.getInt(1), condition, price, book, user);
             }

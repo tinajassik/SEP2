@@ -75,17 +75,14 @@ public class RMIServerImpl implements Remote, RMIServer
     PropertyChangeListener listener = new PropertyChangeListener() {
       @Override
       public void propertyChange(PropertyChangeEvent evt) {
-
         try {
           clientCallback.updateNewBook((BookForSale) evt.getNewValue());
-          System.out.println("in registerclientcallback update method");
         } catch (RemoteException e) {
           throw new RuntimeException(e);
         }
       }
     };
     listeners.put(clientCallback, listener);
-    System.out.println(listeners.toString());
     storeModelManager.addPropertyChangeListener("NewBookForSale", listener);
   }
 
@@ -104,7 +101,6 @@ public class RMIServerImpl implements Remote, RMIServer
       }
     };
     listeners.put(clientCallback, listener);
-    System.out.println(listeners.toString());
     storeModelManager.addPropertyChangeListener("BookForSaleDeleted", listener);
   }
 
@@ -123,11 +119,10 @@ public class RMIServerImpl implements Remote, RMIServer
 
   @Override
   public boolean registerNewUser(User user) {
-    if (user instanceof Seller)  {
-      System.out.println("in server");
+    if (user instanceof Seller)
       return logInModelManager.registerSeller(user);
-    }
-    else return logInModelManager.registerBuyer(user);
+    else
+      return logInModelManager.registerBuyer(user);
 
   }
 

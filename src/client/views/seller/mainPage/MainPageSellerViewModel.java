@@ -2,7 +2,7 @@ package client.views.seller.mainPage;
 
 import client.core.ModelFactory;
 import client.model.SellerModelManager;
-import client.model.UserModelManager;
+import client.model.AccountModelManager;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -19,7 +19,7 @@ public class MainPageSellerViewModel {
     private StringProperty fullName;
     private StringProperty username;
     private StringProperty title;
-    private UserModelManager userModelManager;
+    private AccountModelManager accountModelManager;
     private SellerModelManager sellerModelManager;
     private ObservableList<BookForSale> books;
 
@@ -27,7 +27,7 @@ public class MainPageSellerViewModel {
         fullName = new SimpleStringProperty();
         username = new SimpleStringProperty();
         title = new SimpleStringProperty();
-        userModelManager = ModelFactory.getInstance().getUserModelManager();
+        accountModelManager = ModelFactory.getInstance().getUserModelManager();
         sellerModelManager = ModelFactory.getInstance().getSellerModelManager();
         sellerModelManager.addPropertyChangeListener("BookForSaleDeleted", this::onBookSold);
     }
@@ -57,8 +57,8 @@ public class MainPageSellerViewModel {
 
     public void updateLabels()
     {
-        username.set(userModelManager.getUser().getUsername());
-        fullName.set(userModelManager.getUser().getFullName());
+        username.set(accountModelManager.getUser().getUsername());
+        fullName.set(accountModelManager.getUser().getFullName());
     }
 
 //    public List<BookForSale> getBooksSoldBy() {

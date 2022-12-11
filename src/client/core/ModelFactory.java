@@ -5,9 +5,8 @@ import client.model.*;
 public class ModelFactory {
 
     private static ModelFactory instance = new ModelFactory();
-    private UserModelManager userModelManager;
+    private AccountModelManager accountModelManager;
     private SellerModelManager sellerModelManager;
-
     private BuyerModelManager buyerModelManager;
 
     public static ModelFactory getInstance() {
@@ -18,11 +17,11 @@ public class ModelFactory {
 
     }
 
-    public UserModelManager getUserModelManager() {
-        if (userModelManager == null) {
-            userModelManager = new UserModelManagerImpl(ClientFactory.getInstance().getClient());
+    public AccountModelManager getUserModelManager() {
+        if (accountModelManager == null) {
+            accountModelManager = new AccountModelManagerImpl(ClientFactory.getInstance().getClient());
         }
-        return userModelManager;
+        return accountModelManager;
     }
 
     public SellerModelManager getSellerModelManager() {

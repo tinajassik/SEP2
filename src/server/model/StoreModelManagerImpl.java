@@ -17,32 +17,42 @@ public class StoreModelManagerImpl implements StoreModelManager{
 
     private BookDAO bookDAO;
     private BookForSaleDAO bookForSaleDAO;
-    private PropertyChangeSupport propertyChangeSupport;
     private GenreDAO genreDAO;
     private AuthorDAO authorDAO;
     private OrderDAO orderDAO;
     private UserDao userDAO;
+    private PropertyChangeSupport propertyChangeSupport;
 
     public StoreModelManagerImpl() throws SQLException {
         bookDAO = BookDAOImpl.getInstance();
         bookForSaleDAO = BookForSaleDAOImpl.getInstance();
-        propertyChangeSupport = new PropertyChangeSupport(this);
         genreDAO = GenreDAOImpl.getInstance();
         authorDAO = AuthorDAOImpl.getInstance();
         orderDAO = OrderDAOImpl.getInstance();
         userDAO = UserDAOImpl.getInstance();
+        propertyChangeSupport = new PropertyChangeSupport(this);
     }
 
     @Override
-    public BookForSale addBookForSale(String condition, double price, Book book, User user) {
+    public void addBookForSale(String condition, double price, Book book, User user) {
         try {
             BookForSale bookForSale = BookForSaleDAOImpl.getInstance().create(condition,price, book, user);
             propertyChangeSupport.firePropertyChange("NewBookForSale", null, bookForSale);
-            return bookForSale;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void addPropertyChangeListener(String eventName, PropertyChangeListener listener) {
+        propertyChangeSupport.addPropertyChangeListener(eventName,listener);
+    }
+
+    @Override
+    public void removePropertyChangeListener(String eventName, PropertyChangeListener listener) {
+        propertyChangeSupport.removePropertyChangeListener(eventName,listener);
+    }
+
 
     @Override
     public void AddBook(Book book) {
@@ -186,13 +196,4 @@ public class StoreModelManagerImpl implements StoreModelManager{
         return convertBookList(bookForSaleDAO.getBooksByAuthor(authorFName, authorLName));
     }
 
-    @Override
-    public void addPropertyChangeListener(String eventName, PropertyChangeListener listener) {
-        propertyChangeSupport.addPropertyChangeListener(eventName,listener);
-    }
-
-    @Override
-    public void removePropertyChangeListener(String eventName, PropertyChangeListener listener) {
-        propertyChangeSupport.removePropertyChangeListener(eventName,listener);
-    }
 }

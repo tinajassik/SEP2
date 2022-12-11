@@ -6,6 +6,8 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
+import javafx.event.Event;
 import shared.Author;
 import shared.Genre;
 
@@ -55,7 +57,6 @@ public class AddBooksViewModel {
     public StringProperty isbnProperty() {
         return isbn;
     }
-
 
     public StringProperty genreProperty() {
         return genre;

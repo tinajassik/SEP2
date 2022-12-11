@@ -1,10 +1,9 @@
 package client.views.shared.createAccountView;
 
 import client.core.ModelFactory;
-import client.model.UserModelManager;
+import client.model.AccountModelManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.scene.control.Alert;
 import util.Subject;
 
 import java.beans.PropertyChangeListener;
@@ -13,7 +12,7 @@ import java.beans.PropertyChangeSupport;
 public class CreateAccountViewModel implements Subject
 {
   private StringProperty fullName, address, phoneNumber, email, username, password;
-  private UserModelManager userModelManager;
+  private AccountModelManager accountModelManager;
   private PropertyChangeSupport propertyChangeSupport;
 
   public CreateAccountViewModel()
@@ -24,7 +23,7 @@ public class CreateAccountViewModel implements Subject
     this.email = new SimpleStringProperty();
     this.username = new SimpleStringProperty();
     this.password = new SimpleStringProperty();
-    this.userModelManager = ModelFactory.getInstance().getUserModelManager();
+    this.accountModelManager = ModelFactory.getInstance().getUserModelManager();
     this.propertyChangeSupport = new PropertyChangeSupport(this);
   }
 
@@ -60,7 +59,7 @@ public class CreateAccountViewModel implements Subject
 
   public boolean registerBuyer() {
 
-        return userModelManager.registerBuyer(fullName.getValue(), address.getValue(),
+        return accountModelManager.registerBuyer(fullName.getValue(), address.getValue(),
             phoneNumber.getValue(), email.getValue(), username.getValue(),
             password.getValue());
 
@@ -76,7 +75,7 @@ public class CreateAccountViewModel implements Subject
 
   public boolean registerSeller()  {
     System.out.println("in view model");
-      return userModelManager.registerSeller(fullName.getValue(), address.getValue(),
+      return accountModelManager.registerSeller(fullName.getValue(), address.getValue(),
               phoneNumber.getValue(), email.getValue(), username.getValue(),
               password.getValue());
 

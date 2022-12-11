@@ -1,8 +1,5 @@
 package server.core;
 
-import client.core.ClientFactory;
-import client.model.UserModelManager;
-import client.model.UserModelManagerImpl;
 import server.model.LogInModelManager;
 import server.model.LogInModelManagerImpl;
 import server.model.StoreModelManager;

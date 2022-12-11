@@ -1,9 +1,8 @@
 package client.views.buyer.bookDetails;
 
 import client.core.ModelFactory;
-import client.core.ViewHandler;
 import client.model.BuyerModelManager;
-import client.model.UserModelManager;
+import client.model.AccountModelManager;
 import javafx.beans.property.*;
 import shared.BookForSale;
 
@@ -12,7 +11,7 @@ import java.beans.PropertyChangeEvent;
 public class BookDetailsViewModel {
     private StringProperty fullName;
     private StringProperty username;
-    private UserModelManager model;
+    private AccountModelManager model;
     private BuyerModelManager buyerModelManager;
     private BookForSale bookForSale;
 

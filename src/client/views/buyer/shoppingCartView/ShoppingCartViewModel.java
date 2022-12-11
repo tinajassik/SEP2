@@ -2,7 +2,7 @@ package client.views.buyer.shoppingCartView;
 
 import client.core.ModelFactory;
 import client.model.BuyerModelManager;
-import client.model.UserModelManager;
+import client.model.AccountModelManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -16,7 +16,7 @@ import java.util.List;
 public class ShoppingCartViewModel {
 
     private StringProperty fullName, username, price;
-    private UserModelManager model;
+    private AccountModelManager model;
     private BuyerModelManager buyerModelManager;
 
     ObservableList<BookForSale> shoppingCart; // observable to be loaded in the controller (with the "is book already sold" check)

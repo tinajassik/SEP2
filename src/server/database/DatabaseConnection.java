@@ -8,11 +8,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
-
     private String url = "jdbc:postgresql://mouse.db.elephantsql.com:5432/jmnwgfvg";
     private String username = "jmnwgfvg";
     private String password = "TtdW1QHeNvPi3xTqaE6U1TaON3FDsL1T";
-
     private static DatabaseConnection instance;
 
     public synchronized Connection getConnection() {
