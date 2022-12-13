@@ -10,10 +10,9 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.HashMap;
 
-public class AccountModelManagerImpl implements AccountModelManager, Subject
+public class AccountModelManagerImpl implements AccountModelManager
 {
     // model responsible for logging in/creating account
-    private PropertyChangeSupport propertyChangeSupport ;
 
     private Client client;
 
@@ -23,7 +22,6 @@ public class AccountModelManagerImpl implements AccountModelManager, Subject
     {
         this.client = client;
         client.startClient();
-        propertyChangeSupport = new PropertyChangeSupport(this);
     }
 
 
@@ -61,13 +59,4 @@ public class AccountModelManagerImpl implements AccountModelManager, Subject
         return user;
     }
 
-    @Override
-    public void addPropertyChangeListener(String eventName, PropertyChangeListener listener) {
-        propertyChangeSupport.addPropertyChangeListener(eventName,listener);
-    }
-
-    @Override
-    public void removePropertyChangeListener(String eventName, PropertyChangeListener listener) {
-        propertyChangeSupport.removePropertyChangeListener(eventName,listener);
-    }
 }

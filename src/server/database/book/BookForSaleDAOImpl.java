@@ -12,10 +12,10 @@ import java.util.List;
 public class BookForSaleDAOImpl implements BookForSaleDAO {
 
     private static BookForSaleDAOImpl instance;
-    private Connection connection;
 
     private BookForSaleDAOImpl() {
-        connection = DatabaseConnection.getInstance().getConnection();
+
+
     }
 
     public static synchronized BookForSaleDAOImpl getInstance() throws SQLException {
@@ -27,7 +27,7 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
 
     @Override
     public BookForSale create(String condition, double price, Book book, User user) throws SQLException {
-        try {
+        try (Connection connection = DatabaseConnection.getInstance().getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "INSERT INTO bookforsale  (isbn,seller_id, price, condition) values (?,?,?,?)",
                     PreparedStatement.RETURN_GENERATED_KEYS);
@@ -49,7 +49,7 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
     }
     @Override
     public List<BookForSale> getBooksSoldBy(String id) {
-        try {
+        try (Connection connection = DatabaseConnection.getInstance().getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from bookforsale where seller_id =? and price != -1;");
             preparedStatement.setString(1, id);
             return returnBooksUtilMethod(preparedStatement);
@@ -61,7 +61,7 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
 
     @Override
     public void update(String condition, double price, String isbn, String username) {
-        try {
+        try(Connection connection = DatabaseConnection.getInstance().getConnection()) {
             PreparedStatement preparedStatement =connection.prepareStatement("UPDATE bookforsale SET price = ?, condition =? where isbn =? and seller_id =?;");
             preparedStatement.setDouble(1, price);
             preparedStatement.setString(2, condition);
@@ -76,7 +76,7 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
 
     @Override
     public BookForSale delete(int id) {
-        try {
+        try (Connection connection = DatabaseConnection.getInstance().getConnection()){
             BookForSale bookToBeDeleted = getBookById(id);
             PreparedStatement statement = connection.prepareStatement("DELETE FROM bookforsale WHERE id = ?");
             statement.setInt(1, id);
@@ -91,7 +91,7 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
     // price -1 will indicate that the book is no longer available for sale
     @Override
     public void changePrice(int id) throws SQLException {
-        try {
+        try (Connection connection = DatabaseConnection.getInstance().getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE bookforsale SET price = -1 where id =?");
             preparedStatement.setInt(1,id);
             preparedStatement.executeUpdate();
@@ -103,7 +103,7 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
 
     @Override
     public List<BookForSale> getAllBooks() {
-        try {
+        try (Connection connection = DatabaseConnection.getInstance().getConnection()){
 
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * from bookforsale where price != -1");
@@ -118,7 +118,7 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
 
     @Override public List<BookForSale> getBooksByTitle(String title)
     {
-        try {
+        try (Connection connection = DatabaseConnection.getInstance().getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM book JOIN bookforsale on book.isbn = bookforsale.isbn WHERE lower(title) LIKE lower(?) and price != -1;");
             preparedStatement.setString(1, "%" + title +  "%" );
             return returnBooksUtilMethod(preparedStatement);
@@ -129,7 +129,7 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
 
     @Override public List<BookForSale> getBooksByGenre(String genre)
     {
-        try {
+        try (Connection connection = DatabaseConnection.getInstance().getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM bookforsale JOIN book ON bookforsale.isbn = book.isbn JOIN bookgenre b ON book.isbn = b.isbn WHERE b.genre_name = ? and price != -1;");
             preparedStatement.setString(1, genre);
             return returnBooksUtilMethod(preparedStatement);
@@ -140,7 +140,7 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
 
     @Override public List<BookForSale> getBooksByAuthor(String authorFName, String authorLName)
     {
-        try {
+        try (Connection connection = DatabaseConnection.getInstance().getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM bookforsale JOIN book ON bookforsale.isbn = book.isbn JOIN author a ON book.author_id = a.id WHERE  first_name = ? AND last_name = ? and price != -1;");
             preparedStatement.setString(1, authorFName );
             preparedStatement.setString(2, authorLName );
@@ -153,7 +153,7 @@ public class BookForSaleDAOImpl implements BookForSaleDAO {
 
     public BookForSale getBookById(int id) throws SQLException {
 
-        try  {
+        try (Connection connection = DatabaseConnection.getInstance().getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from bookforsale where id = ?;");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();

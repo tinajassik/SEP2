@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class BookStoreApplication extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         ViewHandler.getInstance().start();
     }
 }

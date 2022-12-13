@@ -21,9 +21,7 @@ public class ViewHandler {
 
     private static ViewHandler instance = new ViewHandler();
     private Stage stage;
-    private BookDetailsController bookDetailsController;
     private MainPageController mainPageController;
-
     private MainPageSellerController mainPageSellerController;
 
     public static ViewHandler getInstance(){
@@ -214,8 +212,8 @@ public class ViewHandler {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../views/buyer/bookDetails/bookdetails.fxml"));
             Parent root = loader.load();
-            this.bookDetailsController = loader.getController();
-            this.bookDetailsController.init(ViewModelFactory.getInstance().getBookDetailsViewModel());
+            BookDetailsController bookDetailsController = loader.getController();
+            bookDetailsController.init(ViewModelFactory.getInstance().getBookDetailsViewModel());
             stage.setTitle("Shopping Cart");
             scene = new Scene(root);
         }

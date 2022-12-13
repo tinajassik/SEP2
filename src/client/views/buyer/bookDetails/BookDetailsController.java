@@ -17,8 +17,6 @@ import java.sql.SQLException;
 
 public class BookDetailsController {
 
-    private Book book;
-
     private BookDetailsViewModel bookDetailsViewModel;
     @FXML
     public Label numberOfItemsLabel;

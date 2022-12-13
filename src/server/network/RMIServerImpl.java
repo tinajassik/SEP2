@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class RMIServerImpl implements Remote, RMIServer
+public class RMIServerImpl implements RMIServer
 
 {
   private LogInModelManager logInModelManager;

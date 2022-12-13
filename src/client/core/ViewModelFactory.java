@@ -22,14 +22,10 @@ public class ViewModelFactory {
   }
   private SignViewModel signViewModel;
   private CreateAccountViewModel createAccountViewModel;
-
   private AddBooksViewModel addBooksViewModel;
   private MainPageViewModel mainPageBuyersViewModel;
-
   private MainPageSellerViewModel mainPageSellersViewModel;
-
   private AddBookForSaleViewModel addBookForSaleViewModel;
-
   private ShoppingCartViewModel shoppingCartViewModel;
   private BookDetailsSellerViewModel bookDetailsSellerViewModel;
   private BookDetailsViewModel bookDetailsViewModel;

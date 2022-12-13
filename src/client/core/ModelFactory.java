@@ -4,12 +4,15 @@ import client.model.*;
 
 public class ModelFactory {
 
-    private static ModelFactory instance = new ModelFactory();
+    private static ModelFactory instance;
     private AccountModelManager accountModelManager;
     private SellerModelManager sellerModelManager;
     private BuyerModelManager buyerModelManager;
 
     public static ModelFactory getInstance() {
+        if (instance == null) {
+            instance = new ModelFactory();
+        }
         return instance;
     }
 

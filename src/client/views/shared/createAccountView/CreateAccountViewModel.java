@@ -9,7 +9,7 @@ import util.Subject;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class CreateAccountViewModel implements Subject
+public class CreateAccountViewModel
 {
   private StringProperty fullName, address, phoneNumber, email, username, password;
   private AccountModelManager accountModelManager;
@@ -66,11 +66,6 @@ public class CreateAccountViewModel implements Subject
   //      propertyChangeSupport.firePropertyChange("Seller registered", null, null);
 
   }
-//      Alert alert = new Alert(Alert.AlertType.ERROR);
-//      alert.setContentText("Username already exists. Sorry");
-//      alert.show();
-
-//      propertyChangeSupport.firePropertyChange("Invalid username", null, null);
 
 
   public boolean registerSeller()  {
@@ -79,23 +74,8 @@ public class CreateAccountViewModel implements Subject
               phoneNumber.getValue(), email.getValue(), username.getValue(),
               password.getValue());
 
-
-  //      propertyChangeSupport.firePropertyChange("Buyer registered", null, null);
-  }
-////    else
-//      propertyChangeSupport.firePropertyChange("Invalid username", null, null);
-
-
-  @Override public void addPropertyChangeListener(String eventName,
-      PropertyChangeListener listener)
-  {
-    propertyChangeSupport.addPropertyChangeListener(eventName,listener);
   }
 
-  @Override public void removePropertyChangeListener(String eventName,
-      PropertyChangeListener listener)
-  {
-    propertyChangeSupport.removePropertyChangeListener(eventName,listener);
 
-  }
+
 }
