@@ -14,11 +14,6 @@ import java.util.List;
 public class BookGenreDAOImpl implements BookGenreDAO {
 
     private static BookGenreDAOImpl instance;
-    private Connection connection;
-
-    private BookGenreDAOImpl() {
-        connection = DatabaseConnection.getInstance().getConnection();
-    }
 
     public synchronized static BookGenreDAOImpl getInstance() {
         if (instance == null) {
@@ -28,7 +23,7 @@ public class BookGenreDAOImpl implements BookGenreDAO {
     }
 
     public BookGenre create(String genreName, String isbn) {
-        try  {
+        try (Connection connection = DatabaseConnection.getInstance().getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO bookgenre (genre_name, isbn) values (?,?);");
             preparedStatement.setString(1,genreName);
             preparedStatement.setString(2,isbn);
@@ -41,7 +36,7 @@ public class BookGenreDAOImpl implements BookGenreDAO {
     }
 
     public ArrayList<Genre> getGenresForBook(String isbn) {
-        try  {
+        try (Connection connection = DatabaseConnection.getInstance().getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT genre_name from bookgenre where isbn = ?");
             preparedStatement.setString(1, isbn);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -56,7 +51,7 @@ public class BookGenreDAOImpl implements BookGenreDAO {
     }
 
     public void update(String isbn, ArrayList<Genre> genres) {
-        try {
+        try (Connection connection = DatabaseConnection.getInstance().getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE bookgenre SET genre_name = ? where isbn = ?");
 
             if (genres.size() == getGenresForBook(isbn).size()) {
@@ -81,7 +76,7 @@ public class BookGenreDAOImpl implements BookGenreDAO {
 
     public void delete(String isbn) {
 
-        try {
+        try (Connection connection = DatabaseConnection.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement("DELETE FROM bookgenre WHERE isbn = ?");
             statement.setString(1, isbn);
             statement.executeUpdate();

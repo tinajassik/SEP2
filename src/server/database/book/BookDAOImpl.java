@@ -12,8 +12,7 @@ import java.util.List;
 
 public class BookDAOImpl implements BookDAO {
 
-    private static BookDAOImpl instance = new BookDAOImpl();
-    private Connection databaseConnection;
+    private static BookDAOImpl instance;
 
     public static synchronized BookDAOImpl getInstance() throws SQLException {
         if (instance == null) {
@@ -23,7 +22,8 @@ public class BookDAOImpl implements BookDAO {
     }
 
     private BookDAOImpl () {
-        databaseConnection = DatabaseConnection.getInstance().getConnection();
+
+
     }
 
     @Override
@@ -58,6 +58,8 @@ public class BookDAOImpl implements BookDAO {
             } else {
                 return null;
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -83,13 +85,17 @@ public class BookDAOImpl implements BookDAO {
 
     @Override
     public void update(Book book) throws SQLException {
-        PreparedStatement statement = databaseConnection.prepareStatement("UPDATE Book SET title = ?, publication_year = ?, author_id = ?, cover_type = ? WHERE isbn = ?");
-        statement.setString(1, book.getTitle());
-        statement.setInt(2, book.getYearOfPublish());
-        statement.setInt(3, book.getAuthor().getId());
-        statement.setString(4, book.getCoverType());
-        statement.setString(5, book.getIsbn());
-        statement.executeUpdate();
+        try (Connection connection = DatabaseConnection.getInstance().getConnection()) {
+            PreparedStatement statement = connection.prepareStatement("UPDATE Book SET title = ?, publication_year = ?, author_id = ?, cover_type = ? WHERE isbn = ?");
+            statement.setString(1, book.getTitle());
+            statement.setInt(2, book.getYearOfPublish());
+            statement.setInt(3, book.getAuthor().getId());
+            statement.setString(4, book.getCoverType());
+            statement.setString(5, book.getIsbn());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
